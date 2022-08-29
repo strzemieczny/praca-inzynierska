@@ -41,10 +41,29 @@
         </header>
         <div class="main">
             <nav class = 'nav'>
+                <ul class = 'nav-ul'>
+                    
+                    {% if is_IT %}
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_home" %}</a></li>
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_addmachine" %}</a></li>
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_machines" %}</a></li>
+                    {% endif %}
+                    {% if is_Engineer %}
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_home" %}</a></li>
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_mybackups" %}</a></li>
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_mymachines" %}</a></li>
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_dashboard" %}</a></li>
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_requestbackup" %}</a></li>
+                    {% endif %}
+                </ul>
             </nav>
             {% block content %}
             <section>
-                {% comment %} {% trans "siema" %} django-admin makemessages --all django-admin compilemessages {% endcomment %}
+                {% comment %}django-admin makemessages --all django-admin compilemessages {% endcomment %}
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </section>
         </div>
         {% endblock %}

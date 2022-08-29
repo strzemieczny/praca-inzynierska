@@ -213,3 +213,9 @@ if DEBUG:
         level=logging.INFO,
         format='%(asctime)s %(levelname)s %(message)s',
     )
+
+
+#SMTP settings
+EMAIL_HOST='10.212.6.111'
+EMAIL_SUBJECT_PREFIX='[Backup Manager]'
+EMAIL_TIMEOUT=5
