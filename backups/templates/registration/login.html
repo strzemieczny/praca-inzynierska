@@ -1,0 +1,30 @@
+{% extends 'backups/index.html' %} {% load i18n %} {% block title %} {% trans "log_in" %}{% endblock %} {% block head %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+{% endblock %} {% block content %}
+<section>
+    {{permissions}}
+    <form method="post" action="{% url 'login' %}" class="login-form">
+        {% csrf_token %}
+        <table>
+            <label>{% trans "log_in" %}:</label>
+            <tr>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+        {% if form.errors %}
+        <style>
+            .login-form input[type="text"],
+            input[type="password"]:last-child {
+                margin-bottom: 0;
+            }
+        </style>
+        <p class="login-error">{% trans "passwd_didnt_match" %}</p>
+        {% endif %} <input type="submit" value="{% trans "log_in_submit_btn" %}" />
+        <input type="hidden" name="next" value="{{ next }}" />
+        <p><a href="{% url 'password_reset' %}">{% trans "forgot_passwd" %}</a></p>
+    </form>
+</section>
+{% endblock %}
