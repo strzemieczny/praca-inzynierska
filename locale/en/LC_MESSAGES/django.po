@@ -1,0 +1,145 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-30 13:28+0200\n"
+"PO-Revision-Date: 2022-08-30 14:25+0200\n"
+"Last-Translator:   <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: PDS_Apps/settings.py:65
+msgid "English"
+msgstr "English"
+
+#: PDS_Apps/settings.py:66
+msgid "French"
+msgstr "French"
+
+#: PDS_Apps/settings.py:67
+msgid "German"
+msgstr "German"
+
+#: PDS_Apps/settings.py:68
+msgid "Polish"
+msgstr "Polish"
+
+#: backups/forms.py:8
+msgid "forms_requestaccessplaceholder"
+msgstr "Why do you need access to Backup Monitor?"
+
+#: backups/templates/backups/errors/not_authorized.html:16
+msgid "h1_notauthorized"
+msgstr "You are not authorized!"
+
+#: backups/templates/backups/errors/not_authorized.html:17
+msgid "h2_notauthorized"
+msgstr "If you need access, please submit request"
+
+#: backups/templates/backups/errors/not_authorized.html:21
+msgid "submit_btn"
+msgstr "Submit"
+
+#: backups/templates/backups/errors/not_authorized_success.html:17
+msgid "noauth_formsucceed"
+msgstr "Thank you! Your request has been processed!"
+
+#: backups/templates/backups/index.html:43
+#: backups/templates/backups/it_index.html:42
+msgid "nav_home"
+msgstr "Home"
+
+#: backups/templates/backups/index.html:44
+msgid "nav_mybackups"
+msgstr "My backups"
+
+#: backups/templates/backups/index.html:45
+msgid "nav_mymachines"
+msgstr "My machines"
+
+#: backups/templates/backups/index.html:46
+msgid "nav_dashboard"
+msgstr "Dashboard"
+
+#: backups/templates/backups/index.html:47
+msgid "nav_requestbackup"
+msgstr "Request backup"
+
+#: backups/templates/backups/index.html:49
+msgid "nav_notloggedin"
+msgstr "Log in to continue"
+
+#: backups/templates/backups/index.html:52
+#: backups/templates/backups/it_index.html:50
+msgid "log_out"
+msgstr "Log out"
+
+#: backups/templates/backups/index.html:62
+#: backups/templates/backups/index.html:69
+#: backups/templates/backups/it_index.html:68
+msgid "h1_recentlyrestored"
+msgstr "Recently restored backups"
+
+#: backups/templates/backups/index.html:66
+msgid "h1_waitingrequests"
+msgstr "Pending backups"
+
+#: backups/templates/backups/it_index.html:43
+msgid "nav_addmachine"
+msgstr "Add new machine"
+
+#: backups/templates/backups/it_index.html:44
+msgid "nav_machines"
+msgstr "Machines"
+
+#: backups/templates/backups/it_index.html:45
+msgid "nav_responsible"
+msgstr "Responsibilities"
+
+#: backups/templates/backups/it_index.html:46
+msgid "nav_rosetta"
+msgstr "Rosetta"
+
+#: backups/templates/backups/it_index.html:47
+msgid "nav_settings"
+msgstr "Settings"
+
+#: backups/templates/backups/it_index.html:52
+#: backups/templates/registration/login.html:1
+#: backups/templates/registration/login.html:9
+msgid "log_in"
+msgstr "Log in"
+
+#: backups/templates/backups/it_index.html:61
+msgid "h1_requestedbackups"
+msgstr "Backup requests"
+
+#: backups/templates/backups/it_index.html:65
+msgid "h1_expiredbackups"
+msgstr "Expired backups"
+
+#: backups/templates/registration/login.html:24
+msgid "passwd_didnt_match"
+msgstr "Incorrect password!"
+
+#: backups/templates/registration/login.html:25
+msgid "log_in_submit_btn"
+msgstr "Log in"
+
+#: backups/templates/registration/login.html:27
+msgid "forgot_passwd"
+msgstr "Forgot password?"
+
+#~ msgid "home_btn"
+#~ msgstr "Home"

@@ -2,7 +2,7 @@
 <html lang="pl">
     {% load i18n %} {% load static %}
     <head>
-        <title>{% block title %}Backup Monitor{% endblock %}</title>
+        <title>{% block title %}IT View{% endblock %}</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta http-equiv="Cache-Control" content="no-cache" />
@@ -23,54 +23,52 @@
     </head>
 
     <body>
-        {% block header %}
-            <header>
+        <header>
+            {% block header %}
                 <img id="logo" src="{% static 'img/logo.png' %}" />
-                <p id="header-text">Backup Monitor</p>
+                <p id="header-text">Backup Monitor - IT View</p>
                 <div class="languages">
                     {% for language in languages %}
                         <a href="/{{ language.code }}/backups" class="languages-a"><figure><img src = "{% static "" %}img/flag/{{language.code}}.png" /></figure> </a>
                     {% endfor %}
                 </div>
-            </header>
-        {% endblock %}
+            {% endblock %}
+        </header>
         {% block body %}
             <div class="main">
                 <nav class = 'nav'>
                     <ul class = 'nav-ul'>
-                    
-                        {% if is_Engineer %}
-                            <li class = 'nav-li'><a href= ''>{% trans "nav_home" %}</a></li>
-                            <li class = 'nav-li'><a href= ''>{% trans "nav_mybackups" %}</a></li>
-                            <li class = 'nav-li'><a href= ''>{% trans "nav_mymachines" %}</a></li>
-                            <li class = 'nav-li'><a href= ''>{% trans "nav_dashboard" %}</a></li>
-                            <li class = 'nav-li'><a href= ''>{% trans "nav_requestbackup" %}</a></li>
-                        {% else %}
-                            <li class = 'nav-li'><a href= '../login'>{% trans "nav_notloggedin" %}</a></li>
+                        {% if is_IT %}
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_home" %}</a></li>
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_addmachine" %}</a></li>
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_machines" %}</a></li>
+                        <li class = 'nav-li'><a href= ''>{% trans "nav_responsible" %}</a></li>
+                        <li class = 'nav-li'><a href= '/pl/rosetta'>{% trans "nav_rosetta" %}</a></li>
+                        <li class = 'nav-li'><a href= '/pl/admin'>{% trans "nav_settings" %}</a></li>
                         {% endif %}
                         {% if user.is_authenticated %}
-                            <li class = 'nav-li'><a href="/{{CURRENT_LANGUAGE}}/logout/">{% trans "log_out" %}</a></li>
+                        <li class = 'nav-li'><a href="/{{CURRENT_LANGUAGE}}/logout/">{% trans "log_out" %}</a></li>
+                        {% else %}
+                        <li class = 'nav-li'><a href="/{{CURRENT_LANGUAGE}}/login/">{% trans "log_in" %}</a></li>
                         {% endif %}
                     </ul>
                 </nav>
                 {% block content %}
                     <section class = 'index-section'>
-                        {% comment %} django-admin makemessages --all django-admin compilemessages {% endcomment %}
-                        {% if is_Engineer %}
+                            {% comment %}django-admin makemessages --all django-admin compilemessages {% endcomment %}
                             <div class = 'grid-div-home'>
-                                <h1>{% trans 'h1_recentlyrestored' %}</h1>
+                                <h1>{% trans 'h1_requestedbackups' %}</h1>
                             </div>
                             <div class = 'grid-div-home'></div>
                             <div class = 'grid-div-home'>
-                                <h1>{% trans 'h1_waitingrequests' %}</h1>
+                                <h1>{% trans 'h1_expiredbackups' %}</h1>
                             </div>
                             <div class = 'grid-div-home'>
                                 <h1>{% trans 'h1_recentlyrestored' %}</h1>
                             </div>
-                        {% endif %}
                     </section>
-                {% endblock %} 
+                {% endblock %}
             </div>
-        {% endblock %} 
+        {% endblock %}
     </body>
 </html>

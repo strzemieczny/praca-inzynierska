@@ -1,0 +1,21 @@
+<!-- prettier-ignore -->
+{% extends 'backups/index.html' %}
+{% load i18n %}
+{% load static %}
+{% get_current_language as CURRENT_LANGUAGE %}
+{% block title %}
+    Success - Not Authorized
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/not_authorized.css' %}" />
+{% endblock %}
+{% block body %}
+    <div class="main">
+        {% block content %}
+            <section class = 'noauth-section'>
+                <img src="{% static 'img/success.png' %}" />
+                <h2>{% trans 'noauth_formsucceed' %}</h2>
+            </section>
+        {% endblock %} 
+    </div>
+{% endblock %} 

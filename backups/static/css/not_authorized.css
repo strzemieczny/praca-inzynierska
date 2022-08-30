@@ -1,0 +1,60 @@
+:root {
+    --header-height: 50px;
+    --nav-width: 200px;
+}
+::placeholder {
+    text-align: center;
+ }
+ 
+* {
+    margin: 0;
+    padding: 0;
+}
+.noauth-section {
+    width: 100vw;
+    min-height: calc(100vh - var(--header-height) - 20px);
+    max-height: calc(100vh - var(--header-height) - 20px);
+    margin: var(--header-height) 0 0 0;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+h1 {
+    font-size: 60px;
+    color: #ff3b3b;
+}
+h2 {
+    margin-top: 20px;
+    font-size: 30px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(70vh - var(--header-height));
+}
+textarea {
+    padding: 5px;
+    resize: none;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+input[type='submit'] {
+    width: 35%;
+    height: 35px;
+    align-self: flex-end;
+    font-size: 20px;
+    border: none;
+    background-color: #0d1b26;
+    transition: 0.3s;
+    cursor: pointer;
+    color: #fff
+}
+input[type='submit']:hover {
+    background-color: #46535e;
+}
+.noauth-section img {
+    height: 30%;
+    margin: 100px 0 50px 0;
+}

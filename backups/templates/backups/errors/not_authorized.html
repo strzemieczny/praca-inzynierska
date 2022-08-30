@@ -1,0 +1,26 @@
+<!-- prettier-ignore -->
+{% extends 'backups/index.html' %}
+{% load i18n %}
+{% load static %}
+{% get_current_language as CURRENT_LANGUAGE %}
+{% block title %}
+    Not Authorized
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/not_authorized.css' %}" />
+{% endblock %}
+{% block body %}
+    <div class="main">
+        {% block content %}
+            <section class = 'noauth-section'>
+                <h1>{% trans 'h1_notauthorized' %}</h1>
+                <h2>{% trans 'h2_notauthorized' %}</h2>
+                <form method = 'post'>
+                    {% csrf_token %}
+                    {{ form.as_p}}
+                    <input type="submit" value={% trans 'submit_btn' %} />
+                </form>
+            </section>
+        {% endblock %} 
+    </div>
+{% endblock %} 

@@ -12,6 +12,10 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = [
     path('', views.home, name='home'),
     path('', include("django.contrib.auth.urls")),
+    path('it/', include([
+        path('', views.itview, name='itview')
+    ])),
+    path('', include("django.contrib.auth.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

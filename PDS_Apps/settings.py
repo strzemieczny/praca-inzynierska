@@ -28,6 +28,10 @@ AUTH_LDAP_SERVER_URI = "ldap://plblop-dc04.delphidrive.com"
 AUTH_LDAP_BIND_DN = "SID_PLBLOSECURITY@delphidrive.com"
 AUTH_LDAP_BIND_PASSWORD = "S?9piwUVE!"
 AUTH_LDAP_SEARCH_BASE = "OU=DELPHIDRIVE,DC=DelphiDrive,DC=com"
+# AUTH_LDAP_SERVER_URI = "ldap://BLNDOM1.global.borgwarner.net"
+# AUTH_LDAP_BIND_DN = "SID_PLBLOSECURITY@borgwarner.com"
+# AUTH_LDAP_BIND_PASSWORD = "S?9piwUVE!"
+# AUTH_LDAP_SEARCH_BASE = "DC=global,DC=borgwarner,DC=net"
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
     AUTH_LDAP_SEARCH_BASE, ldap.SCOPE_SUBTREE, "(samaccountname=%(user)s)")
 
@@ -60,7 +64,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'pl'
 LANGUAGES = (
     ('en', _('English')),
     ('fr', _('French')),
@@ -76,7 +80,7 @@ PARLER_LANGUAGES = {
         {'code': 'pl', },  # Polish
     ),
     'default': {
-        'fallbacks': ['en'],
+        'fallbacks': ['pl'],
         'hide_untranslated': True,
     }
 }
@@ -107,6 +111,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     # 'language.DefaultLanguageMiddleware',
 ]
 
@@ -146,7 +151,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+    # 'postgres': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'PDS',
+    #     'USER': 'pds',
+    #     'PASSWORD': 'delphi1234',
+    #     'HOST': '130.171.180.98',
+    #     'PORT': '',
+    # }
 }
 
 

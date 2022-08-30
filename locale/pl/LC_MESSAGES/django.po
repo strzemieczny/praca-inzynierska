@@ -1,0 +1,145 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-30 13:28+0200\n"
+"PO-Revision-Date: 2022-08-30 14:24+0200\n"
+"Last-Translator:   <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: PDS_Apps/settings.py:65
+msgid "English"
+msgstr "Angielski"
+
+#: PDS_Apps/settings.py:66
+msgid "French"
+msgstr "Francuski"
+
+#: PDS_Apps/settings.py:67
+msgid "German"
+msgstr "Niemiecki"
+
+#: PDS_Apps/settings.py:68
+msgid "Polish"
+msgstr "Polski"
+
+#: backups/forms.py:8
+msgid "forms_requestaccessplaceholder"
+msgstr "Dlaczego potrzebujesz dostępu do Backup Monitora?"
+
+#: backups/templates/backups/errors/not_authorized.html:16
+msgid "h1_notauthorized"
+msgstr "Nie jesteś autoryzowany!"
+
+#: backups/templates/backups/errors/not_authorized.html:17
+msgid "h2_notauthorized"
+msgstr "Jeśli potrzebujesz dostępu, wypełnij wniosek"
+
+#: backups/templates/backups/errors/not_authorized.html:21
+msgid "submit_btn"
+msgstr "Potwierdź"
+
+#: backups/templates/backups/errors/not_authorized_success.html:17
+msgid "noauth_formsucceed"
+msgstr "Dziękujemy! Twoje zgłoszenie zostało przyjęte!"
+
+#: backups/templates/backups/index.html:43
+#: backups/templates/backups/it_index.html:42
+msgid "nav_home"
+msgstr "Strona Główna"
+
+#: backups/templates/backups/index.html:44
+msgid "nav_mybackups"
+msgstr "Moje backupy"
+
+#: backups/templates/backups/index.html:45
+msgid "nav_mymachines"
+msgstr "Moje maszyny"
+
+#: backups/templates/backups/index.html:46
+msgid "nav_dashboard"
+msgstr "Dashboard"
+
+#: backups/templates/backups/index.html:47
+msgid "nav_requestbackup"
+msgstr "Wnioskuj o wykonanie kopii zapasowej"
+
+#: backups/templates/backups/index.html:49
+msgid "nav_notloggedin"
+msgstr "Zaloguj się, aby kontynuować"
+
+#: backups/templates/backups/index.html:52
+#: backups/templates/backups/it_index.html:50
+msgid "log_out"
+msgstr "Wyloguj"
+
+#: backups/templates/backups/index.html:62
+#: backups/templates/backups/index.html:69
+#: backups/templates/backups/it_index.html:68
+msgid "h1_recentlyrestored"
+msgstr "Ostatnio przywrócone kopie zapasowe"
+
+#: backups/templates/backups/index.html:66
+msgid "h1_waitingrequests"
+msgstr "Oczekujące kopie zapasowe"
+
+#: backups/templates/backups/it_index.html:43
+msgid "nav_addmachine"
+msgstr "Dodaj maszynę"
+
+#: backups/templates/backups/it_index.html:44
+msgid "nav_machines"
+msgstr "Maszyny"
+
+#: backups/templates/backups/it_index.html:45
+msgid "nav_responsible"
+msgstr "Odpowiedzialność"
+
+#: backups/templates/backups/it_index.html:46
+msgid "nav_rosetta"
+msgstr "Rosetta"
+
+#: backups/templates/backups/it_index.html:47
+msgid "nav_settings"
+msgstr "Ustawienia"
+
+#: backups/templates/backups/it_index.html:52
+#: backups/templates/registration/login.html:1
+#: backups/templates/registration/login.html:9
+msgid "log_in"
+msgstr "Zaloguj"
+
+#: backups/templates/backups/it_index.html:61
+msgid "h1_requestedbackups"
+msgstr "Wnioski o wykonanie kopii zapasowej"
+
+#: backups/templates/backups/it_index.html:65
+msgid "h1_expiredbackups"
+msgstr "Przeterminowane kopie zapasowe"
+
+#: backups/templates/registration/login.html:24
+msgid "passwd_didnt_match"
+msgstr "Nieprawidłowe hasło!"
+
+#: backups/templates/registration/login.html:25
+msgid "log_in_submit_btn"
+msgstr "Zaloguj się"
+
+#: backups/templates/registration/login.html:27
+msgid "forgot_passwd"
+msgstr "Zapomniałeś hasła?"
+
+#~ msgid "home_btn"
+#~ msgstr "Strona Główna"
