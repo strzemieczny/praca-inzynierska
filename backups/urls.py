@@ -13,7 +13,10 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('', include("django.contrib.auth.urls")),
     path('it/', include([
-        path('', views.itview, name='itview')
+        path('', views.itview, name='itview'),
+    ])),
+    path('machine/', include([
+            path('add/', views.addMachines, name='addMachines'),
     ])),
     path('', include("django.contrib.auth.urls")),
 ]

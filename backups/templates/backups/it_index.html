@@ -34,22 +34,22 @@
                 </div>
             {% endblock %}
         </header>
-        {% block body %}
             <div class="main">
                 <nav class = 'nav'>
                     <ul class = 'nav-ul'>
                         {% if is_IT %}
-                        <li class = 'nav-li'><a href= ''>{% trans "nav_home" %}</a></li>
-                        <li class = 'nav-li'><a href= ''>{% trans "nav_addmachine" %}</a></li>
-                        <li class = 'nav-li'><a href= ''>{% trans "nav_machines" %}</a></li>
-                        <li class = 'nav-li'><a href= ''>{% trans "nav_responsible" %}</a></li>
-                        <li class = 'nav-li'><a href= '/pl/rosetta'>{% trans "nav_rosetta" %}</a></li>
-                        <li class = 'nav-li'><a href= '/pl/admin'>{% trans "nav_settings" %}</a></li>
+                            <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups'>{% trans "nav_home" %}</a></li>
+                            <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups/machine/add'>{% trans "nav_addmachine" %}</a></li>
+                            <li class = 'nav-li'><a href= ''>{% trans "nav_addperson" %}</a></li>
+                            <li class = 'nav-li'><a href= ''>{% trans "nav_machines" %}</a></li>
+                            <li class = 'nav-li'><a href= ''>{% trans "nav_responsible" %}</a></li>
+                            <li class = 'nav-li'><a href= '/pl/rosetta'>{% trans "nav_rosetta" %}</a></li>
+                            <li class = 'nav-li'><a href= '/pl/admin'>{% trans "nav_settings" %}</a></li>
                         {% endif %}
                         {% if user.is_authenticated %}
-                        <li class = 'nav-li'><a href="/{{CURRENT_LANGUAGE}}/logout/">{% trans "log_out" %}</a></li>
+                            <li class = 'nav-li'><a href="/{{CURRENT_LANGUAGE}}/logout/">{% trans "log_out" %}</a></li>
                         {% else %}
-                        <li class = 'nav-li'><a href="/{{CURRENT_LANGUAGE}}/login/">{% trans "log_in" %}</a></li>
+                            <li class = 'nav-li'><a href="/{{CURRENT_LANGUAGE}}/login/">{% trans "log_in" %}</a></li>
                         {% endif %}
                     </ul>
                 </nav>
@@ -69,6 +69,5 @@
                     </section>
                 {% endblock %}
             </div>
-        {% endblock %}
     </body>
 </html>

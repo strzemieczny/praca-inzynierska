@@ -1,0 +1,23 @@
+{% extends 'backups/it_index.html' %}
+    {% load i18n %}
+    {% load static %}
+{% block title %} {% trans "Add Machine" %}{% endblock %}
+{% block head %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add_machine.css' %}" />
+    <script type="text/javascript" src="{% static 'js/add_machine.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+{% endblock %} 
+{% block content %}
+    <section class = 'index-section'>
+        <form method="post" action="" class="machine-form" id="machine-form">
+            <h1>{% trans 'h1_machineform' %}</h1>
+            {% csrf_token %}
+            {{ form }}
+            <label>{% trans 'label_machine_owner' %}</label>
+            <input type="text" id = 'id_machine_owner' value="{{ current_user }}" />
+            <p id = 'submit-btn'>{% trans "submit_btn" %}</p>
+            {% comment %} <input type="submit" value="{% trans "submit_btn" %}"  /> {% endcomment %}
+            {% comment %} <input type="hidden" name="next" value="{{ next }}" /> {% endcomment %}
+        </form>
+    </section>
+{% endblock %}

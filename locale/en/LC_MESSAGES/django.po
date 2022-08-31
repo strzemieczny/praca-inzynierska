@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-30 13:28+0200\n"
-"PO-Revision-Date: 2022-08-30 14:25+0200\n"
-"Last-Translator:   <>\n"
+"POT-Creation-Date: 2022-08-31 11:12+0200\n"
+"PO-Revision-Date: 2022-08-31 11:15+0200\n"
+"Last-Translator: Bartosz Strzemieczny <bartosz.strzemieczny@delphi.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,25 +19,82 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
-#: PDS_Apps/settings.py:65
+#: PDS_Apps/settings.py:69
 msgid "English"
 msgstr "English"
 
-#: PDS_Apps/settings.py:66
+#: PDS_Apps/settings.py:70
 msgid "French"
 msgstr "French"
 
-#: PDS_Apps/settings.py:67
+#: PDS_Apps/settings.py:71
 msgid "German"
 msgstr "German"
 
-#: PDS_Apps/settings.py:68
+#: PDS_Apps/settings.py:72
 msgid "Polish"
 msgstr "Polish"
 
-#: backups/forms.py:8
+#: backups/forms.py:9
 msgid "forms_requestaccessplaceholder"
 msgstr "Why do you need access to Backup Monitor?"
+
+#: backups/forms.py:19
+msgid "placeholder_machine_holistech"
+msgstr "Holistech"
+
+#: backups/forms.py:20
+msgid "placeholder_machine_ipaddr"
+msgstr "IP address"
+
+#: backups/forms.py:21
+msgid "placeholder_machine_hostname"
+msgstr "Hostname"
+
+#: backups/forms.py:22
+msgid "placeholder_machine_fisname"
+msgstr "FIS name"
+
+#: backups/forms.py:23
+msgid "placeholder_machine_area"
+msgstr "Area"
+
+#: backups/forms.py:26
+msgid "label_machine_holistech"
+msgstr "Holistech:"
+
+#: backups/forms.py:27
+msgid "label_machine_ipaddr"
+msgstr "IP address:"
+
+#: backups/forms.py:28
+msgid "label_machine_hostname"
+msgstr "Hostname:"
+
+#: backups/forms.py:29
+#| msgid "nav_machines"
+msgid "label_machine_fisname"
+msgstr "FIS name:"
+
+#: backups/forms.py:30
+#| msgid "nav_machines"
+msgid "label_machine_area"
+msgstr "Area:"
+
+#: backups/templates/backups/add_machine.html:4
+#| msgid "nav_addmachine"
+msgid "Add Machine"
+msgstr "Add machine"
+
+#: backups/templates/backups/add_machine.html:11
+#| msgid "nav_machines"
+msgid "h1_machineform"
+msgstr "Add new machine"
+
+#: backups/templates/backups/add_machine.html:14
+#: backups/templates/backups/errors/not_authorized.html:21
+msgid "submit_btn"
+msgstr "Submit"
 
 #: backups/templates/backups/errors/not_authorized.html:16
 msgid "h1_notauthorized"
@@ -47,51 +104,47 @@ msgstr "You are not authorized!"
 msgid "h2_notauthorized"
 msgstr "If you need access, please submit request"
 
-#: backups/templates/backups/errors/not_authorized.html:21
-msgid "submit_btn"
-msgstr "Submit"
-
 #: backups/templates/backups/errors/not_authorized_success.html:17
 msgid "noauth_formsucceed"
 msgstr "Thank you! Your request has been processed!"
 
-#: backups/templates/backups/index.html:43
+#: backups/templates/backups/index.html:44
 #: backups/templates/backups/it_index.html:42
 msgid "nav_home"
 msgstr "Home"
 
-#: backups/templates/backups/index.html:44
+#: backups/templates/backups/index.html:45
 msgid "nav_mybackups"
 msgstr "My backups"
 
-#: backups/templates/backups/index.html:45
+#: backups/templates/backups/index.html:46
 msgid "nav_mymachines"
 msgstr "My machines"
 
-#: backups/templates/backups/index.html:46
+#: backups/templates/backups/index.html:47
 msgid "nav_dashboard"
 msgstr "Dashboard"
 
-#: backups/templates/backups/index.html:47
+#: backups/templates/backups/index.html:48
 msgid "nav_requestbackup"
 msgstr "Request backup"
 
-#: backups/templates/backups/index.html:49
+#: backups/templates/backups/index.html:50
 msgid "nav_notloggedin"
 msgstr "Log in to continue"
 
-#: backups/templates/backups/index.html:52
-#: backups/templates/backups/it_index.html:50
+#: backups/templates/backups/index.html:53
+#: backups/templates/backups/it_index.html:51
 msgid "log_out"
 msgstr "Log out"
 
-#: backups/templates/backups/index.html:62
-#: backups/templates/backups/index.html:69
-#: backups/templates/backups/it_index.html:68
+#: backups/templates/backups/index.html:63
+#: backups/templates/backups/index.html:70
+#: backups/templates/backups/it_index.html:69
 msgid "h1_recentlyrestored"
 msgstr "Recently restored backups"
 
-#: backups/templates/backups/index.html:66
+#: backups/templates/backups/index.html:67
 msgid "h1_waitingrequests"
 msgstr "Pending backups"
 
@@ -100,32 +153,36 @@ msgid "nav_addmachine"
 msgstr "Add new machine"
 
 #: backups/templates/backups/it_index.html:44
+msgid "nav_addperson"
+msgstr ""
+
+#: backups/templates/backups/it_index.html:45
 msgid "nav_machines"
 msgstr "Machines"
 
-#: backups/templates/backups/it_index.html:45
+#: backups/templates/backups/it_index.html:46
 msgid "nav_responsible"
 msgstr "Responsibilities"
 
-#: backups/templates/backups/it_index.html:46
+#: backups/templates/backups/it_index.html:47
 msgid "nav_rosetta"
 msgstr "Rosetta"
 
-#: backups/templates/backups/it_index.html:47
+#: backups/templates/backups/it_index.html:48
 msgid "nav_settings"
 msgstr "Settings"
 
-#: backups/templates/backups/it_index.html:52
+#: backups/templates/backups/it_index.html:53
 #: backups/templates/registration/login.html:1
 #: backups/templates/registration/login.html:9
 msgid "log_in"
 msgstr "Log in"
 
-#: backups/templates/backups/it_index.html:61
+#: backups/templates/backups/it_index.html:62
 msgid "h1_requestedbackups"
 msgstr "Backup requests"
 
-#: backups/templates/backups/it_index.html:65
+#: backups/templates/backups/it_index.html:66
 msgid "h1_expiredbackups"
 msgstr "Expired backups"
 

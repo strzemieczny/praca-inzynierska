@@ -11,7 +11,8 @@ from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.contrib.auth.models import Group
 
-from .forms import requestAccess
+from .forms import *
+
 # Create your views here.
 
 #! Groups
@@ -58,3 +59,27 @@ def itview(request):
     else:
         return notAuthorized(request)
     return HttpResponse(template.render(context, request))
+
+@login_required(login_url='../login')
+def addMachines(request):
+    context = {}
+    is_IT = {}
+    current_user = request.user.first_name + " " + request.user.last_name
+    current_user_id = request.user.id
+    template = loader.get_template('backups/add_machine.html')
+    if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
+        return home(request)
+    if request.user in IT_MEMBERS:
+        is_IT = True
+        form = addMachine(request.POST or None)
+        if request.POST:
+            if form.is_valid():
+                print(form)
+                instance = form.save()
+                instance.save()
+                return HttpResponse(template.render({'form': addMachine }, request))
+            else:
+                print(request.POST)
+                print('siemolo widzowie')
+    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'current_user' : current_user, 'current_user_id' : current_user_id}, request))
+    
