@@ -1,4 +1,4 @@
-from django.db import models
+from djongo import models
 
 #CHOICES
 AREA = (
@@ -12,7 +12,8 @@ AREA = (
 
 # Create your models here.
 class machine(models.Model):
-    machine_holistech = models.CharField(primary_key=True, max_length=6)
+    # id = models.AutoField(primary_key=True)
+    machine_holistech = models.CharField(max_length=6, unique=True)
     machine_ipaddr = models.CharField(max_length=15)
     machine_hostname = models.CharField(max_length=253)
     machine_fisname = models.CharField(max_length=24)

@@ -56,10 +56,18 @@ p {
     text-align: center;
     font-size: 15px;
 }
-.machine-form h1 {
+.index-section h1 {
     font-size: 50px;
     margin-bottom: 50px;
 }
 .machine-form label {
     align-self: flex-start;
+}
+.badInput {
+    border: 2px solid #ff3b3b;
+    border-radius: 4px;
+}
+.goodInput {
+    border: 2px solid #46e356;
+    border-radius: 4px;
 }

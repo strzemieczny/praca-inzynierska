@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 11:12+0200\n"
-"PO-Revision-Date: 2022-08-31 11:15+0200\n"
+"POT-Creation-Date: 2022-09-01 11:08+0200\n"
+"PO-Revision-Date: 2022-09-01 11:10+0200\n"
 "Last-Translator: Bartosz Strzemieczny <bartosz.strzemieczny@delphi.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -39,59 +39,56 @@ msgstr "Polish"
 msgid "forms_requestaccessplaceholder"
 msgstr "Why do you need access to Backup Monitor?"
 
-#: backups/forms.py:19
+#: backups/forms.py:27
 msgid "placeholder_machine_holistech"
 msgstr "Holistech"
 
-#: backups/forms.py:20
+#: backups/forms.py:28
 msgid "placeholder_machine_ipaddr"
 msgstr "IP address"
 
-#: backups/forms.py:21
+#: backups/forms.py:29
 msgid "placeholder_machine_hostname"
 msgstr "Hostname"
 
-#: backups/forms.py:22
+#: backups/forms.py:30
 msgid "placeholder_machine_fisname"
 msgstr "FIS name"
 
-#: backups/forms.py:23
-msgid "placeholder_machine_area"
-msgstr "Area"
-
-#: backups/forms.py:26
+#: backups/forms.py:34
 msgid "label_machine_holistech"
 msgstr "Holistech:"
 
-#: backups/forms.py:27
+#: backups/forms.py:35
 msgid "label_machine_ipaddr"
 msgstr "IP address:"
 
-#: backups/forms.py:28
+#: backups/forms.py:36
 msgid "label_machine_hostname"
 msgstr "Hostname:"
 
-#: backups/forms.py:29
-#| msgid "nav_machines"
+#: backups/forms.py:37
 msgid "label_machine_fisname"
 msgstr "FIS name:"
 
-#: backups/forms.py:30
-#| msgid "nav_machines"
+#: backups/forms.py:38
 msgid "label_machine_area"
 msgstr "Area:"
 
 #: backups/templates/backups/add_machine.html:4
-#| msgid "nav_addmachine"
 msgid "Add Machine"
 msgstr "Add machine"
 
-#: backups/templates/backups/add_machine.html:11
-#| msgid "nav_machines"
+#: backups/templates/backups/add_machine.html:13
 msgid "h1_machineform"
 msgstr "Add new machine"
 
-#: backups/templates/backups/add_machine.html:14
+#: backups/templates/backups/add_machine.html:16
+#| msgid "label_machine_hostname"
+msgid "label_machine_owner"
+msgstr "Owner:"
+
+#: backups/templates/backups/add_machine.html:18
 #: backups/templates/backups/errors/not_authorized.html:21
 msgid "submit_btn"
 msgstr "Submit"
@@ -154,7 +151,7 @@ msgstr "Add new machine"
 
 #: backups/templates/backups/it_index.html:44
 msgid "nav_addperson"
-msgstr ""
+msgstr "Add person"
 
 #: backups/templates/backups/it_index.html:45
 msgid "nav_machines"
@@ -197,6 +194,13 @@ msgstr "Log in"
 #: backups/templates/registration/login.html:27
 msgid "forgot_passwd"
 msgstr "Forgot password?"
+
+#: backups/views.py:27
+msgid "error_holistechexists"
+msgstr "Machine with this Holistech ID already exists!"
+
+#~ msgid "placeholder_machine_area"
+#~ msgstr "Area"
 
 #~ msgid "home_btn"
 #~ msgstr "Home"

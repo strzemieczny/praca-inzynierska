@@ -9,12 +9,12 @@
 {% endblock %} 
 {% block content %}
     <section class = 'index-section'>
+        <h1 id = 'h1-box'>{% trans 'h1_machineform' %}</h1>
         <form method="post" action="" class="machine-form" id="machine-form">
-            <h1>{% trans 'h1_machineform' %}</h1>
             {% csrf_token %}
             {{ form }}
             <label>{% trans 'label_machine_owner' %}</label>
-            <input type="text" id = 'id_machine_owner' value="{{ current_user }}" />
+            <input type="text" id = 'id_machine_owner' value="{{ current_user }}" disabled/>
             <p id = 'submit-btn'>{% trans "submit_btn" %}</p>
             {% comment %} <input type="submit" value="{% trans "submit_btn" %}"  /> {% endcomment %}
             {% comment %} <input type="hidden" name="next" value="{{ next }}" /> {% endcomment %}
