@@ -112,6 +112,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'django_auto_logout.middleware.auto_logout',
     # 'language.DefaultLanguageMiddleware',
 ]
 
@@ -131,6 +132,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                  'django.template.context_processors.i18n',
+                 'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },
@@ -236,3 +238,8 @@ if DEBUG:
 EMAIL_HOST='10.212.6.111'
 EMAIL_SUBJECT_PREFIX='[Backup Manager]'
 EMAIL_TIMEOUT=5
+
+AUTO_LOGOUT = {
+    'IDLE_TIME': 600,
+    'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
+    }

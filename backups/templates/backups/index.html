@@ -2,6 +2,7 @@
 <html lang="pl">
     {% load i18n %} {% load static %}
     <head>
+        {{ redirect_to_login_immediately }}
         <title>{% block title %}Backup Monitor{% endblock %}</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
