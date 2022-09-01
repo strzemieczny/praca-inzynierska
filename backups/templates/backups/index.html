@@ -42,10 +42,10 @@
                     
                         {% if is_Engineer %}
                             <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups'>{% trans "nav_home" %}</a></li>
-                            <li class = 'nav-li'><a href= ''>{% trans "nav_mybackups" %}</a></li>
-                            <li class = 'nav-li'><a href= ''>{% trans "nav_mymachines" %}</a></li>
+                            <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups/engineering/backups'>{% trans "nav_mybackups" %}</a></li>
+                            <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups/engineering/machines'>{% trans "nav_mymachines" %}</a></li>
                             <li class = 'nav-li'><a href= ''>{% trans "nav_dashboard" %}</a></li>
-                            <li class = 'nav-li'><a href= ''>{% trans "nav_requestbackup" %}</a></li>
+                            <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups/engineering/request'>{% trans "nav_requestbackup" %}</a></li>
                         {% else %}
                             <li class = 'nav-li'><a href= '../login'>{% trans "nav_notloggedin" %}</a></li>
                         {% endif %}

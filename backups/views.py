@@ -103,3 +103,32 @@ def addMachines(request):
                 return bad_request(message='This is a bad request')
     return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'current_user' : current_user, 'current_user_id' : current_user_id, 'msg': msg}, request))
     
+
+
+# do zrobienia jak beda backupy w bazce - lista podswietlana/sortowana na podstawie daty backupu
+def myMachines(request):
+    context = {}
+    if request.user not in ENGINEERING_MEMBERS:
+        return notAuthorized(request)
+    else:
+        is_Engineer = True
+        template = loader.get_template('backups/eng_machines.html')
+        return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
+
+def myBackups(request):
+    context = {}
+    if request.user not in ENGINEERING_MEMBERS:
+        return notAuthorized(request)
+    else:
+        is_Engineer = True
+        template = loader.get_template('backups/eng_backups.html')
+        return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
+
+def requestBackups(request):
+    context = {}
+    if request.user not in ENGINEERING_MEMBERS:
+        return notAuthorized(request)
+    else:
+        is_Engineer = True
+        template = loader.get_template('backups/eng_request.html')
+        return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
