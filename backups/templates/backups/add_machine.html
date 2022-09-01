@@ -15,9 +15,14 @@
             {{ form }}
             <label>{% trans 'label_machine_owner' %}</label>
             <input type="text" id = 'id_machine_owner' value="{{ current_user }}" disabled/>
+            <input type="hidden" id = 'user-id'value="{{current_user_id}}"/>
             <p id = 'submit-btn'>{% trans "submit_btn" %}</p>
             {% comment %} <input type="submit" value="{% trans "submit_btn" %}"  /> {% endcomment %}
             {% comment %} <input type="hidden" name="next" value="{{ next }}" /> {% endcomment %}
         </form>
+        <div class="machine-form hidden" id="success-div">
+            <img src="{% static 'img/success.png' %}" />
+            <h2>{% trans 'machineform_success' %}</h2>
+        </div>
     </section>
 {% endblock %}

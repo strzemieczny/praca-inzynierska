@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
         tmp_holistech.className = '';
         if ( tmp_holistech.value == '' ) {
             tmp_holistech.classList.add('badInput');
+            tmp_holistech.classList.add('error');
+            setTimeout(function() {
+                tmp_holistech.classList.remove('error');
+            }, 300);
         } else {
             tmp_holistech.classList.add('goodInput');
         }
@@ -22,10 +26,18 @@ document.addEventListener("DOMContentLoaded", function () {
         tmp_ipaddr.className = '';
         if ( tmp_ipaddr.value == '' ) {
             tmp_ipaddr.classList.add('badInput');
+            tmp_ipaddr.classList.add('error');
+            setTimeout(function() {
+                tmp_ipaddr.classList.remove('error');
+            }, 300);
         } else if (regexExp.test(tmp_ipaddr.value)) {
             tmp_ipaddr.classList.add('goodInput');
         } else {
             tmp_ipaddr.classList.add('badInput');
+            tmp_ipaddr.classList.add('error');
+            setTimeout(function() {
+                tmp_ipaddr.classList.remove('error');
+            }, 300);
         }
     });
 
@@ -33,6 +45,10 @@ document.addEventListener("DOMContentLoaded", function () {
         tmp_hostname.className = '';
         if ( tmp_hostname.value == '' ) {
             tmp_hostname.classList.add('badInput');
+            tmp_hostname.classList.add('error');
+            setTimeout(function() {
+                tmp_hostname.classList.remove('error');
+            }, 300);
         } else {
             tmp_hostname.classList.add('goodInput');
         }
@@ -42,17 +58,22 @@ document.addEventListener("DOMContentLoaded", function () {
         tmp_fisname.className = '';
         if ( tmp_fisname.value == '' ) {
             tmp_fisname.classList.add('badInput');
+            tmp_fisname.classList.add('error');
+            setTimeout(function() {
+                tmp_fisname.classList.remove('error');
+            }, 300);
         } else {
             tmp_fisname.classList.add('goodInput');
         }
     });
-
+    
     // real time form verification
 
     confirmBtn.addEventListener("click", () => {
         if (tmp_holistech.classList.contains('goodInput') && tmp_ipaddr.classList.contains('goodInput') && tmp_hostname.classList.contains('goodInput') && tmp_fisname.classList.contains('goodInput') ) {
             const csrf = document.getElementsByName("csrfmiddlewaretoken");
             const form = document.getElementById("machine-form");
+            const successDiv = document.getElementById("success-div");
 
 
             const holistech = document.getElementById('id_machine_holistech').value;
@@ -60,8 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const hostname = document.getElementById('id_machine_hostname').value;
             const fisname = document.getElementById('id_machine_fisname').value;
             const area = document.getElementById('id_machine_area').value;
-            const owner = document.getElementById('id_machine_owner').value;
+            const owner = document.getElementById('user-id').value;
 
+            let h1Box = document.getElementById('h1-box');
             
             const fd = new FormData();
             fd.append("csrfmiddlewaretoken", csrf[0].value);
@@ -77,10 +99,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 data: fd,
                 success: function (response) {
                     console.log("success");
-                    // window.location.reload();
-                    setTimeout(function () {
-                        // window.location.reload();
-                    }, 1000);
+                    form.classList.add('hidden');
+                    h1Box.classList.add('hidden');
+                    successDiv.classList.remove('hidden');
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
                 },
                 error: function (error) {
                     console.log("error");
@@ -88,8 +112,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (error.responseJSON.message == "HolistechExists") {
                         tmp_holistech.className = '';
                         tmp_holistech.classList.add('badInput');
+                        tmp_holistech.classList.add('error');
+                        setTimeout(function() {
+                            tmp_holistech.classList.remove('error');
+                        }, 300);
                         tmp_holistech.value = "";
-                        document.getElementById('h1-box').innerHTML = error.responseJSON.error;
+                        let h1Box = document.getElementById('h1-box');
+                        h1Box.innerHTML = error.responseJSON.error;
+                        h1Box.classList.add('color-red');
                     }
                 },
                 cache: false,

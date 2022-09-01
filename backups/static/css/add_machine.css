@@ -63,6 +63,7 @@ p {
 .machine-form label {
     align-self: flex-start;
 }
+
 .badInput {
     border: 2px solid #ff3b3b;
     border-radius: 4px;
@@ -71,3 +72,22 @@ p {
     border: 2px solid #46e356;
     border-radius: 4px;
 }
+.color-red{
+    color: #ff3b3b;
+}
+.error {
+    position: relative;
+    animation: shake .1s linear;
+    animation-iteration-count: 5;
+}
+@keyframes shake {
+    0% { left: -5px; }
+    100% { right: -5px; }
+}
+.hidden {
+    display: none;
+}
+#success-div h2 {
+    margin-top: 20px;
+    font-size: 30px;
+} 

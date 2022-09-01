@@ -12,7 +12,6 @@ AREA = (
 
 # Create your models here.
 class machine(models.Model):
-    # id = models.AutoField(primary_key=True)
     machine_holistech = models.CharField(max_length=6, unique=True)
     machine_ipaddr = models.CharField(max_length=15)
     machine_hostname = models.CharField(max_length=253)
