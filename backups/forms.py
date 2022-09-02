@@ -38,3 +38,6 @@ class addMachine(ModelForm):
             'machine_area': _('label_machine_area'),
             'owner': '',
         }
+
+# class requestBackup1(forms.ModelForm):
+#     request_Backup1 = 

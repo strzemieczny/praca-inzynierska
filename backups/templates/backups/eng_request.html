@@ -9,6 +9,16 @@
 {% endblock %} 
 {% block content %}
     <section class = 'index-section'>
-        
+        <h1>{% trans 'requestbackup_chooseholistech' %}</h1>
+            <div id='content-div'>
+                <label for='list-holistech'>{% trans 'requestbackup_chooseholistech_label' %}</label>
+                <input id = 'list-holistech' list='holistech' placeholder={% trans 'requestbackup_chooseholistech_placeholder' %}>
+                <datalist id='holistech'>
+                    {% for machine in req_owner %}
+                        <option value='{{ machine.machine_holistech }}'>{{ machine.machine_holistech }}</option>
+                    {% endfor %}
+                </datalist>
+                <p id = 'submit-btn'>{% trans "submit_btn" %}</p>
+            </div>
     </section>
 {% endblock %}

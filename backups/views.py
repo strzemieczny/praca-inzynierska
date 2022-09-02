@@ -83,10 +83,8 @@ def addMachines(request):
     current_user_id = request.user.id
     msg = ''
     template = loader.get_template('backups/add_machine.html')
-    if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
-        return home(request)
-    if request.user in IT_MEMBERS:
-        is_IT = True
+    if request.user in IT_MEMBERS or request.user in ENGINEERING_MEMBERS:
+        is_Engineer = True
         form = addMachine(request.POST or None)
         if request.POST:
             if form.is_valid():
@@ -101,7 +99,8 @@ def addMachines(request):
                     return bad_request(message='HolistechExists')
                 print(request.POST)
                 return bad_request(message='This is a bad request')
-    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'current_user' : current_user, 'current_user_id' : current_user_id, 'msg': msg}, request))
+    else: return home(request)
+    return HttpResponse(template.render({'form': addMachine, 'is_Engineer': is_Engineer, 'current_user' : current_user, 'current_user_id' : current_user_id, 'msg': msg}, request))
     
 
 
@@ -130,5 +129,6 @@ def requestBackups(request):
         return notAuthorized(request)
     else:
         is_Engineer = True
+        req_owner = machine.objects.filter(owner=request.user.id).values
         template = loader.get_template('backups/eng_request.html')
-        return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
+        return HttpResponse(template.render({'is_Engineer': is_Engineer, 'req_owner': req_owner}, request))
