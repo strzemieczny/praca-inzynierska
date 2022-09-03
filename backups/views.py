@@ -128,7 +128,17 @@ def requestBackups(request):
     if request.user not in ENGINEERING_MEMBERS:
         return notAuthorized(request)
     else:
-        is_Engineer = True
-        req_owner = machine.objects.filter(owner=request.user.id).values
-        template = loader.get_template('backups/eng_request.html')
-        return HttpResponse(template.render({'is_Engineer': is_Engineer, 'req_owner': req_owner}, request))
+        if request.POST:
+            form = requestBackup(request.POST or None)
+            if form.is_valid():
+                instance = form.save()
+                instance.save()
+                template = loader.get_template('backups/errors/not_authorized_success.html')
+                return HttpResponse(template.render({}, request))
+            else:
+                return bad_request(message='Something is no yes')
+        else:
+            is_Engineer = True
+            req_owner = machine.objects.filter(owner=request.user.id).values
+            template = loader.get_template('backups/eng_request.html')
+            return HttpResponse(template.render({'is_Engineer': is_Engineer, 'req_owner': req_owner, 'requestBackup': requestBackup}, request))

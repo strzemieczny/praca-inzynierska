@@ -24,14 +24,22 @@
     margin-bottom: 20px;
     align-self: flex-start;
 }
-#content-div input {
+#content-div label:nth-of-type(2) {
+    margin-top: 30px;
+}
+#content-div input, 
+#content-div textarea {
     width: 100%;
     height: 40px;
     padding: 5px;
     text-align: center;
     cursor: pointer;
 }
-#submit-btn {
+#content-div textarea {
+    resize: none;
+    height: 150px;
+}
+#submit-btn-holistech {
     font-size: 20px;
     padding: 8px 20px;
     cursor: pointer;
@@ -43,6 +51,6 @@
     align-self: flex-end;
 }
 .machine-form input[type="submit"]:hover,
-#submit-btn:hover {
+#submit-btn-holistech:hover {
     background-color: #46535e;
 }

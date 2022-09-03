@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-01 11:08+0200\n"
-"PO-Revision-Date: 2022-09-01 11:10+0200\n"
+"POT-Creation-Date: 2022-09-02 09:42+0200\n"
+"PO-Revision-Date: 2022-09-02 09:44+0200\n"
 "Last-Translator: Bartosz Strzemieczny <bartosz.strzemieczny@delphi.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -76,22 +76,43 @@ msgid "label_machine_area"
 msgstr "Area:"
 
 #: backups/templates/backups/add_machine.html:4
+#: backups/templates/backups/eng_backups.html:4
+#: backups/templates/backups/eng_machines.html:4
+#: backups/templates/backups/eng_request.html:4
 msgid "Add Machine"
 msgstr "Add machine"
 
-#: backups/templates/backups/add_machine.html:13
+#: backups/templates/backups/add_machine.html:12
 msgid "h1_machineform"
 msgstr "Add new machine"
 
 #: backups/templates/backups/add_machine.html:16
-#| msgid "label_machine_hostname"
 msgid "label_machine_owner"
 msgstr "Owner:"
 
-#: backups/templates/backups/add_machine.html:18
+#: backups/templates/backups/add_machine.html:19
+#: backups/templates/backups/eng_request.html:21
 #: backups/templates/backups/errors/not_authorized.html:21
 msgid "submit_btn"
 msgstr "Submit"
+
+#: backups/templates/backups/add_machine.html:27
+#| msgid "h1_machineform"
+msgid "machineform_success"
+msgstr "Your machien has been added successfully!"
+
+#: backups/templates/backups/eng_request.html:12
+msgid "requestbackup_chooseholistech"
+msgstr "Choose Holistech ID!"
+
+#: backups/templates/backups/eng_request.html:14
+msgid "requestbackup_chooseholistech_label"
+msgstr "Choose Holistech ID:"
+
+#: backups/templates/backups/eng_request.html:15
+#| msgid "forms_requestaccessplaceholder"
+msgid "requestbackup_chooseholistech_placeholder"
+msgstr "Choose Holistech ID"
 
 #: backups/templates/backups/errors/not_authorized.html:16
 msgid "h1_notauthorized"
@@ -105,53 +126,50 @@ msgstr "If you need access, please submit request"
 msgid "noauth_formsucceed"
 msgstr "Thank you! Your request has been processed!"
 
-#: backups/templates/backups/index.html:44
-#: backups/templates/backups/it_index.html:42
+#: backups/templates/backups/index.html:45
+#: backups/templates/backups/it_index.html:43
 msgid "nav_home"
 msgstr "Home"
 
-#: backups/templates/backups/index.html:45
+#: backups/templates/backups/index.html:46
 msgid "nav_mybackups"
 msgstr "My backups"
 
-#: backups/templates/backups/index.html:46
+#: backups/templates/backups/index.html:47
+#: backups/templates/backups/it_index.html:44
+msgid "nav_addmachine"
+msgstr "Add new machine"
+
+#: backups/templates/backups/index.html:48
 msgid "nav_mymachines"
 msgstr "My machines"
 
-#: backups/templates/backups/index.html:47
+#: backups/templates/backups/index.html:49
 msgid "nav_dashboard"
 msgstr "Dashboard"
 
-#: backups/templates/backups/index.html:48
+#: backups/templates/backups/index.html:50
 msgid "nav_requestbackup"
 msgstr "Request backup"
 
-#: backups/templates/backups/index.html:50
+#: backups/templates/backups/index.html:52
 msgid "nav_notloggedin"
 msgstr "Log in to continue"
 
-#: backups/templates/backups/index.html:53
+#: backups/templates/backups/index.html:55
 #: backups/templates/backups/it_index.html:51
 msgid "log_out"
 msgstr "Log out"
 
-#: backups/templates/backups/index.html:63
-#: backups/templates/backups/index.html:70
+#: backups/templates/backups/index.html:65
+#: backups/templates/backups/index.html:72
 #: backups/templates/backups/it_index.html:69
 msgid "h1_recentlyrestored"
 msgstr "Recently restored backups"
 
-#: backups/templates/backups/index.html:67
+#: backups/templates/backups/index.html:69
 msgid "h1_waitingrequests"
 msgstr "Pending backups"
-
-#: backups/templates/backups/it_index.html:43
-msgid "nav_addmachine"
-msgstr "Add new machine"
-
-#: backups/templates/backups/it_index.html:44
-msgid "nav_addperson"
-msgstr "Add person"
 
 #: backups/templates/backups/it_index.html:45
 msgid "nav_machines"
@@ -198,6 +216,9 @@ msgstr "Forgot password?"
 #: backups/views.py:27
 msgid "error_holistechexists"
 msgstr "Machine with this Holistech ID already exists!"
+
+#~ msgid "nav_addperson"
+#~ msgstr "Add person"
 
 #~ msgid "placeholder_machine_area"
 #~ msgstr "Area"
