@@ -1,0 +1,18 @@
+.grid-div-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.grid-div-home table {
+    margin-top: 10px;
+    text-align: center;
+}
+th {
+    text-align: center !important;
+}
+#table-reports_wrapper,
+#table-reports2_wrapper {
+    /* display: flex;
+    justify-content: center; */
+    width: 95%;
+}

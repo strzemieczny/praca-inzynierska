@@ -17,6 +17,14 @@
         {% block head %}
         {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" /> {% endcomment %}
         {% endblock %}
+
+        {% comment %} datatables {% endcomment %}
+        <link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index-eng.css' %}"/>
+        <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/index-datatables.js' %}"></script>
+        {% comment %} datatables {% endcomment %}
         <!-- prettier-ignore -->
         {% get_current_language as CURRENT_LANGUAGE %}
         {% get_available_languages as AVAILABLE_LANGUAGES %}
@@ -60,17 +68,60 @@
                         {% comment %} django-admin makemessages --all django-admin compilemessages {% endcomment %}
                         {% if is_Engineer %}
                             <div class = 'grid-div-home'>
-                                <h1>{% trans 'h1_recentlyrestored' %}</h1>
+                                <h1>{% trans 'h1_expiresoon' %}</h1>
                             </div>
                             <div class = 'grid-div-home'></div>
                             <div class = 'grid-div-home'>
                                 <h1>{% trans 'h1_waitingrequests' %}</h1>
+                                <table id='table-reports'>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Holistech</th>
+                                            <th>{% trans 'th_reason' %}</th>
+                                            <th>{% trans 'th_date' %}</th>
+                                            <th>{% trans 'th_status' %}</th>
+                                            <th>{% trans 'th_owner' %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for request in myRequest %}
+                                            <tr>
+                                                {% for value in request.values %}
+                                                    <td>{{ value }}</td>
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
                             <div class = 'grid-div-home'>
                                 <h1>{% trans 'h1_recentlyrestored' %}</h1>
+                                <table id='table-reports2'>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Holistech</th>
+                                            <th>{% trans 'th_reason' %}</th>
+                                            <th>{% trans 'th_date' %}</th>
+                                            <th>{% trans 'th_status' %}</th>
+                                            <th>{% trans 'th_owner' %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for obj in recentlyRestored %}
+                                            <tr>
+                                                {% for obj2 in obj.values %}
+                                                    <td>{{ obj2 }}</td>
+                                                {% endfor %}
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
                         {% endif %}
                     </section>
+                    
                 {% endblock %} 
             </div>
         {% endblock %} 

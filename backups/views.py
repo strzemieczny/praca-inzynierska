@@ -75,10 +75,10 @@ def itview(request):
 
 @login_required(login_url='../login')
 def engineerview(request):
-    print(request.user.id)
     template = loader.get_template('backups/index.html')
-    machine.objects.filter(machine_holistech = form['machine_holistech'])
-    return HttpResponse(template.render({'is_Engineer': True}, request))
+    myRequest = requestBackup.objects.filter(requestor = request.user.id).exclude(requestBackup_status = 'DONE').order_by('-id').values()[:10]
+    recentlyRestored = requestBackup.objects.filter(requestor = request.user.id, requestBackup_status = 'DONE').order_by('-id').values()[:10]
+    return HttpResponse(template.render({'is_Engineer': True, 'myRequest' : myRequest, 'recentlyRestored': recentlyRestored, 'current_user_id' : request.user.id}, request))
 
 
 
@@ -87,7 +87,6 @@ def addMachines(request):
     context = {}
     is_IT = {}
     current_user = request.user.first_name + " " + request.user.last_name
-    current_user_id = request.user.id
     msg = ''
     template = loader.get_template('backups/add_machine.html')
     if request.user in IT_MEMBERS or request.user in ENGINEERING_MEMBERS:
@@ -107,7 +106,7 @@ def addMachines(request):
                 print(request.POST)
                 return bad_request(message='This is a bad request')
     else: return home(request)
-    return HttpResponse(template.render({'form': addMachine, 'is_Engineer': is_Engineer, 'current_user' : current_user, 'current_user_id' : current_user_id, 'msg': msg}, request))
+    return HttpResponse(template.render({'form': addMachine, 'is_Engineer': is_Engineer, 'current_user' : current_user, 'current_user_id' : request.user.id, 'msg': msg}, request))
     
 
 
@@ -121,6 +120,7 @@ def myMachines(request):
         is_Engineer = True
         template = loader.get_template('backups/eng_machines.html')
         return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
+
 @login_required(login_url='../login')
 def myBackups(request):
     context = {}
@@ -130,6 +130,7 @@ def myBackups(request):
         is_Engineer = True
         template = loader.get_template('backups/eng_backups.html')
         return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
+
 @login_required(login_url='../login')
 def requestBackups(request):
     context = {}
@@ -137,7 +138,7 @@ def requestBackups(request):
         return notAuthorized(request)
     else:
         if request.POST:
-            form = requestBackup(request.POST or None)
+            form = requestBackupForm(request.POST or None)
             if form.is_valid():
                 instance = form.save()
                 instance.save()
@@ -149,4 +150,4 @@ def requestBackups(request):
             is_Engineer = True
             req_owner = machine.objects.filter(owner=request.user.id).values
             template = loader.get_template('backups/eng_request.html')
-            return HttpResponse(template.render({'is_Engineer': is_Engineer, 'req_owner': req_owner, 'requestBackup': requestBackup}, request))
+            return HttpResponse(template.render({'is_Engineer': is_Engineer, 'req_owner': req_owner, 'requestBackup': requestBackupForm, 'current_user_id' : request.user.id}, request))

@@ -9,10 +9,13 @@ document.addEventListener("DOMContentLoaded", function () {
         var form_holistechFieldDjango = document.getElementById('id_requestBackup_holistech');
         console.log(form_holistechFieldDjango.value);
         let form_reasonField = document.getElementById('id_requestBackup_reason');
+        const requestor = document.getElementById('requestor');
+        console.log(requestor.value);
         const fd = new FormData();
         fd.append("csrfmiddlewaretoken", csrf[0].value);
         fd.append("requestBackup_holistech", form_holistechFieldDjango.value);
         fd.append("requestBackup_reason", form_reasonField.value);
+        fd.append("requestor", requestor.value)
         $.ajax({
             type: "POST",
             url: form.action,

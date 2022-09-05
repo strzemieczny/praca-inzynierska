@@ -28,5 +28,6 @@ class machine(models.Model):
 class requestBackup(models.Model):
     requestBackup_holistech = models.ForeignKey(machine, on_delete=models.CASCADE)
     requestBackup_reason = models.CharField(max_length=250)
-    requestBackup_date = models.DateTimeField(default=datetime.now(), blank=True)
-    requestBAckup_status = models.CharField(choices=REQ_STATUS, max_length=10, default = 'REQUESTED', blank=True)
+    requestBackup_date = models.DateTimeField(default=datetime.now, blank=True)
+    requestBackup_status = models.CharField(choices=REQ_STATUS, max_length=10, default = 'REQUESTED', blank=True)
+    requestor = models.CharField(max_length=100, default='')

@@ -39,15 +39,17 @@ class addMachine(ModelForm):
             'owner': '',
         }
 
-class requestBackup(ModelForm):
+class requestBackupForm(ModelForm):
     class Meta:
         model = requestBackup
-        fields = ['requestBackup_holistech', 'requestBackup_reason']
+        fields = ['requestBackup_holistech', 'requestBackup_reason', 'requestor']
         widgets = {
             'requestBackup_holistech': forms.TextInput(attrs={'hidden': ''}),
-            'requestBackup_reason': forms.Textarea(attrs={'placeholder': _('placeholder_requestBackup_description')})
+            'requestBackup_reason': forms.Textarea(attrs={'placeholder': _('placeholder_requestBackup_description')}),
+            'requestor': forms.TextInput(attrs={'hidden': ''}),
         }
         labels = {
             'requestBackup_holistech': '',
             'requestBackup_reason': _('label_requestBackup_reason'),
+            'requestor': '',
         }
