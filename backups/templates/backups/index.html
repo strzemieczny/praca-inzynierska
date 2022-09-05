@@ -48,15 +48,22 @@
                 <nav class = 'nav'>
                     <ul class = 'nav-ul'>
                     
-                        {% if is_Engineer %}
+                        {% if is_Engineer and not is_IT %}
                             <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups'>{% trans "nav_home" %}</a></li>
                             <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups/engineering/backups'>{% trans "nav_mybackups" %}</a></li>
                             <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups/machine/add'>{% trans "nav_addmachine" %}</a></li>
                             <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups/engineering/machines'>{% trans "nav_mymachines" %}</a></li>
                             <li class = 'nav-li'><a href= ''>{% trans "nav_dashboard" %}</a></li>
                             <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups/engineering/request'>{% trans "nav_requestbackup" %}</a></li>
+                        {% elif is_IT %}
+                            <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups'>{% trans "nav_home" %}</a></li>
+                            <li class = 'nav-li'><a href= '/{{CURRENT_LANGUAGE}}/backups/machine/add'>{% trans "nav_addmachine" %}</a></li>
+                            <li class = 'nav-li'><a href= ''>{% trans "nav_machines" %}</a></li>
+                            <li class = 'nav-li'><a href= ''>{% trans "nav_responsible" %}</a></li>
+                            <li class = 'nav-li'><a href= '/pl/rosetta'>{% trans "nav_rosetta" %}</a></li>
+                            <li class = 'nav-li'><a href= '/pl/admin'>{% trans "nav_settings" %}</a></li>
                         {% else %}
-                            <li class = 'nav-li'><a href= '../login'>{% trans "nav_notloggedin" %}</a></li>
+                            <li class = 'nav-li'><a href= '/login'>{% trans "nav_notloggedin" %}</a></li>
                         {% endif %}
                         {% if user.is_authenticated %}
                             <li class = 'nav-li'><a href="/{{CURRENT_LANGUAGE}}/logout/">{% trans "log_out" %}</a></li>

@@ -15,7 +15,8 @@ import os
 import logging
 import mimetypes
 from django.utils.translation import gettext_lazy as _
-
+# from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -158,8 +159,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'django',
-    }
-    # 'default': {
+    },
+    # 'postgres': {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': 'pds',
     #     'USER': 'pds',
@@ -225,8 +226,8 @@ LOCALE_PATHS = [
     BASE_DIR / 'locale/',
 ]
 
-LOGIN_REDIRECT_URL = '../backups'
-
+LOGIN_REDIRECT_URL = '/backups'
+LOGIN_URL = reverse_lazy('login')
 if DEBUG:
     # will output to your console
     logging.basicConfig(

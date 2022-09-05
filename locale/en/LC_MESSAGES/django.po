@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-03 15:00+0200\n"
-"PO-Revision-Date: 2022-09-03 15:00+0200\n"
+"POT-Creation-Date: 2022-09-05 13:00+0200\n"
+"PO-Revision-Date: 2022-09-05 13:08+0200\n"
 "Last-Translator: Bartosz Strzemieczny <bartosz.strzemieczny@delphi.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -79,8 +79,7 @@ msgstr "Area:"
 msgid "placeholder_requestBackup_description"
 msgstr "Why do you want to restore backup?"
 
-#: backups/forms.py:52
-#| msgid "nav_requestbackup"
+#: backups/forms.py:53
 msgid "label_requestBackup_reason"
 msgstr "Reason:"
 
@@ -121,6 +120,11 @@ msgstr "Choose Holistech ID:"
 msgid "requestbackup_chooseholistech_placeholder"
 msgstr "Choose Holistech ID"
 
+#: backups/templates/backups/eng_request.html:25
+#| msgid "noauth_formsucceed"
+msgid "requestBackup_formsucceed"
+msgstr "Thank you! Your request has been processed!"
+
 #: backups/templates/backups/errors/not_authorized.html:16
 msgid "h1_notauthorized"
 msgstr "You are not authorized!"
@@ -133,50 +137,74 @@ msgstr "If you need access, please submit request"
 msgid "noauth_formsucceed"
 msgstr "Thank you! Your request has been processed!"
 
-#: backups/templates/backups/index.html:45
+#: backups/templates/backups/index.html:55
 #: backups/templates/backups/it_index.html:43
 msgid "nav_home"
 msgstr "Home"
 
-#: backups/templates/backups/index.html:46
+#: backups/templates/backups/index.html:56
 msgid "nav_mybackups"
 msgstr "My backups"
 
-#: backups/templates/backups/index.html:47
+#: backups/templates/backups/index.html:57
 #: backups/templates/backups/it_index.html:44
 msgid "nav_addmachine"
 msgstr "Add new machine"
 
-#: backups/templates/backups/index.html:48
+#: backups/templates/backups/index.html:58
 msgid "nav_mymachines"
 msgstr "My machines"
 
-#: backups/templates/backups/index.html:49
+#: backups/templates/backups/index.html:59
 msgid "nav_dashboard"
 msgstr "Dashboard"
 
-#: backups/templates/backups/index.html:50
+#: backups/templates/backups/index.html:60
 msgid "nav_requestbackup"
 msgstr "Request backup"
 
-#: backups/templates/backups/index.html:52
+#: backups/templates/backups/index.html:62
 msgid "nav_notloggedin"
 msgstr "Log in to continue"
 
-#: backups/templates/backups/index.html:55
+#: backups/templates/backups/index.html:65
 #: backups/templates/backups/it_index.html:51
 msgid "log_out"
 msgstr "Log out"
 
-#: backups/templates/backups/index.html:65
-#: backups/templates/backups/index.html:72
+#: backups/templates/backups/index.html:75
+#| msgid "h1_expiredbackups"
+msgid "h1_expiresoon"
+msgstr "Expire soon"
+
+#: backups/templates/backups/index.html:79
+msgid "h1_waitingrequests"
+msgstr "Pending backups"
+
+#: backups/templates/backups/index.html:85
+#: backups/templates/backups/index.html:109
+msgid "th_reason"
+msgstr "Reason"
+
+#: backups/templates/backups/index.html:86
+#: backups/templates/backups/index.html:110
+msgid "th_date"
+msgstr "Date"
+
+#: backups/templates/backups/index.html:87
+#: backups/templates/backups/index.html:111
+msgid "th_status"
+msgstr "Status"
+
+#: backups/templates/backups/index.html:88
+#: backups/templates/backups/index.html:112
+msgid "th_owner"
+msgstr "Owner"
+
+#: backups/templates/backups/index.html:103
 #: backups/templates/backups/it_index.html:69
 msgid "h1_recentlyrestored"
 msgstr "Recently restored backups"
-
-#: backups/templates/backups/index.html:69
-msgid "h1_waitingrequests"
-msgstr "Pending backups"
 
 #: backups/templates/backups/it_index.html:45
 msgid "nav_machines"

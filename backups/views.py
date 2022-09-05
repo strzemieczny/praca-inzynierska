@@ -51,7 +51,7 @@ def notAuthorized(request):
             template = loader.get_template('backups/errors/not_authorized_success.html')
     return HttpResponse(template.render({'form': requestAccess}, request))
 
-@login_required(login_url='../login')
+@login_required(login_url='/login')
 def home(request):
     context = {}
     if request.user in IT_MEMBERS:
@@ -61,7 +61,7 @@ def home(request):
     else:
         return notAuthorized(request)
 
-@login_required(login_url='../login')
+@login_required(login_url='/login')
 def itview(request):
     context = {}
     if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
@@ -73,7 +73,7 @@ def itview(request):
         return notAuthorized(request)
     return HttpResponse(template.render(context, request))
 
-@login_required(login_url='../login')
+@login_required(login_url='/login')
 def engineerview(request):
     template = loader.get_template('backups/index.html')
     myRequest = requestBackup.objects.filter(requestor = request.user.id).exclude(requestBackup_status = 'DONE').order_by('-id').values()[:10]
@@ -82,7 +82,7 @@ def engineerview(request):
 
 
 
-@login_required(login_url='../login')
+@login_required(login_url='/login')
 def addMachines(request):
     context = {}
     is_IT = {}
@@ -106,12 +106,12 @@ def addMachines(request):
                 print(request.POST)
                 return bad_request(message='This is a bad request')
     else: return home(request)
-    return HttpResponse(template.render({'form': addMachine, 'is_Engineer': is_Engineer, 'current_user' : current_user, 'current_user_id' : request.user.id, 'msg': msg}, request))
+    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_Engineer, 'is_Engineer': is_Engineer, 'current_user' : current_user, 'current_user_id' : request.user.id, 'msg': msg}, request))
     
 
 
 # do zrobienia jak beda backupy w bazce - lista podswietlana/sortowana na podstawie daty backupu
-@login_required(login_url='../login')
+@login_required(login_url='/login')
 def myMachines(request):
     context = {}
     if request.user not in ENGINEERING_MEMBERS:
@@ -121,7 +121,7 @@ def myMachines(request):
         template = loader.get_template('backups/eng_machines.html')
         return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
 
-@login_required(login_url='../login')
+@login_required(login_url='/login')
 def myBackups(request):
     context = {}
     if request.user not in ENGINEERING_MEMBERS:
@@ -131,7 +131,7 @@ def myBackups(request):
         template = loader.get_template('backups/eng_backups.html')
         return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
 
-@login_required(login_url='../login')
+@login_required(login_url='/login')
 def requestBackups(request):
     context = {}
     if request.user not in ENGINEERING_MEMBERS:

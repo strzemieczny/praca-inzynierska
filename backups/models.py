@@ -31,3 +31,10 @@ class requestBackup(models.Model):
     requestBackup_date = models.DateTimeField(default=datetime.now, blank=True)
     requestBackup_status = models.CharField(choices=REQ_STATUS, max_length=10, default = 'REQUESTED', blank=True)
     requestor = models.CharField(max_length=100, default='')
+
+class backups(models.Model):
+    machine = models.CharField(max_length=250)
+    version = models.CharField(max_length=10)
+    modify_date = models.DateTimeField(blank=True)
+    sizes = models.CharField(max_length=50)
+    paths = models.CharField(max_length=250)
