@@ -1,0 +1,16 @@
+.menu-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+#backup {
+    position: absolute;
+    height: 10%;
+    cursor: pointer;
+    transition: 00.3s;
+}
+#backup:hover {
+    height: 12%;
+}
