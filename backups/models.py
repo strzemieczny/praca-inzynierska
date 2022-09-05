@@ -23,6 +23,8 @@ class machine(models.Model):
     machine_area = models.CharField(choices=AREA, max_length=10)
     owner = models.CharField(max_length=100)
 
+
+# trzeba dodac pole z dostepnymi backupami - jak beda w bazce
 class requestBackup(models.Model):
     requestBackup_holistech = models.ForeignKey(machine, on_delete=models.CASCADE)
     requestBackup_reason = models.CharField(max_length=250)

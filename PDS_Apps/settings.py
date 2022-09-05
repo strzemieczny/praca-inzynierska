@@ -92,6 +92,7 @@ PARLER_DEFAULT_ACTIVATE = True
 
 INSTALLED_APPS = [
     'backups',
+    'main',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -19,9 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
             data: fd,
             success: function (response) {
                 console.log("success");
-                // setTimeout(function() {
-                //     window.location.reload();
-                // }, 2000);
+                pathImg = document.getElementById('success-path').value;
+                form.innerHTML = pathImg;
+                setTimeout(function() {
+                    window.location.reload();
+                }, 2000);
             },
             error: function (error) {
                 console.log("error");

@@ -39,6 +39,11 @@
     resize: none;
     height: 150px;
 }
+#content-div datalist {
+    position: absolute;
+    border: none;
+    width: 100%;
+}
 #submit-btn-holistech {
     font-size: 20px;
     padding: 8px 20px;
@@ -53,4 +58,7 @@
 .machine-form input[type="submit"]:hover,
 #submit-btn-holistech:hover {
     background-color: #46535e;
+}
+h2 {
+    margin-top: 20px;
 }

@@ -57,11 +57,9 @@ def home(request):
     if request.user in IT_MEMBERS:
         return itview(request)
     if request.user in ENGINEERING_MEMBERS:
-        context['is_Engineer'] = True
-        template = loader.get_template('backups/index.html')
+        return engineerview(request)
     else:
         return notAuthorized(request)
-    return HttpResponse(template.render(context, request))
 
 @login_required(login_url='../login')
 def itview(request):
@@ -74,6 +72,15 @@ def itview(request):
     else:
         return notAuthorized(request)
     return HttpResponse(template.render(context, request))
+
+@login_required(login_url='../login')
+def engineerview(request):
+    print(request.user.id)
+    template = loader.get_template('backups/index.html')
+    machine.objects.filter(machine_holistech = form['machine_holistech'])
+    return HttpResponse(template.render({'is_Engineer': True}, request))
+
+
 
 @login_required(login_url='../login')
 def addMachines(request):
@@ -105,6 +112,7 @@ def addMachines(request):
 
 
 # do zrobienia jak beda backupy w bazce - lista podswietlana/sortowana na podstawie daty backupu
+@login_required(login_url='../login')
 def myMachines(request):
     context = {}
     if request.user not in ENGINEERING_MEMBERS:
@@ -113,7 +121,7 @@ def myMachines(request):
         is_Engineer = True
         template = loader.get_template('backups/eng_machines.html')
         return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
-
+@login_required(login_url='../login')
 def myBackups(request):
     context = {}
     if request.user not in ENGINEERING_MEMBERS:
@@ -122,7 +130,7 @@ def myBackups(request):
         is_Engineer = True
         template = loader.get_template('backups/eng_backups.html')
         return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
-
+@login_required(login_url='../login')
 def requestBackups(request):
     context = {}
     if request.user not in ENGINEERING_MEMBERS:
@@ -136,7 +144,7 @@ def requestBackups(request):
                 template = loader.get_template('backups/errors/not_authorized_success.html')
                 return HttpResponse(template.render({}, request))
             else:
-                return bad_request(message='Something is no yes')
+                return bad_request(message='Form is not valid')
         else:
             is_Engineer = True
             req_owner = machine.objects.filter(owner=request.user.id).values

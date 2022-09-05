@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-02 09:42+0200\n"
-"PO-Revision-Date: 2022-09-02 09:44+0200\n"
+"POT-Creation-Date: 2022-09-03 15:00+0200\n"
+"PO-Revision-Date: 2022-09-03 15:00+0200\n"
 "Last-Translator: Bartosz Strzemieczny <bartosz.strzemieczny@delphi.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -75,6 +75,15 @@ msgstr "FIS name:"
 msgid "label_machine_area"
 msgstr "Area:"
 
+#: backups/forms.py:48
+msgid "placeholder_requestBackup_description"
+msgstr "Why do you want to restore backup?"
+
+#: backups/forms.py:52
+#| msgid "nav_requestbackup"
+msgid "label_requestBackup_reason"
+msgstr "Reason:"
+
 #: backups/templates/backups/add_machine.html:4
 #: backups/templates/backups/eng_backups.html:4
 #: backups/templates/backups/eng_machines.html:4
@@ -91,13 +100,12 @@ msgid "label_machine_owner"
 msgstr "Owner:"
 
 #: backups/templates/backups/add_machine.html:19
-#: backups/templates/backups/eng_request.html:21
+#: backups/templates/backups/eng_request.html:23
 #: backups/templates/backups/errors/not_authorized.html:21
 msgid "submit_btn"
 msgstr "Submit"
 
 #: backups/templates/backups/add_machine.html:27
-#| msgid "h1_machineform"
 msgid "machineform_success"
 msgstr "Your machien has been added successfully!"
 
@@ -105,12 +113,11 @@ msgstr "Your machien has been added successfully!"
 msgid "requestbackup_chooseholistech"
 msgstr "Choose Holistech ID!"
 
-#: backups/templates/backups/eng_request.html:14
+#: backups/templates/backups/eng_request.html:15
 msgid "requestbackup_chooseholistech_label"
 msgstr "Choose Holistech ID:"
 
-#: backups/templates/backups/eng_request.html:15
-#| msgid "forms_requestaccessplaceholder"
+#: backups/templates/backups/eng_request.html:16
 msgid "requestbackup_chooseholistech_placeholder"
 msgstr "Choose Holistech ID"
 
