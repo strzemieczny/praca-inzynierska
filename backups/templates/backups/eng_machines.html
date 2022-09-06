@@ -9,6 +9,26 @@
 {% endblock %} 
 {% block content %}
     <section class = 'index-section'>
-        
+        <table id='table-reports5'>
+            <thead>
+                <tr>
+                    <th>Holistech</th>
+                    <th>{% trans 'th_IPAddress' %}</th>
+                    <th>{% trans 'th_hostname' %}</th>
+                    <th>{% trans 'th_fisname' %}</th>
+                    <th>{% trans 'th_area' %}</th>
+                    <th>6</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in myMachines %}
+                    <tr>
+                        {% for obj2 in obj.values %}
+                                <td>{{ obj2 }}</td>
+                            {% endfor %}
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </section>
 {% endblock %}

@@ -46,3 +46,4 @@ class log(models.Model):
     size_MB = models.DecimalField(max_digits=250, decimal_places=2)
     date = models.CharField(max_length=250)
     extension = models.CharField(max_length=250)
+    path = models.CharField(max_length=250)

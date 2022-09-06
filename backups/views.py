@@ -84,10 +84,13 @@ def engineerview(request):
         machineHostTmpVal = machineHostTmp['machine_hostname']
         myBackupListFinal = [queryset for queryset in myBackupList if queryset]
         if len(myBackupListFinal) <= 10:
-            myBackupList.append(log.objects.filter(hostname=machineHostTmpVal).order_by('date').values()[:1])
+            TMPbackup = log.objects.filter(hostname=machineHostTmpVal).order_by('-date').values()[:1]
+            try:
+                time = datetime.now() - TMPbackup[0]['date']
+                if time > timedelta(days=90):
+                    myBackupList.append(TMPbackup)
+            except: pass
         else: break
-        print(len(myBackupListFinal))
-    # print(myBackupListFinal)
 
     return HttpResponse(template.render({'is_Engineer': True, 'myRequest' : myRequest, 'recentlyRestored': recentlyRestored,'myBackups': myBackupListFinal, 'current_user_id' : request.user.id}, request))
 
@@ -117,7 +120,7 @@ def addMachines(request):
                 print(request.POST)
                 return bad_request(message='This is a bad request')
     else: return home(request)
-    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_Engineer, 'is_Engineer': is_Engineer, 'current_user' : current_user, 'current_user_id' : request.user.id, 'msg': msg}, request))
+    return HttpResponse(template.render({'form': addMachine, 'is_Engineer': is_Engineer, 'current_user' : current_user, 'current_user_id' : request.user.id, 'msg': msg}, request))
     
 
 
@@ -129,8 +132,9 @@ def myMachines(request):
         return notAuthorized(request)
     else:
         is_Engineer = True
+        myMachinesList = machine.objects.filter(owner=request.user.id).values()
         template = loader.get_template('backups/eng_machines.html')
-        return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
+        return HttpResponse(template.render({'is_Engineer': is_Engineer, 'myMachines': myMachinesList}, request))
 
 @login_required(login_url='/login')
 def myBackups(request):
@@ -139,8 +143,15 @@ def myBackups(request):
         return notAuthorized(request)
     else:
         is_Engineer = True
+        myMachinesList = machine.objects.filter(owner=request.user.id).values()
+        myBackupList = []
+        for machineHostTmp in myMachinesList:
+            machineHostTmpVal = machineHostTmp['machine_hostname']
+            myBackupListFinal = [queryset for queryset in myBackupList if queryset]
+            myBackupList.append(log.objects.filter(hostname=machineHostTmpVal).order_by('hostname').values())
+            # print(myBackupList)
         template = loader.get_template('backups/eng_backups.html')
-        return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))
+        return HttpResponse(template.render({'is_Engineer': is_Engineer, 'myBackupList': myBackupList}, request))
 
 @login_required(login_url='/login')
 def requestBackups(request):

@@ -9,6 +9,29 @@
 {% endblock %} 
 {% block content %}
     <section class = 'index-section'>
-        
+        <table id='table-reports4'>
+            <thead>
+                <tr>
+                    <th>1</th>
+                    <th>{% trans 'th_hostname' %}</th>
+                    <th>{% trans 'th_backupType' %}</th>
+                    <th>{% trans 'th_size' %}</th>
+                    <th>{% trans 'th_date' %}</th>
+                    <th></th>
+                    <th>{% trans 'th_path' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in myBackupList %}
+                    {% for obj2 in obj %}
+                    <tr>
+                            {% for obj3 in obj2.values %}
+                                <td>{{ obj3 }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
     </section>
 {% endblock %}

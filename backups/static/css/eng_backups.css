@@ -1,0 +1,11 @@
+.index-section {
+    display: flex;
+    justify-content: center;
+}
+#table-reports4_wrapper {
+    width: 90%;
+    padding-top: 10px;
+}
+#table-reports4 {
+    text-align: center;
+}

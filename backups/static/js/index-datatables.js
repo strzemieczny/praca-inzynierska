@@ -58,6 +58,10 @@ document.addEventListener("DOMContentLoaded", function() {
             {
                 target: 5,
                 visible: false,
+            },
+            {
+                target: 6,
+                visible: false,
             }
         ],
         "language": {
