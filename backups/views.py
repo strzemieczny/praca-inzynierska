@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib.auth.decorators import user_passes_test
 from django.http import JsonResponse
-
+from datetime import datetime, timedelta
 from django.core.mail import send_mail
 from django.contrib.auth.models import Group
 
@@ -78,7 +78,18 @@ def engineerview(request):
     template = loader.get_template('backups/index.html')
     myRequest = requestBackup.objects.filter(requestor = request.user.id).exclude(requestBackup_status = 'DONE').order_by('-id').values()[:10]
     recentlyRestored = requestBackup.objects.filter(requestor = request.user.id, requestBackup_status = 'DONE').order_by('-id').values()[:10]
-    return HttpResponse(template.render({'is_Engineer': True, 'myRequest' : myRequest, 'recentlyRestored': recentlyRestored, 'current_user_id' : request.user.id}, request))
+    myMachinesList = machine.objects.filter(owner=request.user.id).values()
+    myBackupList = []
+    for machineHostTmp in myMachinesList:
+        machineHostTmpVal = machineHostTmp['machine_hostname']
+        myBackupListFinal = [queryset for queryset in myBackupList if queryset]
+        if len(myBackupListFinal) <= 10:
+            myBackupList.append(log.objects.filter(hostname=machineHostTmpVal).order_by('date').values()[:1])
+        else: break
+        print(len(myBackupListFinal))
+    # print(myBackupListFinal)
+
+    return HttpResponse(template.render({'is_Engineer': True, 'myRequest' : myRequest, 'recentlyRestored': recentlyRestored,'myBackups': myBackupListFinal, 'current_user_id' : request.user.id}, request))
 
 
 

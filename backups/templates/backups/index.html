@@ -74,8 +74,31 @@
                     <section class = 'index-section'>
                         {% comment %} django-admin makemessages --all django-admin compilemessages {% endcomment %}
                         {% if is_Engineer %}
-                            <div class = 'grid-div-home'>
+                            <div class = 'grid-div-home scroll'>
                                 <h1>{% trans 'h1_expiresoon' %}</h1>
+                                <table id='table-reports3'>
+                                    <thead>
+                                        <tr>
+                                            <th>1</th>
+                                            <th>{% trans 'th_hostname' %}</th>
+                                            <th>{% trans 'th_backupType' %}</th>
+                                            <th>4</th>
+                                            <th>{% trans 'th_date' %}</th>
+                                            <th>6</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for obj in myBackups %}
+                                            {% for obj2 in obj %}
+                                            <tr>
+                                                    {% for obj3 in obj2.values %}
+                                                        <td>{{ obj3 }}</td>
+                                                    {% endfor %}
+                                                </tr>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
                             <div class = 'grid-div-home'></div>
                             <div class = 'grid-div-home'>

@@ -11,7 +11,8 @@ th {
     text-align: center !important;
 }
 #table-reports_wrapper,
-#table-reports2_wrapper {
+#table-reports2_wrapper,
+#table-reports3_wrapper {
     /* display: flex;
     justify-content: center; */
     width: 95%;

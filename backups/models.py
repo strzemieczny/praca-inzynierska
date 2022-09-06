@@ -38,3 +38,11 @@ class backups(models.Model):
     modify_date = models.DateTimeField(blank=True)
     sizes = models.CharField(max_length=50)
     paths = models.CharField(max_length=250)
+
+class log(models.Model):
+    hostname = models.CharField(max_length=250)
+    backupType = models.CharField(max_length=30)
+    extension = models.CharField(max_length=5)
+    size_MB = models.DecimalField(max_digits=250, decimal_places=2)
+    date = models.CharField(max_length=250)
+    extension = models.CharField(max_length=250)
