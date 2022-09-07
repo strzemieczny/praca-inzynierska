@@ -13,6 +13,7 @@ urlpatterns = i18n_patterns(
     path('rosetta/', include('rosetta.urls')),
     path('', include('main.urls')),
     path('backups/', include('backups.urls')),
+    path('fazit/', include('fazit.urls')),
     path('', include("django.contrib.auth.urls")),
 )
 

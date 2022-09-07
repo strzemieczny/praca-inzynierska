@@ -94,6 +94,7 @@ PARLER_DEFAULT_ACTIVATE = True
 INSTALLED_APPS = [
     'backups',
     'main',
+    'fazit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,7 +125,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(SETTINGS_PATH, 'templates'),
-                 os.path.join(BASE_DIR, 'dashboard', 'templates', 'dashboard')
+                 os.path.join(BASE_DIR, 'backups', 'templates', 'backups'),
+                 os.path.join(BASE_DIR, 'fazit', 'templates', 'fazit'),
+                 os.path.join(BASE_DIR, 'main', 'templates', 'main')
                  ],
         'APP_DIRS': True,
         'OPTIONS': {

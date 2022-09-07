@@ -1,0 +1,46 @@
+.menu-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.menu-div form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+.menu-div form textarea {
+    margin-top: 30px;
+    resize: none;
+    line-height: 25px;
+    font-size: 20px;
+    height: 500px;
+    padding: 10px;
+}
+
+.menu-div form textarea::placeholder {
+    text-align: center;
+    line-height: 100px;
+}
+h1 {
+    font-size: 55px;
+}
+input[type="submit"] {
+    font-size: 20px;
+    padding: 8px 20px;
+    cursor: pointer;
+    background-color: #0d1b26;
+    color: #fff;
+    border: none;
+    transition: 0.3s;
+    margin-top: 15px;
+    align-self: flex-end;
+}
+input[type="submit"]:hover {
+    background-color: #46535e;
+}

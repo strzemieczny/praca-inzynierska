@@ -1,0 +1,47 @@
+<!DOCTYPE ='html'>
+<html lang="pl">
+    {% load i18n %} {% load static %}
+    <head>
+        {{ redirect_to_login_immediately }}
+        <title>{% block title %}PDS_Apps{% endblock %}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta http-equiv="Cache-Control" content="no-cache" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <meta http-equiv="Pragma-directive: no-cache" />
+        <meta http-equiv="Cache-directive: no-cache" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index-fazit.css' %}" />
+        <script src = "{% static 'js/index-fazit.js' %}"></script>
+        <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}" />
+        <!-- prettier-ignore -->
+        {% get_current_language as CURRENT_LANGUAGE %}
+        {% get_available_languages as AVAILABLE_LANGUAGES %}
+        {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+    </head>
+
+    <body>
+        {% block header %}
+            <header>
+                <img id="logo" src="{% static 'img/logo.png' %}" />
+                <p id="header-text">{% trans 'header_fazit' %}</p>
+                <div class="languages">
+                    {% for language in languages %}
+                        <a href="/{{ language.code }}/fazit" class="languages-a"><figure><img src = "{% static "" %}img/flag/{{language.code}}.png" /></figure> </a>
+                    {% endfor %}
+                </div>
+            </header>
+        {% endblock %}
+        {% block body %}
+            <div class='menu-div'>
+                <h1>{% trans 'h1_fazits' %}</h1>
+                <form method='post' action = ''>
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type='submit' value={% trans 'submit_btn' %} />
+                </form>
+            </div>
+        {% endblock %} 
+    </body>
+</html>
