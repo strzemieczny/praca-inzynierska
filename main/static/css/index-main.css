@@ -14,3 +14,14 @@
 #backup:hover {
     height: 12%;
 }
+#fazit {
+    position: absolute;
+    height: 10%;
+    top: 10%;
+    right: 15%;
+    cursor: pointer;
+    transition: 00.3s;
+}
+#fazit:hover {
+    height: 12%;
+}
