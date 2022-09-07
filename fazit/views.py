@@ -15,7 +15,7 @@ def fazit(request):
         if form.is_valid():
             host = '10.237.135.13'
             user = 'jj00sp'
-            passwd = 'VUK6hg755bj'
+            passwd = ''
             src = "/fis/mantis/data/FAZIT/save/"
             dst = "/fis/mantis/data/FAZIT/tmp/"
             fazits = form['fazits'].value()
