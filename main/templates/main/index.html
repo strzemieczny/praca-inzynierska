@@ -28,15 +28,15 @@
                 <p id="header-text">PDS Apps</p>
                 <div class="languages">
                     {% for language in languages %}
-                        <a href="/{{ language.code }}/backups" class="languages-a"><figure><img src = "{% static "" %}img/flag/{{language.code}}.png" /></figure> </a>
+                        <a href="/{{ language.code }}/" class="languages-a"><figure><img src = "{% static "" %}img/flag/{{language.code}}.png" /></figure> </a>
                     {% endfor %}
                 </div>
             </header>
         {% endblock %}
         {% block body %}
             <div class='menu-div'>
-                <a href = 'backups/'><img id = 'backup' src = "{% static 'img/backup1.png' %}"/></a>
-                <a href = 'fazit/'><img id = 'fazit' src = "{% static 'img/fazit.png' %}"/></a>
+                <a href = "{{ language.code }}/backups/"><img id = 'backup' src = "{% static 'img/backup1.png' %}"/></a>
+                <a href = "{{ language.code }}/fazit/"><img id = 'fazit' src = "{% static 'img/fazit.png' %}"/></a>
             </div>
         {% endblock %} 
     </body>
