@@ -118,7 +118,6 @@ MIDDLEWARE = [
     'django_auto_logout.middleware.auto_logout',
     # 'language.DefaultLanguageMiddleware',
 ]
-
 ROOT_URLCONF = 'PDS_Apps.urls'
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 TEMPLATES = [
@@ -162,6 +161,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'django',
+        'CLIENT': {
+            'host': '10.142.11.22'
+        }
     },
     # 'postgres': {
     #     'ENGINE': 'django.db.backends.postgresql',
