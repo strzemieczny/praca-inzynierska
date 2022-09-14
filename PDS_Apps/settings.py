@@ -25,14 +25,14 @@ import ldap
 from django_auth_ldap.config import LDAPSearch
 ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
 AUTH_LDAP_START_TLS = True
-AUTH_LDAP_SERVER_URI = "ldap://plblop-dc04.delphidrive.com"
-AUTH_LDAP_BIND_DN = "SID_PLBLOSECURITY@delphidrive.com"
+#AUTH_LDAP_SERVER_URI = "ldap://plblop-dc04.delphidrive.com"
+#AUTH_LDAP_BIND_DN = "SID_PLBLOSECURITY@delphidrive.com"
+#AUTH_LDAP_BIND_PASSWORD = "S?9piwUVE!"
+#AUTH_LDAP_SEARCH_BASE = "OU=DELPHIDRIVE,DC=DelphiDrive,DC=com"
+AUTH_LDAP_SERVER_URI = "ldap://10.142.11.35"
+AUTH_LDAP_BIND_DN = "SID_PLBLOSECURITY@borgwarner.com"
 AUTH_LDAP_BIND_PASSWORD = "S?9piwUVE!"
-AUTH_LDAP_SEARCH_BASE = "OU=DELPHIDRIVE,DC=DelphiDrive,DC=com"
-# AUTH_LDAP_SERVER_URI = "ldap://BLNDOM1.global.borgwarner.net"
-# AUTH_LDAP_BIND_DN = "SID_PLBLOSECURITY@borgwarner.com"
-# AUTH_LDAP_BIND_PASSWORD = "S?9piwUVE!"
-# AUTH_LDAP_SEARCH_BASE = "DC=global,DC=borgwarner,DC=net"
+AUTH_LDAP_SEARCH_BASE = "DC=global,DC=borgwarner,DC=net"
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
     AUTH_LDAP_SEARCH_BASE, ldap.SCOPE_SUBTREE, "(samaccountname=%(user)s)")
 
@@ -118,6 +118,7 @@ MIDDLEWARE = [
     'django_auto_logout.middleware.auto_logout',
     # 'language.DefaultLanguageMiddleware',
 ]
+
 ROOT_URLCONF = 'PDS_Apps.urls'
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 TEMPLATES = [
@@ -154,10 +155,6 @@ WSGI_APPLICATION = 'PDS_Apps.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # },
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'django',
@@ -165,14 +162,6 @@ DATABASES = {
             'host': '10.142.11.22'
         }
     },
-    # 'postgres': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'pds',
-    #     'USER': 'pds',
-    #     'PASSWORD': 'delphi1234',
-    #     'HOST': '130.171.180.98',
-    #     'PORT': '',
-    # }
 }
 
 
@@ -199,17 +188,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = 'pl'
-
 TIME_ZONE = 'Europe/Warsaw'
-
 DATETIME_FORMAT = 'H:i d.m.Y'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
 
 
 # Static files (CSS, JavaScript, Images)

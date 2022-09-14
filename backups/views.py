@@ -42,7 +42,7 @@ def notAuthorized(request):
         form = requestAccess(request.POST)
         if form.is_valid():
             send_mail(
-                '[BackupManager] Access Request',
+                'Access Request',
                 'Uzytkownik: ' + request.user.first_name + ' ' + request.user.last_name + '\nEmail: ' + request.user.email + '\n\n' + 'Wiadomosc: ' + form['message'].value(),
                 'plblo_backup_manager@borgwarner.com',
                 ['strzemieczny@borgwarner.com'],
