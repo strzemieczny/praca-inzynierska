@@ -14,14 +14,15 @@ urlpatterns = [
     path('', include("django.contrib.auth.urls")),
     path('it/', include([
         path('', views.itview, name='itview'),
+        path('dashboard', views.itDashboard, name='dashboard'),
     ])),
     path('machine/', include([
-            path('add/', views.addMachines, name='addMachines'),
+        path('add/', views.addMachines, name='addMachines'),
     ])),
     path('engineering/', include([
-            path('machines/', views.myMachines, name='myMachines'),
-            path('backups/', views.myBackups, name='myBackups'),
-            path('request/', views.requestBackups, name='requestBackups'),
+        path('machines/', views.myMachines, name='myMachines'),
+        path('backups/', views.myBackups, name='myBackups'),
+        path('request/', views.requestBackups, name='requestBackups'),
     ])),
     path('', include("django.contrib.auth.urls")),
 ]

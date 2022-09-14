@@ -68,7 +68,7 @@ section {
     width: calc(100vw - var(--nav-width));
     min-height: calc(100vh - var(--header-height));
     background-color: #f0f0f0;
-    margin: var(--header-height) 0 0  var(--nav-width);
+    margin: var(--header-height) 0 0 var(--nav-width);
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: 50% 50%;
@@ -81,7 +81,6 @@ nav {
     background-color: #0d1b26;
     height: calc(100vh - var(--header-height));
 }
-
 .nav-ul {
     margin: 0;
     list-style: none;
@@ -89,7 +88,8 @@ nav {
     font-size: 26px;
 }
 .nav-ul a,
-.nav-ul p {
+.nav-ul p,
+.click-btn {
     text-align: center;
     padding: 10px 0;
     text-decoration: none;
@@ -102,8 +102,52 @@ nav {
 .nav-li:hover {
     background-color: #46535e;
 }
-
+.click-btn {
+    cursor: pointer;
+}
 .grid-div-home h1 {
     margin-top: 10px;
     text-align: center;
+}
+
+.hidden {
+    animation: fadeOut 200ms forwards;
+}
+.hidden-in {
+    animation: fadeIn 200ms forwards;
+}
+.hidden-h {
+    display: none;
+}
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

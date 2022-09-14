@@ -1,28 +1,21 @@
-{% extends 'backups/index.html' %}
-    {% load i18n %}
-    {% load static %}s
-{% block title %} {% trans "Add Machine" %}{% endblock %}
-{% block head %} 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/add_machine.css' %}" />
-    <script type="text/javascript" src="{% static 'js/add_machine.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-{% endblock %} 
-{% block content %}
-    <section class = 'index-section'>
-        <h1 id = 'h1-box'>{% trans 'h1_machineform' %}</h1>
-        <form method="post" action="" class="machine-form" id="machine-form">
-            {% csrf_token %}
-            {{ form }}
-            <label>{% trans 'label_machine_owner' %}</label>
-            <input type="text" id = 'id_machine_owner' value="{{ current_user }}" disabled/>
-            <input type="hidden" id = 'user-id'value="{{current_user_id}}"/>
-            <p id = 'submit-btn'>{% trans "submit_btn" %}</p>
-            {% comment %} <input type="submit" value="{% trans "submit_btn" %}"  /> {% endcomment %}
-            {% comment %} <input type="hidden" name="next" value="{{ next }}" /> {% endcomment %}
-        </form>
-        <div class="machine-form hidden" id="success-div">
-            <img src="{% static 'img/success.png' %}" />
-            <h2>{% trans 'machineform_success' %}</h2>
-        </div>
-    </section>
+{% extends 'backups/index.html' %} {% load i18n %} {% load static %} {% block title %} {% trans "Add Machine" %}{% endblock %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/add_machine.css' %}" />
+<script type="text/javascript" src="{% static 'js/add_machine.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+{% endblock %} {% block content %}
+<section class="index-section">
+    <h1 id="h1-box">{% trans 'h1_machineform' %}</h1>
+    <form method="post" action="" class="machine-form" id="machine-form">
+        {% csrf_token %} {{ form }}
+        <label>{% trans 'label_machine_owner' %}</label>
+        <input type="text" id="id_machine_owner" value="{{ current_user }}" disabled />
+        <input type="hidden" id="user-id" value="{{current_user_id}}" />
+        <p id="submit-btn">{% trans "submit_btn" %}</p>
+        {% comment %} <input type="submit" value="{% trans "submit_btn" %}" /> {% endcomment %} {% comment %} <input type="hidden" name="next" value="{{ next }}" /> {% endcomment%}
+    </form>
+    <div class="machine-form hidden" id="success-div">
+        <img src="{% static 'img/success.png' %}" />
+        <h2>{% trans 'machineform_success' %}</h2>
+    </div>
+</section>
 {% endblock %}

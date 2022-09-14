@@ -1,37 +1,33 @@
-{% extends 'backups/index.html' %}
-    {% load i18n %}
-    {% load static %}
-{% block title %} {% trans "Add Machine" %}{% endblock %}
-{% block head %} 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/eng_backups.css' %}" />
-    <script type="text/javascript" src="{% static 'js/eng_backups.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-{% endblock %} 
-{% block content %}
-    <section class = 'index-section'>
-        <table id='table-reports4'>
-            <thead>
-                <tr>
-                    <th>1</th>
-                    <th>{% trans 'th_hostname' %}</th>
-                    <th>{% trans 'th_backupType' %}</th>
-                    <th>{% trans 'th_size' %}</th>
-                    <th>{% trans 'th_date' %}</th>
-                    <th></th>
-                    <th>{% trans 'th_path' %}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for obj in myBackupList %}
-                    {% for obj2 in obj %}
-                    <tr>
-                            {% for obj3 in obj2.values %}
-                                <td>{{ obj3 }}</td>
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
+{% extends 'backups/index.html' %} {% load i18n %} {% load static %} {% block title %} {% trans "Add Machine" %}{% endblock %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/eng_backups.css' %}" />
+<script type="text/javascript" src="{% static 'js/eng_backups.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}" />
+<script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/index-datatables.js' %}"></script>
+{% endblock %} {% block content %}
+<section class="index-section">
+    <table id="table-reports4">
+        <thead>
+            <tr>
+                <th>1</th>
+                <th>{% trans 'th_hostname' %}</th>
+                <th>{% trans 'th_backupType' %}</th>
+                <th>{% trans 'th_size' %}</th>
+                <th>{% trans 'th_date' %}</th>
+                <th></th>
+                <th>{% trans 'th_path' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in myBackupList %} {% for obj2 in obj %}
+            <tr>
+                {% for obj3 in obj2.values %}
+                <td>{{ obj3 }}</td>
                 {% endfor %}
-            </tbody>
-        </table>
-    </section>
+            </tr>
+            {% endfor %} {% endfor %}
+        </tbody>
+    </table>
+</section>
 {% endblock %}

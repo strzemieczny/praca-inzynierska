@@ -1,34 +1,32 @@
-{% extends 'backups/index.html' %}
-    {% load i18n %}
-    {% load static %}
-{% block title %} {% trans "Add Machine" %}{% endblock %}
-{% block head %} 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/eng_machines.css' %}" />
-    <script type="text/javascript" src="{% static 'js/eng_machines.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-{% endblock %} 
-{% block content %}
-    <section class = 'index-section'>
-        <table id='table-reports5'>
-            <thead>
-                <tr>
-                    <th>Holistech</th>
-                    <th>{% trans 'th_IPAddress' %}</th>
-                    <th>{% trans 'th_hostname' %}</th>
-                    <th>{% trans 'th_fisname' %}</th>
-                    <th>{% trans 'th_area' %}</th>
-                    <th>6</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for obj in myMachines %}
-                    <tr>
-                        {% for obj2 in obj.values %}
-                                <td>{{ obj2 }}</td>
-                            {% endfor %}
-                        </tr>
+{% extends 'backups/index.html' %} {% load i18n %} {% load static %} {% block title %} {% trans "Add Machine" %}{% endblock %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/eng_machines.css' %}" />
+<script type="text/javascript" src="{% static 'js/eng_machines.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}" />
+<script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/index-datatables.js' %}"></script>
+{% endblock %} {% block content %}
+<section class="index-section">
+    <table id="table-reports5">
+        <thead>
+            <tr>
+                <th>Holistech</th>
+                <th>{% trans 'th_IPAddress' %}</th>
+                <th>{% trans 'th_hostname' %}</th>
+                <th>{% trans 'th_fisname' %}</th>
+                <th>{% trans 'th_area' %}</th>
+                <th>6</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in myMachines %}
+            <tr>
+                {% for obj2 in obj.values %}
+                <td>{{ obj2 }}</td>
                 {% endfor %}
-            </tbody>
-        </table>
-    </section>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
 {% endblock %}
