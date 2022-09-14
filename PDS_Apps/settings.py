@@ -159,7 +159,8 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'django',
         'CLIENT': {
-            'host': '10.142.11.22'
+            'host': '10.142.11.22',
+            'port': 27017,
         }
     },
 }
