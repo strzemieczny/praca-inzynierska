@@ -61,6 +61,8 @@
                     {% elif is_IT %}
                     <li class="nav-li"><a href="/{{CURRENT_LANGUAGE}}/backups">{% trans "nav_home" %}</a></li>
                     <li class="nav-li"><a href="">{% trans "nav_machines" %}</a></li>
+                    <li class="nav-li"><a href="">{% trans "nav_addrestored" %}</a></li>
+                    <li class="nav-li"><a href="">{% trans "nav_requests" %}</a></li>
                     <li class="nav-li"><a href="">{% trans "nav_responsible" %}</a></li>
                     <li class="nav-li"><a href="/{{CURRENT_LANGUAGE}}/backups/it/dashboard">{% trans "nav_dashboard" %}</a></li>
                     <li class="nav-li"><a href="/pl/rosetta">{% trans "nav_rosetta" %}</a></li>
@@ -155,6 +157,28 @@
                 {% comment %}django-admin makemessages --all django-admin compilemessages {% endcomment %}
                 <div class="grid-div-home">
                     <h1>{% trans 'h1_requestedbackups' %}</h1>
+                    <table id="table-reports-it">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Holistech</th>
+                                <th>{% trans 'th_reason' %}</th>
+                                <th>{% trans 'th_date' %}</th>
+                                <th>{% trans 'th_status' %}</th>
+                                <th>{% trans 'th_owner' %}</th>
+                                <th>{% trans 'th_owner' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in context %}
+                            <tr>
+                                {% for obj2 in obj.values %}
+                                <td>{{ obj2 }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
                 <div class="grid-div-home"></div>
                 <div class="grid-div-home">

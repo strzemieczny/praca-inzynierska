@@ -108,6 +108,7 @@ nav {
 .grid-div-home h1 {
     margin-top: 10px;
     text-align: center;
+    width: 50%;
 }
 
 .hidden {

@@ -71,15 +71,44 @@ def home(request):
 
 @login_required(login_url='/login')
 def itview(request):
-    context = {}
+    context = []
+    is_IT = False
     if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
         return home(request)
     if request.user in IT_MEMBERS:
-        context['is_IT'] = True
+        from jira import JIRA
+        jira_api_token = 'ZBoKhbt8TpC5xF9tdG4yDF15'
+        jira_user = 'strzemieczny@borgwarner.com'
+        jira_server = 'https://plblo-it.atlassian.net'
+        jira_options = {
+            'server': jira_server
+        }
+
+        jira_jira = JIRA(jira_options, basic_auth=(jira_user, jira_api_token))
+        jira_backupIssues = jira_jira.search_issues(
+            'summary ~ Backup AND status in (Escalated, "In Progress", Pending, "Waiting for customer", "Waiting for support")')
+        for jira_backupIssue in jira_backupIssues:
+            jira_issue = jira_jira.issue(jira_backupIssue)
+            jira_hostname = jira_issue.raw['fields']['customfield_10060']
+            jira_holistech = jira_issue.raw['fields']['customfield_10058']
+            jira_reason = jira_issue.raw['fields']['customfield_10071']
+            jira_description = jira_issue.raw['fields']['description']
+            jira_creator = jira_issue.raw['fields']['creator']['displayName']
+            jira_assignee = jira_issue.raw['fields']['assignee']['displayName']
+            context.append({
+                'id': jira_issue,
+                'hostname': jira_hostname,
+                'holistech': jira_holistech,
+                'reason': jira_reason,
+                'description': jira_description,
+                'creator': jira_creator,
+                'assignee': jira_assignee
+            })
+        is_IT = True
         template = loader.get_template('backups/index.html')
     else:
         return notAuthorized(request)
-    return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({'is_IT': is_IT, 'context': context}, request))
 
 
 @login_required(login_url='/login')
