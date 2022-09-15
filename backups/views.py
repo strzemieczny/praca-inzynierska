@@ -95,8 +95,10 @@ def itDashboard(request):
             Count("hostname"))
         allBackupsNewest = log.objects.all().order_by(
             'date').values().order_by('-date')[:500]
+        allBackupsOldest = log.objects.all().order_by(
+            'date').values().order_by('date')[:500]
         # print(xxx)
-    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': allBackupsCount, 'allBackupsNewest': allBackupsNewest}, request))
+    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': allBackupsCount, 'allBackupsNewest': allBackupsNewest, 'allBackupsOldest': allBackupsOldest}, request))
 
 
 @login_required(login_url='/login')

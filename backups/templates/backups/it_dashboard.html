@@ -5,18 +5,19 @@
 <script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/it_dashboard.js' %}"></script>
 {% endblock %} {% block content %}
+<div class="dashboard-bar">
+    <p class="it-dash-btns" id="it_dash_btn1">{% trans 'it_dash_nav_count' %}</p>
+    <p class="it-dash-btns" id="it_dash_btn2">{% trans 'it_dash_nav_newest' %}</p>
+    <p class="it-dash-btns" id="it_dash_btn3">{% trans 'it_dash_nav_oldest' %}</p>
+    <p class="it-dash-btns" id="it_dash_btn4">{% trans 'it_dash_nav' %}</p>
+    <p class="it-dash-btns" id="it_dash_btn5">{% trans 'it_dash_nav' %}</p>
+</div>
 <section class="index-section">
-    <div class="dashboard-bar">
-        <p class="it-dash-btns" id="it_dash_btn1">{% trans 'it_dash_nav_count' %}</p>
-        <p class="it-dash-btns" id="it_dash_btn2">{% trans 'it_dash_nav_newest' %}</p>
-        <p class="it-dash-btns" id="it_dash_btn3">{% trans 'it_dash_nav_oldest' %}</p>
-        <p class="it-dash-btns" id="it_dash_btn4">{% trans 'it_dash_nav' %}</p>
-        <p class="it-dash-btns" id="it_dash_btn5">{% trans 'it_dash_nav' %}</p>
-    </div>
     <div class="content">
         <p id="it-dash-mainp">{% trans 'it_dash_choosefilter' %}</p>
+        <div class="hidden" id="it-dash-backup-count"></div>
         <div class="hidden" id="it-dash-newest-div">
-            <table class="dash-table" id="table-reports">
+            <table class="dash-table" id="table-reports" width="100%">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -30,6 +31,30 @@
                 </thead>
                 <tbody>
                     {% for backup in allBackupsNewest %}
+                    <tr>
+                        {% for back in backup.values%}
+                        <td>{{back}}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="hidden" id="it-dash-oldest-div">
+            <table class="dash-table" id="table-reports2" width="100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Holistech</th>
+                        <th>{% trans 'th_backupType' %}</th>
+                        <th>{% trans 'th_size' %}</th>
+                        <th>{% trans 'th_date' %}</th>
+                        <th></th>
+                        <th>{% trans 'th_path' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for backup in allBackupsOldest %}
                     <tr>
                         {% for back in backup.values%}
                         <td>{{back}}</td>

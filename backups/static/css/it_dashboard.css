@@ -12,6 +12,7 @@
     background-color: #0d1b26;
     height: 50px;
     width: calc(100vw - var(--nav-width));
+    margin-left: var(--nav-width);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     z-index: 10;
@@ -46,9 +47,11 @@
     background-color: #f0f0f0;
     color: #000;
 }
-#it-dash-newest-div {
+#it-dash-newest-div,
+#it-dash-oldest-div {
+    width: 100%;
     margin-top: 50px;
-    padding: 10px;
+    padding: 20px;
 }
 .smallColumnTxt {
     font-size: 12px;
@@ -56,4 +59,17 @@
 
 .hidden {
     display: none;
+}
+
+div.dataTables_wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+td,
+tr,
+th {
+    text-align: center !important;
+}
+th {
+    font-size: 20px !important;
 }
