@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
         btn4.classList.remove("dash-btn-clicked");
         btn5.classList.remove("dash-btn-clicked");
         mainText.classList.add("hidden");
+        section1.classList.add("hidden");
         section2.classList.add("hidden");
         section3.classList.remove("hidden");
         $("#table-reports3").DataTable({
