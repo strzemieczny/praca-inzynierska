@@ -12,7 +12,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import Group
 
 from .forms import *
-
+from django.db.models import Count
 # Create your views here.
 
 #! Groups
@@ -91,7 +91,12 @@ def itDashboard(request):
         return home(request)
     if request.user in IT_MEMBERS:
         is_IT = True
-    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT}, request))
+        allBackupsCount = log.objects.values('hostname').annotate(
+            Count("hostname"))
+        allBackupsNewest = log.objects.all().order_by(
+            'date').values().order_by('-date')[:500]
+        # print(xxx)
+    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': allBackupsCount, 'allBackupsNewest': allBackupsNewest}, request))
 
 
 @login_required(login_url='/login')

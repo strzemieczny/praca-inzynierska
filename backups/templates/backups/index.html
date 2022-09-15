@@ -20,15 +20,14 @@
         <script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/index-datatables.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/it_index.js' %}"></script>
-        {% endblock %}
-
+        {% endblock %} {% if not is_IT %}
         <script
             data-jsd-embedded
             data-key="5a4a83a0-445a-43f3-bba8-84c189f281a3"
             data-base-url="https://jsd-widget.atlassian.com"
             src="https://jsd-widget.atlassian.com/assets/embed.js"
         ></script>
-        {% comment %}
+        {% endif %} {% comment %}
         <!-- prettier-ignore -->
         {% endcomment %}
         {% get_current_language as CURRENT_LANGUAGE %}

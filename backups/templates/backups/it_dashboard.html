@@ -1,5 +1,49 @@
-{% extends 'backups/index.html' %} {% load i18n %} {% load static %} {% block title %} {% trans "Add Machine" %}{% endblock %} {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/eng_request.css' %}" />
+{% extends 'backups/index.html' %} {% load i18n %} {% load static %} {% block title %} {% trans "it_dash_title" %}{% endblock %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/it_dashboard.css' %}" />
+<script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/it_dashboard.js' %}"></script>
 {% endblock %} {% block content %}
-<section class="index-section"></section>
+<section class="index-section">
+    <div class="dashboard-bar">
+        <p class="it-dash-btns" id="it_dash_btn1">{% trans 'it_dash_nav_count' %}</p>
+        <p class="it-dash-btns" id="it_dash_btn2">{% trans 'it_dash_nav_newest' %}</p>
+        <p class="it-dash-btns" id="it_dash_btn3">{% trans 'it_dash_nav_oldest' %}</p>
+        <p class="it-dash-btns" id="it_dash_btn4">{% trans 'it_dash_nav' %}</p>
+        <p class="it-dash-btns" id="it_dash_btn5">{% trans 'it_dash_nav' %}</p>
+    </div>
+    <div class="content">
+        <p id="it-dash-mainp">{% trans 'it_dash_choosefilter' %}</p>
+        <div class="hidden" id="it-dash-newest-div">
+            <table class="dash-table" id="table-reports">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Holistech</th>
+                        <th>{% trans 'th_backupType' %}</th>
+                        <th>{% trans 'th_size' %}</th>
+                        <th>{% trans 'th_date' %}</th>
+                        <th></th>
+                        <th>{% trans 'th_path' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for backup in allBackupsNewest %}
+                    <tr>
+                        {% for back in backup.values%}
+                        <td>{{back}}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% comment %} {% for backup in allBackupsCount %}
+    <p>{{backup.hostname}};{{backup.hostname__count}}</p>
+    <p>{{ backup2 }} {% endfor %}</p>
+    {%endfor%} {% for backup2 in allBackups %} {% endcomment %}
+</section>
+
 {% endblock %}
