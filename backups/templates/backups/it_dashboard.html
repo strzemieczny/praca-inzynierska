@@ -15,9 +15,27 @@
 <section class="index-section">
     <div class="content">
         <p id="it-dash-mainp">{% trans 'it_dash_choosefilter' %}</p>
-        <div class="hidden" id="it-dash-backup-count"></div>
-        <div class="hidden" id="it-dash-newest-div">
+        <div class="hidden" id="it-dash-backup-count">
             <table class="dash-table" id="table-reports" width="100%">
+                <thead>
+                    <tr>
+                        <th>{% trans 'th_hostname' %}</th>
+                        <th>{% trans 'th_backupcount' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for backup in allBackupsCount %}
+                    <tr>
+                        {% for back in backup.values%}
+                        <td>{{back}}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="hidden" id="it-dash-newest-div">
+            <table class="dash-table" id="table-reports2" width="100%">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -41,7 +59,7 @@
             </table>
         </div>
         <div class="hidden" id="it-dash-oldest-div">
-            <table class="dash-table" id="table-reports2" width="100%">
+            <table class="dash-table" id="table-reports3" width="100%">
                 <thead>
                     <tr>
                         <th>ID</th>

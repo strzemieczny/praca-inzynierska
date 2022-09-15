@@ -47,11 +47,15 @@
     background-color: #f0f0f0;
     color: #000;
 }
+#it-dash-backup-count,
 #it-dash-newest-div,
 #it-dash-oldest-div {
     width: 100%;
     margin-top: 50px;
     padding: 20px;
+}
+#it-dash-backup-count {
+    width: 50%;
 }
 .smallColumnTxt {
     font-size: 12px;
@@ -65,6 +69,7 @@ div.dataTables_wrapper {
     width: 100%;
     margin: 0 auto;
 }
+
 td,
 tr,
 th {

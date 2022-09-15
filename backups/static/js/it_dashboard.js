@@ -16,8 +16,26 @@ document.addEventListener("DOMContentLoaded", function () {
         btn4.classList.remove("dash-btn-clicked");
         btn5.classList.remove("dash-btn-clicked");
         mainText.classList.add("hidden");
+        section1.classList.remove("hidden");
         section2.classList.add("hidden");
         section3.classList.add("hidden");
+        $("#table-reports").DataTable({
+            destroy: true,
+            order: [[1, "desc"]],
+            autoWidth: false,
+            searching: true,
+            paging: false,
+            info: false,
+            autoWidth: false,
+            lengthMenu: [
+                [20, -1],
+                [20, "All"],
+            ],
+            columnDefs: [],
+            language: {
+                url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Polish.json",
+            },
+        });
     });
     btn2.addEventListener("click", () => {
         btn2.classList.add("dash-btn-clicked");
@@ -29,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         section3.classList.add("hidden");
         section1.classList.add("hidden");
         section2.classList.remove("hidden");
-        $("#table-reports").DataTable({
+        $("#table-reports2").DataTable({
             destroy: true,
             autoWidth: false,
             searching: true,
@@ -72,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainText.classList.add("hidden");
         section2.classList.add("hidden");
         section3.classList.remove("hidden");
-        $("#table-reports2").DataTable({
+        $("#table-reports3").DataTable({
             destroy: true,
             autoWidth: false,
             searching: true,
