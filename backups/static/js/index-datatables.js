@@ -83,7 +83,11 @@ document.addEventListener("DOMContentLoaded", function () {
         columnDefs: [
             {
                 target: 4,
-                width: "20%",
+                visible: false,
+            },
+            {
+                target: 5,
+                visible: false,
             },
         ],
         language: {
