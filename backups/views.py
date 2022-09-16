@@ -13,8 +13,10 @@ from django.contrib.auth.models import Group
 
 from .forms import *
 from django.db.models import Count
-# Create your views here.
 
+# JIRA API
+from jira import JIRA
+# Create your views here.
 #! Groups
 IT_MEMBERS = Group.objects.get(name="IT").user_set.all()
 ENGINEERING_MEMBERS = Group.objects.get(name="Engineering").user_set.all()
@@ -72,11 +74,11 @@ def home(request):
 @login_required(login_url='/login')
 def itview(request):
     context = []
+    context2 = []
     is_IT = False
     if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
         return home(request)
     if request.user in IT_MEMBERS:
-        from jira import JIRA
         jira_api_token = 'ZBoKhbt8TpC5xF9tdG4yDF15'
         jira_user = 'strzemieczny@borgwarner.com'
         jira_server = 'https://plblo-it.atlassian.net'
@@ -94,7 +96,8 @@ def itview(request):
             jira_reason = jira_issue.raw['fields']['customfield_10071']
             jira_description = jira_issue.raw['fields']['description']
             jira_creator = jira_issue.raw['fields']['creator']['displayName']
-            jira_assignee = jira_issue.raw['fields']['assignee']['displayName']
+            if jira_issue.raw['fields']['assignee']['displayName'] is not None:
+                jira_assignee = jira_issue.raw['fields']['assignee']['displayName']
             context.append({
                 'id': jira_issue,
                 'hostname': jira_hostname,
@@ -104,11 +107,33 @@ def itview(request):
                 'creator': jira_creator,
                 'assignee': jira_assignee
             })
+        jira_backupIssuesWaiting = jira_jira.search_issues(
+            'summary ~ BackupMonitor AND status in (Escalated, "In Progress", Pending, "Waiting for customer", "Waiting for support")')
+        for jira_backupIssue in jira_backupIssuesWaiting:
+            jira_issue = jira_jira.issue(jira_backupIssue)
+            jira_description = str(jira_issue.raw['fields']['description'])
+            jira_description_list = jira_description.split("\n")
+            jira_description_list_filtered = ['', '', '']
+            i = 0
+            for elem in jira_description_list:
+                elem1 = elem.split(": ")
+                jira_description_list_filtered[i] = elem1[1]
+                i += 1
+            if jira_issue.raw['fields']['assignee']['displayName'] is not None:
+                jira_assignee = jira_issue.raw['fields']['assignee']['displayName']
+
+            context2.append({
+                'id': jira_issue,
+                'holistech': jira_description_list_filtered[0],
+                'description': jira_description_list_filtered[1],
+                'creator': jira_description_list_filtered[2],
+                'assignee': jira_assignee
+            })
         is_IT = True
         template = loader.get_template('backups/index.html')
     else:
         return notAuthorized(request)
-    return HttpResponse(template.render({'is_IT': is_IT, 'context': context}, request))
+    return HttpResponse(template.render({'is_IT': is_IT, 'context': context, 'context2': context2}, request))
 
 
 @login_required(login_url='/login')
@@ -228,8 +253,28 @@ def requestBackups(request):
         if request.POST:
             form = requestBackupForm(request.POST or None)
             if form.is_valid():
-                instance = form.save()
-                instance.save()
+                jira_api_token = 'ZBoKhbt8TpC5xF9tdG4yDF15'
+                jira_user = 'strzemieczny@borgwarner.com'
+                jira_server = 'https://plblo-it.atlassian.net'
+                jira_options = {
+                    'server': jira_server
+                }
+
+                build_message = "Holistech: " + \
+                    str(form['requestBackup_holistech'].value()) + \
+                    "\nPowód: " + str(form['requestBackup_reason'].value()) + \
+                    "\nZgłaszający: " + str(form['requestor'].value())
+
+                jira_jira = JIRA(jira_options, basic_auth=(
+                    jira_user, jira_api_token))
+                issue_dict = {
+                    'project': {'key': 'IT'},
+                    'issuetype': {'name': 'Zadanie'},
+                    'customfield_10077': 'PDS',
+                    'description': build_message,
+                    'summary': 'BackupMonitor',
+                }
+                new_issue = jira_jira.create_issue(fields=issue_dict)
                 template = loader.get_template(
                     'backups/errors/not_authorized_success.html')
                 return HttpResponse(template.render({}, request))
@@ -239,4 +284,4 @@ def requestBackups(request):
             is_Engineer = True
             req_owner = machine.objects.filter(owner=request.user.id).values
             template = loader.get_template('backups/eng_request.html')
-            return HttpResponse(template.render({'is_Engineer': is_Engineer, 'req_owner': req_owner, 'requestBackup': requestBackupForm, 'current_user_id': request.user.id}, request))
+            return HttpResponse(template.render({'is_Engineer': is_Engineer, 'req_owner': req_owner, 'requestBackup': requestBackupForm, 'current_user_id': request.user.email}, request))

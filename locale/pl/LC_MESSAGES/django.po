@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-15 15:02+0200\n"
-"PO-Revision-Date: 2022-09-15 15:04+0200\n"
+"POT-Creation-Date: 2022-09-16 11:02+0200\n"
+"PO-Revision-Date: 2022-09-16 11:05+0200\n"
 "Last-Translator: Bartosz Strzemieczny <strzemieczny@borgwarner.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -35,58 +35,54 @@ msgstr "Niemiecki"
 msgid "Polish"
 msgstr "Polski"
 
-#: backups/forms.py:9
+#: backups/forms.py:11 backups/forms.py:51
 msgid "forms_requestaccessplaceholder"
 msgstr "Dlaczego potrzebujesz dostępu do Backup Monitora?"
 
-#: backups/forms.py:27
+#: backups/forms.py:33
 msgid "placeholder_machine_holistech"
 msgstr "Holistech"
 
-#: backups/forms.py:28
+#: backups/forms.py:34
 msgid "placeholder_machine_ipaddr"
 msgstr "Adres IP"
 
-#: backups/forms.py:29
+#: backups/forms.py:35
 msgid "placeholder_machine_hostname"
 msgstr "Nazwa komputera"
 
-#: backups/forms.py:30
+#: backups/forms.py:36
 msgid "placeholder_machine_fisname"
 msgstr "Nazwa FIS"
 
-#: backups/forms.py:34
+#: backups/forms.py:40
 msgid "label_machine_holistech"
 msgstr "Holistech:"
 
-#: backups/forms.py:35
+#: backups/forms.py:41
 msgid "label_machine_ipaddr"
 msgstr "Adres IP:"
 
-#: backups/forms.py:36
+#: backups/forms.py:42
 msgid "label_machine_hostname"
 msgstr "Nazwa komputera:"
 
-#: backups/forms.py:37
+#: backups/forms.py:43
 msgid "label_machine_fisname"
 msgstr "Nazwa FIS:"
 
-#: backups/forms.py:38
+#: backups/forms.py:44
 msgid "label_machine_area"
 msgstr "Obszar:"
 
-#: backups/forms.py:48
+#: backups/forms.py:53
 msgid "placeholder_requestBackup_description"
 msgstr "Dlaczego chcesz przywrócić backup?"
-
-#: backups/forms.py:53
-msgid "label_requestBackup_reason"
-msgstr "Powód:"
 
 #: backups/templates/backups/add_machine.html:1
 #: backups/templates/backups/eng_backups.html:1
 #: backups/templates/backups/eng_machines.html:1
-#: backups/templates/backups/eng_request.html:4
+#: backups/templates/backups/eng_request.html:1
 msgid "Add Machine"
 msgstr "Dodaj maszynę"
 
@@ -99,7 +95,7 @@ msgid "label_machine_owner"
 msgstr "Właściciel:"
 
 #: backups/templates/backups/add_machine.html:13
-#: backups/templates/backups/eng_request.html:23
+#: backups/templates/backups/eng_request.html:18
 #: backups/templates/backups/errors/not_authorized.html:21
 #: fazit/templates/fazit/index-fazit.html:42
 msgid "submit_btn"
@@ -111,31 +107,37 @@ msgstr "Twoja maszyna została dodana prawidłowo!"
 
 #: backups/templates/backups/eng_backups.html:14
 #: backups/templates/backups/eng_machines.html:15
-#: backups/templates/backups/index.html:86
+#: backups/templates/backups/index.html:88
+#: backups/templates/backups/index.html:167
+#: backups/templates/backups/it_dashboard.html:22
 msgid "th_hostname"
 msgstr "Nazwa komputera"
 
 #: backups/templates/backups/eng_backups.html:15
-#: backups/templates/backups/index.html:87
-#: backups/templates/backups/it_dashboard.html:24
+#: backups/templates/backups/index.html:89
+#: backups/templates/backups/it_dashboard.html:43
+#: backups/templates/backups/it_dashboard.html:67
 msgid "th_backupType"
 msgstr "Typ"
 
 #: backups/templates/backups/eng_backups.html:16
-#: backups/templates/backups/it_dashboard.html:25
+#: backups/templates/backups/it_dashboard.html:44
+#: backups/templates/backups/it_dashboard.html:68
 msgid "th_size"
 msgstr "Rozmiar"
 
 #: backups/templates/backups/eng_backups.html:17
-#: backups/templates/backups/index.html:89
-#: backups/templates/backups/index.html:114
-#: backups/templates/backups/index.html:138
-#: backups/templates/backups/it_dashboard.html:26
+#: backups/templates/backups/index.html:91
+#: backups/templates/backups/index.html:116
+#: backups/templates/backups/index.html:140
+#: backups/templates/backups/it_dashboard.html:45
+#: backups/templates/backups/it_dashboard.html:69
 msgid "th_date"
 msgstr "Data"
 
 #: backups/templates/backups/eng_backups.html:19
-#: backups/templates/backups/it_dashboard.html:28
+#: backups/templates/backups/it_dashboard.html:47
+#: backups/templates/backups/it_dashboard.html:71
 msgid "th_path"
 msgstr "Ścieżka"
 
@@ -151,19 +153,19 @@ msgstr "Nazwa FIS"
 msgid "th_area"
 msgstr "Obszar"
 
-#: backups/templates/backups/eng_request.html:12
+#: backups/templates/backups/eng_request.html:7
 msgid "requestbackup_chooseholistech"
 msgstr "Wybierz Holistech!"
 
-#: backups/templates/backups/eng_request.html:15
+#: backups/templates/backups/eng_request.html:10
 msgid "requestbackup_chooseholistech_label"
 msgstr "Wybierz Holistech:"
 
-#: backups/templates/backups/eng_request.html:16
+#: backups/templates/backups/eng_request.html:11
 msgid "requestbackup_chooseholistech_placeholder"
 msgstr "Wybierz Holistech"
 
-#: backups/templates/backups/eng_request.html:25
+#: backups/templates/backups/eng_request.html:20
 msgid "requestBackup_formsucceed"
 msgstr "Dziękujemy! Twoje zgłoszenie zostało przyjęte!"
 
@@ -198,7 +200,7 @@ msgid "nav_mymachines"
 msgstr "Moje maszyny"
 
 #: backups/templates/backups/index.html:59
-#: backups/templates/backups/index.html:66 old/it_index.html:48
+#: backups/templates/backups/index.html:68 old/it_index.html:48
 #: old/it_index.html:54
 msgid "nav_dashboard"
 msgstr "Dashboard"
@@ -208,7 +210,6 @@ msgid "nav_requestbackup"
 msgstr "Wnioskuj o wykonanie kopii zapasowej"
 
 #: backups/templates/backups/index.html:61
-#| msgid "nav_requestbackup"
 msgid "nav_requestrestorebackup"
 msgstr "Wnioskuj o przywrócenie kopii zapasowej"
 
@@ -216,59 +217,88 @@ msgstr "Wnioskuj o przywrócenie kopii zapasowej"
 msgid "nav_machines"
 msgstr "Maszyny"
 
-#: backups/templates/backups/index.html:65 old/it_index.html:53
+#: backups/templates/backups/index.html:65
+#| msgid "nav_addperson"
+msgid "nav_addrestored"
+msgstr "Dodaj przywróconą kopię"
+
+#: backups/templates/backups/index.html:66
+#| msgid "nav_requestbackup"
+msgid "nav_requests"
+msgstr "Wnioski"
+
+#: backups/templates/backups/index.html:67 old/it_index.html:53
 msgid "nav_responsible"
 msgstr "Odpowiedzialność"
 
-#: backups/templates/backups/index.html:67 old/it_index.html:55
+#: backups/templates/backups/index.html:69 old/it_index.html:55
 msgid "nav_rosetta"
 msgstr "Rosetta"
 
-#: backups/templates/backups/index.html:68 old/it_index.html:56
+#: backups/templates/backups/index.html:70 old/it_index.html:56
 msgid "nav_settings"
 msgstr "Ustawienia"
 
-#: backups/templates/backups/index.html:70 old/it_index.html:58
+#: backups/templates/backups/index.html:72 old/it_index.html:58
 msgid "nav_notloggedin"
 msgstr "Zaloguj się, aby kontynuować"
 
-#: backups/templates/backups/index.html:72 old/it_index.html:60
+#: backups/templates/backups/index.html:74 old/it_index.html:60
 msgid "log_out"
 msgstr "Wyloguj"
 
-#: backups/templates/backups/index.html:81
+#: backups/templates/backups/index.html:83
 msgid "h1_expiresoon"
 msgstr "Przeterminowane kopie zapasowe"
 
-#: backups/templates/backups/index.html:107
+#: backups/templates/backups/index.html:109
 msgid "h1_waitingrequests"
 msgstr "Oczekujące kopie zapasowe"
 
-#: backups/templates/backups/index.html:113
-#: backups/templates/backups/index.html:137
+#: backups/templates/backups/index.html:115
+#: backups/templates/backups/index.html:139
+#: backups/templates/backups/index.html:169
 msgid "th_reason"
 msgstr "Powód"
 
-#: backups/templates/backups/index.html:115
-#: backups/templates/backups/index.html:139
+#: backups/templates/backups/index.html:117
+#: backups/templates/backups/index.html:141
 msgid "th_status"
 msgstr "Status"
 
-#: backups/templates/backups/index.html:116
-#: backups/templates/backups/index.html:140
+#: backups/templates/backups/index.html:118
+#: backups/templates/backups/index.html:142
 msgid "th_owner"
 msgstr "Właściciel"
 
-#: backups/templates/backups/index.html:131
-#: backups/templates/backups/index.html:167 old/it_index.html:76
+#: backups/templates/backups/index.html:133
+#: backups/templates/backups/index.html:213 old/it_index.html:76
 msgid "h1_recentlyrestored"
 msgstr "Ostatnio przywrócone kopie zapasowe"
 
-#: backups/templates/backups/index.html:160 old/it_index.html:69
+#: backups/templates/backups/index.html:162
+#| msgid "h1_requestedbackups"
+msgid "h1_requestedbackupsRestore"
+msgstr "Wnioski o wykonanie kopii zapasowej"
+
+#: backups/templates/backups/index.html:172
+#: backups/templates/backups/index.html:195
+msgid "th_assignee"
+msgstr "Osoba przypisana"
+
+#: backups/templates/backups/index.html:187 old/it_index.html:69
 msgid "h1_requestedbackups"
 msgstr "Wnioski o wykonanie kopii zapasowej"
 
-#: backups/templates/backups/index.html:164 old/it_index.html:73
+#: backups/templates/backups/index.html:193
+msgid "th_description"
+msgstr "Opis"
+
+#: backups/templates/backups/index.html:194
+msgid "th_creator"
+msgstr "Zgłaszający"
+
+#: backups/templates/backups/index.html:210 old/it_index.html:73
 msgid "h1_expiredbackups"
 msgstr "Przeterminowane kopie zapasowe"
 
@@ -276,26 +306,31 @@ msgstr "Przeterminowane kopie zapasowe"
 msgid "it_dash_title"
 msgstr "Dashboard"
 
-#: backups/templates/backups/it_dashboard.html:10
+#: backups/templates/backups/it_dashboard.html:9
 msgid "it_dash_nav_count"
 msgstr "Liczba kopii zapasowych"
 
-#: backups/templates/backups/it_dashboard.html:11
+#: backups/templates/backups/it_dashboard.html:10
 msgid "it_dash_nav_newest"
 msgstr "Najnowsze"
 
-#: backups/templates/backups/it_dashboard.html:12
+#: backups/templates/backups/it_dashboard.html:11
 msgid "it_dash_nav_oldest"
 msgstr "Najstarsze"
 
+#: backups/templates/backups/it_dashboard.html:12
 #: backups/templates/backups/it_dashboard.html:13
-#: backups/templates/backups/it_dashboard.html:14
 msgid "it_dash_nav"
 msgstr "Jakieś coś"
 
 #: backups/templates/backups/it_dashboard.html:17
 msgid "it_dash_choosefilter"
 msgstr "Wybierz filtr"
+
+#: backups/templates/backups/it_dashboard.html:23
+#| msgid "th_backupType"
+msgid "th_backupcount"
+msgstr "Liczba kopii zapasowych"
 
 #: backups/templates/registration/login.html:1
 #: backups/templates/registration/login.html:9
@@ -314,7 +349,7 @@ msgstr "Zaloguj się"
 msgid "forgot_passwd"
 msgstr "Zapomniałeś hasła?"
 
-#: backups/views.py:29
+#: backups/views.py:31
 msgid "error_holistechexists"
 msgstr "Maszyna o podanym Holistech ID już istnieje!"
 
@@ -330,6 +365,9 @@ msgstr "FAZIT"
 msgid "h1_fazits"
 msgstr "Podaj FAZITy, które chcesz wysłać ponownie!"
 
+#~ msgid "label_requestBackup_reason"
+#~ msgstr "Powód:"
+
 #, fuzzy
 #~ msgid "IPv4 address"
 #~ msgstr "Adres IP"
@@ -337,9 +375,6 @@ msgstr "Podaj FAZITy, które chcesz wysłać ponownie!"
 #, fuzzy
 #~ msgid "IP address"
 #~ msgstr "Adres IP"
-
-#~ msgid "nav_addperson"
-#~ msgstr "Dodaj osobę"
 
 #~ msgid "placeholder_machine_area"
 #~ msgstr "Obszar"

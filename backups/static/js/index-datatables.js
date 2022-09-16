@@ -94,4 +94,19 @@ document.addEventListener("DOMContentLoaded", function () {
             url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Polish.json",
         },
     });
+    $("#table-reports-it2").DataTable({
+        searching: false,
+        paging: false,
+        info: false,
+        autoWidth: false,
+        columnDefs: [
+            {
+                target: 2,
+                width: "35%",
+            },
+        ],
+        language: {
+            url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Polish.json",
+        },
+    });
 });

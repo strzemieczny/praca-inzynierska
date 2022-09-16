@@ -1,28 +1,23 @@
-{% extends 'backups/index.html' %}
-    {% load i18n %}
-    {% load static %}
-{% block title %} {% trans "Add Machine" %}{% endblock %}
-{% block head %} 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/eng_request.css' %}" />
-    <script type="text/javascript" src="{% static 'js/eng_request.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-{% endblock %} 
-{% block content %}
-    <section class = 'index-section'>
-        <h1>{% trans 'requestbackup_chooseholistech' %}</h1>
-            <form action = '' id='content-div'>
-                {% csrf_token %}
-                <label for='list-holistech'>{% trans 'requestbackup_chooseholistech_label' %}</label>
-                <input id = 'list-holistech' list='holistech' placeholder={% trans 'requestbackup_chooseholistech_placeholder' %}>
-                <datalist id='holistech'>
-                    {% for machine in req_owner %}
-                    <option value='{{ machine.machine_holistech }}'>{{ machine.machine_holistech }}</option>
-                    {% endfor %}
-                </datalist>
-                {{ requestBackup }}
-                <p id = 'submit-btn-holistech'>{% trans "submit_btn" %}</p>
-            </form>
-            <input type='hidden' value= "<img src={% static 'img/success.png' %} /><h2>{% trans 'requestBackup_formsucceed' %}</h2>" id='success-path' />
-            <input type='hidden' value='{{current_user_id}}' id = 'requestor'/>
-    </section>
+{% extends 'backups/index.html' %} {% load i18n %} {% load static %} {% block title %} {% trans "Add Machine" %}{% endblock %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/eng_request.css' %}" />
+<script type="text/javascript" src="{% static 'js/eng_request.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+{% endblock %} {% block content %}
+<section class="index-section">
+    <h1>{% trans 'requestbackup_chooseholistech' %}</h1>
+    <form action="" id="content-div">
+        {% csrf_token %}
+        <label for="list-holistech">{% trans 'requestbackup_chooseholistech_label' %}</label>
+        <input id = 'list-holistech' list='holistech' placeholder={% trans 'requestbackup_chooseholistech_placeholder' %} autocomplete='off'>
+        <datalist id="holistech">
+            {% for machine in req_owner %}
+            <option value="{{ machine.machine_holistech }}">{{ machine.machine_holistech }}</option>
+            {% endfor %}
+        </datalist>
+        {{ requestBackup }}
+        <p id="submit-btn-holistech">{% trans "submit_btn" %}</p>
+    </form>
+    <input type="hidden" value="<img src={% static 'img/success.png' %} /><h2>{% trans 'requestBackup_formsucceed' %}</h2>" id="success-path" />
+    <input type="hidden" value="{{current_user_id}}" id="requestor" />
+</section>
 {% endblock %}

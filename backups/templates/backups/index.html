@@ -156,7 +156,7 @@
             <section class="index-section">
                 {% comment %}django-admin makemessages --all django-admin compilemessages {% endcomment %}
                 <div class="grid-div-home">
-                    <h1>{% trans 'h1_requestedbackups' %}</h1>
+                    <h1>{% trans 'h1_requestedbackupsRestore' %}</h1>
                     <table id="table-reports-it">
                         <thead>
                             <tr>
@@ -180,7 +180,29 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="grid-div-home"></div>
+                <div class="grid-div-home">
+                    <h1>{% trans 'h1_requestedbackups' %}</h1>
+                    <table id="table-reports-it2">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Holistech</th>
+                                <th>{% trans 'th_description' %}</th>
+                                <th>{% trans 'th_creator' %}</th>
+                                <th>{% trans 'th_assignee' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in context2 %}
+                            <tr>
+                                {% for obj2 in obj.values %}
+                                <td>{{ obj2 }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
                 <div class="grid-div-home">
                     <h1>{% trans 'h1_expiredbackups' %}</h1>
                 </div>
