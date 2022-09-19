@@ -22,6 +22,15 @@ IT_MEMBERS = Group.objects.get(name="IT").user_set.all()
 ENGINEERING_MEMBERS = Group.objects.get(name="Engineering").user_set.all()
 #! Groups
 
+#! JIRA
+jira_api_token = 'ZBoKhbt8TpC5xF9tdG4yDF15'
+jira_user = 'strzemieczny@borgwarner.com'
+jira_server = 'https://plblo-it.atlassian.net'
+jira_options = {
+    'server': jira_server
+}
+#! JIRA
+
 
 def bad_request(message):
     data = {}
@@ -79,13 +88,6 @@ def itview(request):
     if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
         return home(request)
     if request.user in IT_MEMBERS:
-        jira_api_token = 'ZBoKhbt8TpC5xF9tdG4yDF15'
-        jira_user = 'strzemieczny@borgwarner.com'
-        jira_server = 'https://plblo-it.atlassian.net'
-        jira_options = {
-            'server': jira_server
-        }
-
         jira_jira = JIRA(jira_options, basic_auth=(jira_user, jira_api_token))
         jira_backupIssues = jira_jira.search_issues(
             'summary ~ Backup AND status in (Escalated, "In Progress", Pending, "Waiting for customer", "Waiting for support")')
@@ -139,7 +141,6 @@ def itview(request):
 @login_required(login_url='/login')
 def itDashboard(request):
     template = loader.get_template('backups/it_dashboard.html')
-    context = {}
     is_IT = {}
     if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
         return home(request)
@@ -151,17 +152,55 @@ def itDashboard(request):
             'date').values().order_by('-date')[:500]
         allBackupsOldest = log.objects.all().order_by(
             'date').values().order_by('date')[:500]
-        # print(xxx)
     return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': allBackupsCount, 'allBackupsNewest': allBackupsNewest, 'allBackupsOldest': allBackupsOldest}, request))
 
 
 @login_required(login_url='/login')
 def engineerview(request):
     template = loader.get_template('backups/index.html')
-    myRequest = requestBackup.objects.filter(requestor=request.user.id).exclude(
-        requestBackup_status='DONE').order_by('-id').values()[:10]
-    recentlyRestored = requestBackup.objects.filter(
-        requestor=request.user.id, requestBackup_status='DONE').order_by('-id').values()[:10]
+    #! get holistech ids for my machines
+    myMachinesList = machine.objects.filter(owner=request.user.id).values()
+    myMachinesList_holistechList = list()
+    myMachinesList_holistechListPendingDetails = []
+    myMachinesList_holistechListRestoredDetails = []
+    for myMachinesList_machine in myMachinesList:
+        myMachinesList_machine_Dict = list(myMachinesList_machine.values())
+        myMachinesList_holistechList.append(myMachinesList_machine_Dict[0])
+    #! get holistech ids for my machines
+
+    #! get issues details
+    jira_jira = JIRA(jira_options, basic_auth=(jira_user, jira_api_token))
+    for myMachinesList_holistechList_id in myMachinesList_holistechList:
+        jira_backupIssuesPending = jira_jira.search_issues(
+            'summary ~ Backup AND "Holistech ID[Short text]" ~ ' + str(myMachinesList_holistechList_id))
+        for jira_issue_id in jira_backupIssuesPending:
+            myMachines_backupIssues = jira_jira.issue(
+                jira_issue_id)
+            myMachinesList_holistechList_holistech = myMachines_backupIssues.raw[
+                'fields']['customfield_10058']
+            myMachinesList_holistechList_description = myMachines_backupIssues.raw[
+                'fields']['description']
+            myMachinesList_holistechList_created = datetime.strptime(myMachines_backupIssues.raw[
+                'fields']['created'], '%Y-%m-%dT%H:%M:%S.%f+0200')
+            myMachinesList_holistechList_status = myMachines_backupIssues.raw[
+                'fields']['status']['name']
+            if myMachinesList_holistechList_status == "Rozwiązane":
+                myMachinesList_holistechListPendingDetails.append({
+                    'holistech': myMachinesList_holistechList_holistech,
+                    'description': myMachinesList_holistechList_description,
+                    'date': myMachinesList_holistechList_created,
+                    'status': myMachinesList_holistechList_status
+                })
+            else:
+                myMachinesList_holistechListRestoredDetails.append({
+                    'holistech': myMachinesList_holistechList_holistech,
+                    'description': myMachinesList_holistechList_description,
+                    'date': myMachinesList_holistechList_created,
+                    'status': myMachinesList_holistechList_status
+                })
+    #! get issues details
+
+    myRequest = []
     myMachinesList = machine.objects.filter(owner=request.user.id).values()
     myBackupList = []
     for machineHostTmp in myMachinesList:
@@ -179,10 +218,10 @@ def engineerview(request):
         else:
             break
 
-    return HttpResponse(template.render({'is_Engineer': True, 'myRequest': myRequest, 'recentlyRestored': recentlyRestored, 'myBackups': myBackupListFinal, 'current_user_id': request.user.id}, request))
+    return HttpResponse(template.render({'is_Engineer': True, 'pendingBackups': myMachinesList_holistechListRestoredDetails, 'recentlyRestored': myMachinesList_holistechListPendingDetails, 'current_user_id': request.user.id}, request))
 
 
-@login_required(login_url='/login')
+@ login_required(login_url='/login')
 def addMachines(request):
     current_user = request.user.first_name + " " + request.user.last_name
     msg = ''
@@ -213,10 +252,8 @@ def addMachines(request):
     return HttpResponse(template.render({'form': addMachine, 'is_Engineer': is_Engineer, 'is_IT': is_IT, 'current_user': current_user, 'current_user_id': request.user.id, 'msg': msg}, request))
 
 
-# do zrobienia jak beda backupy w bazce - lista podswietlana/sortowana na podstawie daty backupu
-@login_required(login_url='/login')
+@ login_required(login_url='/login')
 def myMachines(request):
-    context = {}
     if request.user not in ENGINEERING_MEMBERS:
         return notAuthorized(request)
     else:
@@ -226,7 +263,7 @@ def myMachines(request):
         return HttpResponse(template.render({'is_Engineer': is_Engineer, 'myMachines': myMachinesList}, request))
 
 
-@login_required(login_url='/login')
+@ login_required(login_url='/login')
 def myBackups(request):
     if request.user not in ENGINEERING_MEMBERS:
         return notAuthorized(request)
@@ -243,45 +280,3 @@ def myBackups(request):
                 hostname=machineHostTmpVal).order_by('hostname').values())
         template = loader.get_template('backups/eng_backups.html')
         return HttpResponse(template.render({'is_Engineer': is_Engineer, 'myBackupList': myBackupList}, request))
-
-
-@login_required(login_url='/login')
-def requestBackups(request):
-    if request.user not in ENGINEERING_MEMBERS:
-        return notAuthorized(request)
-    else:
-        if request.POST:
-            form = requestBackupForm(request.POST or None)
-            if form.is_valid():
-                jira_api_token = 'ZBoKhbt8TpC5xF9tdG4yDF15'
-                jira_user = 'strzemieczny@borgwarner.com'
-                jira_server = 'https://plblo-it.atlassian.net'
-                jira_options = {
-                    'server': jira_server
-                }
-
-                build_message = "Holistech: " + \
-                    str(form['requestBackup_holistech'].value()) + \
-                    "\nPowód: " + str(form['requestBackup_reason'].value()) + \
-                    "\nZgłaszający: " + str(form['requestor'].value())
-
-                jira_jira = JIRA(jira_options, basic_auth=(
-                    jira_user, jira_api_token))
-                issue_dict = {
-                    'project': {'key': 'IT'},
-                    'issuetype': {'name': 'Zadanie'},
-                    'customfield_10077': 'PDS',
-                    'description': build_message,
-                    'summary': 'BackupMonitor',
-                }
-                new_issue = jira_jira.create_issue(fields=issue_dict)
-                template = loader.get_template(
-                    'backups/errors/not_authorized_success.html')
-                return HttpResponse(template.render({}, request))
-            else:
-                return bad_request(message='Form is not valid')
-        else:
-            is_Engineer = True
-            req_owner = machine.objects.filter(owner=request.user.id).values
-            template = loader.get_template('backups/eng_request.html')
-            return HttpResponse(template.render({'is_Engineer': is_Engineer, 'req_owner': req_owner, 'requestBackup': requestBackupForm, 'current_user_id': request.user.email}, request))

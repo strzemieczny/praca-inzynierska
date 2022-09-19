@@ -51,5 +51,3 @@ class requestBackupForm(forms.Form):
         attrs={'hidden': _('forms_requestaccessplaceholder')}), label=False)
     requestBackup_reason = forms.CharField(widget=forms.Textarea(
         attrs={'placeholder': _('placeholder_requestBackup_description')}), label=False)
-    requestor = forms.CharField(widget=forms.TextInput(
-        attrs={'hidden': ''}), label=False)

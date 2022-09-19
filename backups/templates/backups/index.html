@@ -56,7 +56,10 @@
                     <li class="nav-li"><a href="/{{CURRENT_LANGUAGE}}/backups/machine/add">{% trans "nav_addmachine" %}</a></li>
                     <li class="nav-li"><a href="/{{CURRENT_LANGUAGE}}/backups/engineering/machines">{% trans "nav_mymachines" %}</a></li>
                     <li class="nav-li"><a href="">{% trans "nav_dashboard" %}</a></li>
+                    {% comment %}
                     <li class="nav-li"><a href="/{{CURRENT_LANGUAGE}}/backups/engineering/request">{% trans "nav_requestbackup" %}</a></li>
+                    {% endcomment %}
+                    <li class="nav-li"><a href="https://plblo-it.atlassian.net/servicedesk/customer/portal/2/group/11/create/39">{% trans "nav_requestbackup" %}</a></li>
                     <li class="nav-li"><a href="https://plblo-it.atlassian.net/servicedesk/customer/portal/2/group/11/create/39">{% trans "nav_requestrestorebackup" %}</a></li>
                     {% elif is_IT %}
                     <li class="nav-li"><a href="/{{CURRENT_LANGUAGE}}/backups">{% trans "nav_home" %}</a></li>
@@ -78,66 +81,14 @@
             <section class="index-section">
                 {% comment %} django-admin makemessages --all django-admin compilemessages {% endcomment %}
                 <div class="grid-div-home scroll">
-                    <h1>{% trans 'h1_expiresoon' %}</h1>
-                    <table id="table-reports3">
-                        <thead>
-                            <tr>
-                                <th>1</th>
-                                <th>{% trans 'th_hostname' %}</th>
-                                <th>{% trans 'th_backupType' %}</th>
-                                <th></th>
-                                <th>{% trans 'th_date' %}</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for obj in myBackups %} {% for obj2 in obj %}
-                            <tr>
-                                {% for obj3 in obj2.values %}
-                                <td>{{ obj3 }}</td>
-                                {% endfor %}
-                            </tr>
-                            {% endfor %} {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="grid-div-home"></div>
-                <div class="grid-div-home">
-                    <h1>{% trans 'h1_waitingrequests' %}</h1>
+                    <h1>{% trans 'h1_recentlyrestored' %}</h1>
                     <table id="table-reports">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Holistech</th>
                                 <th>{% trans 'th_reason' %}</th>
                                 <th>{% trans 'th_date' %}</th>
                                 <th>{% trans 'th_status' %}</th>
-                                <th>{% trans 'th_owner' %}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for request in myRequest %}
-                            <tr>
-                                {% for value in request.values %}
-                                <td>{{ value }}</td>
-                                {% endfor %}
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="grid-div-home">
-                    <h1>{% trans 'h1_recentlyrestored' %}</h1>
-                    <table id="table-reports2">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Holistech</th>
-                                <th>{% trans 'th_reason' %}</th>
-                                <th>{% trans 'th_date' %}</th>
-                                <th>{% trans 'th_status' %}</th>
-                                <th>{% trans 'th_owner' %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -151,6 +102,30 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="grid-div-home"></div>
+                <div class="grid-div-home">
+                    <h1>{% trans 'h1_waitingrequests' %}</h1>
+                    <table id="table-reports2">
+                        <thead>
+                            <tr>
+                                <th>Holistech</th>
+                                <th>{% trans 'th_reason' %}</th>
+                                <th>{% trans 'th_date' %}</th>
+                                <th>{% trans 'th_status' %}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in pendingBackups %}
+                            <tr>
+                                {% for obj2 in obj.values %}
+                                <td>{{ obj2 }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="grid-div-home"></div>
             </section>
             {% elif is_IT%}
             <section class="index-section">
