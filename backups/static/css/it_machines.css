@@ -1,0 +1,20 @@
+.index-section {
+    display: flex;
+}
+#table-reports_wrapper {
+    margin: 20px;
+    width: 100%;
+}
+td,
+tr,
+th {
+    text-align: center !important;
+    cursor: pointer;
+    transition: 0.3s;
+}
+th {
+    font-size: 20px !important;
+}
+tbody tr:hover {
+    background-color: #fff !important;
+}

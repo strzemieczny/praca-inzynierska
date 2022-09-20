@@ -15,9 +15,11 @@ urlpatterns = [
     path('it/', include([
         path('', views.itview, name='itview'),
         path('dashboard', views.itDashboard, name='dashboard'),
+        path('machines', views.itMachines, name='itMachines'),
     ])),
     path('machine/', include([
         path('add/', views.addMachines, name='addMachines'),
+        path('<hostname>', views.machineDetails, name='machineDetails'),
     ])),
     path('engineering/', include([
         path('machines/', views.myMachines, name='myMachines'),

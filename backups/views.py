@@ -50,7 +50,6 @@ def bad_request(message):
 
 
 def notAuthorized(request):
-    context = {}
     template = loader.get_template('backups/errors/not_authorized.html')
     if request.POST:
         form = requestAccess(request.POST)
@@ -71,7 +70,6 @@ def notAuthorized(request):
 
 @login_required(login_url='/login')
 def home(request):
-    context = {}
     if request.user in IT_MEMBERS:
         return itview(request)
     if request.user in ENGINEERING_MEMBERS:
@@ -146,16 +144,46 @@ def itDashboard(request):
         return home(request)
     if request.user in IT_MEMBERS:
         is_IT = True
-        allBackupsCount = log.objects.values('hostname').annotate(
+        itDashboard_allBackupsCount = log.objects.values('hostname').annotate(
             Count("hostname"))
-        allBackupsNewest = log.objects.all().order_by(
+        itDashboard_allBackupsNewest = log.objects.all().order_by(
             'date').values().order_by('-date')[:500]
-        allBackupsOldest = log.objects.all().order_by(
+        itDashboard_allBackupsOldest = log.objects.all().order_by(
             'date').values().order_by('date')[:500]
-    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': allBackupsCount, 'allBackupsNewest': allBackupsNewest, 'allBackupsOldest': allBackupsOldest}, request))
+    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': itDashboard_allBackupsCount, 'allBackupsNewest': itDashboard_allBackupsNewest, 'allBackupsOldest': itDashboard_allBackupsOldest}, request))
 
 
 @login_required(login_url='/login')
+def itMachines(request):
+    template = loader.get_template('backups/it_machines.html')
+    is_IT = {}
+    if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
+        return home(request)
+    if request.user in IT_MEMBERS:
+        is_IT = True
+        itMachines_all = machine.objects.all().values()
+    return HttpResponse(template.render({'is_IT': is_IT, 'allMachines': itMachines_all}, request))
+
+
+@login_required(login_url='/login')
+def machineDetails(request, hostname):
+    template = loader.get_template('backups/machineDetails.html')
+    is_IT = {}
+    if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
+        return home(request)
+    if request.user in IT_MEMBERS:
+        is_IT = True
+        machineDetails_getDetails = machine.objects.filter(
+            machine_hostname=hostname).values()
+
+        #!// get machine details
+        # // for itDashboard_machineDetails_hostname in log.objects.values('hostname').values().distinct():
+        # //    print(itDashboard_machineDetails_hostname['hostname'])
+        #!// get machine details
+    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'details': machineDetails_getDetails}, request))
+
+
+@ login_required(login_url='/login')
 def engineerview(request):
     template = loader.get_template('backups/index.html')
     #! get holistech ids for my machines
@@ -200,7 +228,6 @@ def engineerview(request):
                 })
     #! get issues details
 
-    myRequest = []
     myMachinesList = machine.objects.filter(owner=request.user.id).values()
     myBackupList = []
     for machineHostTmp in myMachinesList:
@@ -217,7 +244,6 @@ def engineerview(request):
                 pass
         else:
             break
-
     return HttpResponse(template.render({'is_Engineer': True, 'pendingBackups': myMachinesList_holistechListRestoredDetails, 'recentlyRestored': myMachinesList_holistechListPendingDetails, 'current_user_id': request.user.id}, request))
 
 
@@ -273,9 +299,6 @@ def myBackups(request):
         myBackupList = []
         for machineHostTmp in myMachinesList:
             machineHostTmpVal = machineHostTmp['machine_hostname']
-            myBackupListFinal = [
-                queryset for queryset in myBackupList if queryset
-            ]
             myBackupList.append(log.objects.filter(
                 hostname=machineHostTmpVal).order_by('hostname').values())
         template = loader.get_template('backups/eng_backups.html')
