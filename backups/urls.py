@@ -19,7 +19,7 @@ urlpatterns = [
     ])),
     path('machine/', include([
         path('add/', views.addMachines, name='addMachines'),
-        path('<hostname>', views.machineDetails, name='machineDetails'),
+        path('details/<hostname>', views.machineDetails, name='machineDetails'),
     ])),
     path('engineering/', include([
         path('machines/', views.myMachines, name='myMachines'),

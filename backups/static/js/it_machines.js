@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var holistech_td = row.querySelectorAll("td");
             var holistech_value = holistech_td[2].innerText;
             console.log(holistech_value);
-            location.href = "/" + lang + "/backups/machine/" + holistech_value;
+            location.href = "/" + lang + "/backups/machine/details/" + holistech_value;
         });
     }
 });
