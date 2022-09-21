@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from django_auth_ldap.config import LDAPSearch
+import ldap
 from pathlib import Path
 import os
 import logging
@@ -20,9 +22,7 @@ from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-#LDAP
-import ldap
-from django_auth_ldap.config import LDAPSearch
+# LDAP
 ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
 AUTH_LDAP_START_TLS = True
 #AUTH_LDAP_SERVER_URI = "ldap://plblop-dc04.delphidrive.com"
@@ -136,8 +136,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                 'django.template.context_processors.i18n',
-                 'django_auto_logout.context_processors.auto_logout_client',
+                'django.template.context_processors.i18n',
+                'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },
@@ -157,10 +157,9 @@ WSGI_APPLICATION = 'PDS_Apps.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'django',
+        'NAME': 'pds-apps',
         'CLIENT': {
-            'host': '10.142.11.22',
-            'port': 27017,
+            'host': 'mongodb://python:delphi1234@10.142.11.55:27017/?authMechanism=DEFAULT&authSource=pds-apps',
         }
     },
 }
@@ -225,12 +224,12 @@ if DEBUG:
     )
 
 
-#SMTP settings
-EMAIL_HOST='10.212.6.111'
-EMAIL_SUBJECT_PREFIX='[Backup Manager]'
-EMAIL_TIMEOUT=5
+# SMTP settings
+EMAIL_HOST = '10.212.6.111'
+EMAIL_SUBJECT_PREFIX = '[Backup Manager]'
+EMAIL_TIMEOUT = 5
 
 AUTO_LOGOUT = {
     'IDLE_TIME': 600,
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
-    }
+}
