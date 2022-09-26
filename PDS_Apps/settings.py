@@ -15,7 +15,7 @@ import ldap
 from pathlib import Path
 import os
 import logging
-import mimetypes
+from pymongo import MongoClient
 from django.utils.translation import gettext_lazy as _
 # from django.core.urlresolvers import reverse_lazy
 from django.urls import reverse_lazy
@@ -159,12 +159,14 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'pds-apps',
         'CLIENT': {
-            'host': 'mongodb://python:delphi1234@10.142.11.55:27017/?authMechanism=DEFAULT&authSource=pds-apps',
+            'host': 'mongodb://admin:blonie4321delphi@10.142.11.55:27017/?authMechanism=DEFAULT',
+            # 'host': 'mongodb://python:delphi1234@10.142.11.55:27017/?authMechanism=DEFAULT&authSource=pds-apps',
         }
     },
 }
 
-
+MONGO = MongoClient(
+    'mongodb://admin:blonie4321delphi@10.142.11.55:27017/?authMechanism=DEFAULT')
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 

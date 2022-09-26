@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     max-width: 100%;
+    max-height: calc(100vh - var(--header-height)) !important;
 }
 .grid-div-home table {
     margin-top: 10px;
@@ -11,11 +12,6 @@
 th {
     text-align: center !important;
 }
-#table-reports_wrapper,
-#table-reports-it_wrapper,
-#table-reports2_wrapper,
-#table-reports3_wrapper {
-    /* display: flex;
-    justify-content: center; */
+.grid-div-home > div {
     width: 95%;
 }

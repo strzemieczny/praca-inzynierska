@@ -63,4 +63,32 @@ document.addEventListener("DOMContentLoaded", function () {
             url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Polish.json",
         },
     });
+    $("#table-reports-it3").DataTable({
+        searching: false,
+        paging: false,
+        info: false,
+        scrollY: 300,
+        autoWidth: false,
+        columnDefs: [
+            {
+                target: 0,
+                visible: false,
+            },
+            {
+                target: 2,
+                visible: false,
+            },
+            {
+                target: 5,
+                visible: false,
+            },
+            {
+                target: 6,
+                visible: false,
+            },
+        ],
+        language: {
+            url: "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Polish.json",
+        },
+    });
 });

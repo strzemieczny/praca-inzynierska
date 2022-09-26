@@ -1,0 +1,14 @@
+.index-section {
+    display: block;
+}
+.index-section > * {
+    margin: 10px;
+}
+.index-section > h1 {
+    padding: 20px;
+}
+#table-reports {
+    width: 60%;
+    float: left;
+    margin-bottom: 40px;
+}

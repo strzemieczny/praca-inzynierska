@@ -19,7 +19,6 @@
         <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/index-datatables.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/it_index.js' %}"></script>
         {% endblock %} {% if not is_IT %}
         <script
             data-jsd-embedded
@@ -179,6 +178,28 @@
                 </div>
                 <div class="grid-div-home">
                     <h1>{% trans 'h1_expiredbackups' %}</h1>
+                    <table id="table-reports-it3">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Holistech</th>
+                                <th></th>
+                                <th>{% trans 'th_size' %}</th>
+                                <th>{% trans 'th_date' %}</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in expiredBackups %}
+                            <tr>
+                                {% for obj2 in obj.values %}
+                                <td>{{ obj2 }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
                 <div class="grid-div-home">
                     <h1>{% trans 'h1_recentlyrestored' %}</h1>

@@ -1,21 +1,55 @@
 {% extends 'backups/index.html' %} {% load i18n %} {% load static %} {% block title %} {% trans "Add Machine" %}{% endblock %} {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/eng_request.css' %}" />
-<script type="text/javascript" src="{% static 'js/eng_request.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/machineDetails.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}" />
+<script type="text/javascript" src="{% static 'js/machineDetails.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
 {% endblock %} {% block content %}
 <section class="index-section">
-    <h1>{% trans 'h1_machineDetails' %}</h1>
-    <form action="" id="content-div">
-        {% csrf_token %}
-
-        <!-- prettier-ignore -->
-
-        {% for det in details %} 
-        {% for dett in det.values %}
-        <p>{{dett}}</p>
-        {% endfor %} {% endfor %} {{ requestBackup }}
-        <p id="submit-btn-holistech">{% trans "submit_btn" %}</p>
-    </form>
-    <input type="hidden" value="<img src={% static 'img/success.png' %} /><h2>{% trans 'requestBackup_formsucceed' %}</h2>" id="success-path" />
+    <!-- prettier-ignore -->
+    <table class="dash-table" id="table-reports">
+            <thead>
+                <tr>
+                    <th>Holistech</th>
+                    <th>{% trans 'th_IPAddress' %}</th>
+                    <th>{% trans 'th_hostname' %}</th>
+                    <th>{% trans 'th_fisname' %}</th>
+                    <th>{% trans 'th_area' %}</th>
+                    <th>{% trans 'th_owner' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for det in details %}
+                <tr>
+                    {% for dett in det.values %}
+                        <td>{{dett}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <h1>{% trans 'h1_availablebackups' %}</h1>
+    <table class="dash-table" id="table-reports2" width="100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Holistech</th>
+                <th>{% trans 'th_backupType' %}</th>
+                <th>{% trans 'th_size' %}</th>
+                <th>{% trans 'th_date' %}</th>
+                <th></th>
+                <th>{% trans 'th_path' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for back in backups %}
+            <tr>
+                {% for bck in back.values %}
+                <td>{{bck}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </section>
 {% endblock %}

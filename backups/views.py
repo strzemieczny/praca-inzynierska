@@ -1,35 +1,31 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, Http404, FileResponse
+from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
-from django.db import connection
-from django.utils.translation import gettext_lazy as _
-from django.conf.urls.i18n import i18n_patterns
-from django.contrib.auth.decorators import user_passes_test
 from django.http import JsonResponse
+from django.utils import timezone
 from datetime import datetime, timedelta
 from django.core.mail import send_mail
 from django.contrib.auth.models import Group
-
 from .forms import *
 from django.db.models import Count
-
-# JIRA API
+from django.conf import settings
+#! Jira API
 from jira import JIRA
-# Create your views here.
+#! Jira API
+
 #! Groups
 IT_MEMBERS = Group.objects.get(name="IT").user_set.all()
 ENGINEERING_MEMBERS = Group.objects.get(name="Engineering").user_set.all()
 #! Groups
-
-#! JIRA
+MONGO = getattr(settings, "MONGO", None)
+#! Jira Config
 jira_api_token = 'ZBoKhbt8TpC5xF9tdG4yDF15'
 jira_user = 'strzemieczny@borgwarner.com'
 jira_server = 'https://plblo-it.atlassian.net'
 jira_options = {
     'server': jira_server
 }
-#! JIRA
+#! Jira Config
 
 
 def bad_request(message):
@@ -129,14 +125,32 @@ def itview(request):
                 'creator': jira_description_list_filtered[2],
                 'assignee': jira_assignee
             })
+
+        #! get expired backups
+        itview_expiredBackups = list(
+            log.objects.all().order_by('-date').values())
+        itview_expiredBackupsSorted = []
+        itview_expiredBackupsHostnameTmp = set()
+        for itview_expiredBackupsSingle in itview_expiredBackups:
+            if itview_expiredBackupsSingle['hostname'] not in itview_expiredBackupsHostnameTmp:
+                itview_expiredBackupsHostnameTmp.add(
+                    itview_expiredBackupsSingle['hostname'])
+                if itview_expiredBackupsSingle['date'] <= timezone.now() - timedelta(days=180):
+                    itview_expiredBackupsSorted.append(
+                        itview_expiredBackupsSingle)
+            else:
+                pass
+        itview_expiredBackupsSorted = list(
+            reversed(itview_expiredBackupsSorted))
+        #! get expired backups
         is_IT = True
         template = loader.get_template('backups/index.html')
     else:
         return notAuthorized(request)
-    return HttpResponse(template.render({'is_IT': is_IT, 'context': context, 'context2': context2}, request))
+    return HttpResponse(template.render({'is_IT': is_IT, 'context': context, 'context2': context2, 'expiredBackups': itview_expiredBackupsSorted}, request))
 
 
-@login_required(login_url='/login')
+@ login_required(login_url='/login')
 def itDashboard(request):
     template = loader.get_template('backups/it_dashboard.html')
     is_IT = {}
@@ -153,7 +167,7 @@ def itDashboard(request):
     return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': itDashboard_allBackupsCount, 'allBackupsNewest': itDashboard_allBackupsNewest, 'allBackupsOldest': itDashboard_allBackupsOldest}, request))
 
 
-@login_required(login_url='/login')
+@ login_required(login_url='/login')
 def itMachines(request):
     template = loader.get_template('backups/it_machines.html')
     is_IT = {}
@@ -165,22 +179,18 @@ def itMachines(request):
     return HttpResponse(template.render({'is_IT': is_IT, 'allMachines': itMachines_all}, request))
 
 
-@login_required(login_url='/login')
+@ login_required(login_url='/login')
 def machineDetails(request, hostname):
     template = loader.get_template('backups/machineDetails.html')
-    is_IT = {}
     if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
         return home(request)
     if request.user in IT_MEMBERS:
         is_IT = True
         machineDetails_getDetails = machine.objects.filter(
             machine_hostname=hostname).values()
-
-        #!// get machine details
-        # // for itDashboard_machineDetails_hostname in log.objects.values('hostname').values().distinct():
-        # //    print(itDashboard_machineDetails_hostname['hostname'])
-        #!// get machine details
-    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'details': machineDetails_getDetails}, request))
+        machineDetails_getBackups = log.objects.filter(
+            hostname=hostname).values()
+    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'details': machineDetails_getDetails, 'backups': machineDetails_getBackups}, request))
 
 
 @ login_required(login_url='/login')
