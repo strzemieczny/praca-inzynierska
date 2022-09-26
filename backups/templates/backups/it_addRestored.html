@@ -1,0 +1,18 @@
+{% extends 'backups/index.html' %} {% load i18n %} {% load static %} {% block title %} {% trans "Add Machine" %}{% endblock %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/it_addRestored.css' %}" />
+<script type="text/javascript" src="{% static 'js/it_addRestored.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+{% endblock %} {% block content %}
+<section class="index-section">
+    <h1 id="h1-box">{% trans 'h1_addRestored' %}</h1>
+    <form method="post" action="" class="machine-form" id="machine-form">
+        {% csrf_token %} {{ form }}
+        <p id="submit-btn">{% trans "submit_btn" %}</p>
+        <input type="hidden" value="{{current_user_id}}" id="user-id" />
+    </form>
+    <div class="machine-form hidden" id="success-div">
+        <img src="{% static 'img/success.png' %}" />
+        <h2>{% trans 'machineform_success' %}</h2>
+    </div>
+</section>
+{% endblock %}

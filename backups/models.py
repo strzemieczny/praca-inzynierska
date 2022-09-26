@@ -43,3 +43,14 @@ class log(models.Model):
     date = models.DateTimeField(blank=True)
     extension = models.CharField(max_length=250)
     path = models.CharField(max_length=250)
+
+
+class restoredBackup(models.Model):
+    restoredBackup_jiraId = models.CharField(max_length=10)
+    restoredBackup_holistech = models.CharField(max_length=6)
+    restoredBackup_hostname = models.CharField(max_length=250)
+    restoredBackup_backup = models.CharField(max_length=250)
+    restoredBackup_reason = models.CharField(max_length=250)
+    restoredBackup_restoreDate = models.DateTimeField(
+        auto_now_add=True, blank=True)
+    restoredBackup_creator = models.CharField(max_length=100)

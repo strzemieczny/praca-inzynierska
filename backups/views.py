@@ -11,13 +11,6 @@ from django.db.models import Count
 from django.conf import settings
 #! Jira API
 from jira import JIRA
-#! Jira API
-
-#! Groups
-IT_MEMBERS = Group.objects.get(name="IT").user_set.all()
-ENGINEERING_MEMBERS = Group.objects.get(name="Engineering").user_set.all()
-#! Groups
-MONGO = getattr(settings, "MONGO", None)
 #! Jira Config
 jira_api_token = 'ZBoKhbt8TpC5xF9tdG4yDF15'
 jira_user = 'strzemieczny@borgwarner.com'
@@ -26,6 +19,14 @@ jira_options = {
     'server': jira_server
 }
 #! Jira Config
+
+#! Groups
+IT_MEMBERS = Group.objects.get(name="IT").user_set.all()
+ENGINEERING_MEMBERS = Group.objects.get(name="Engineering").user_set.all()
+#! Groups
+
+# ? Mongo var - to be removed
+MONGO = getattr(settings, "MONGO", None)
 
 
 def bad_request(message):
@@ -255,6 +256,33 @@ def engineerview(request):
         else:
             break
     return HttpResponse(template.render({'is_Engineer': True, 'pendingBackups': myMachinesList_holistechListRestoredDetails, 'recentlyRestored': myMachinesList_holistechListPendingDetails, 'current_user_id': request.user.id}, request))
+
+
+@ login_required(login_url='/login')
+def addRestored(request):
+    current_user = request.user.first_name + " " + request.user.last_name
+    msg = ''
+    is_IT = {}
+    template = loader.get_template('backups/it_addRestored.html')
+    if request.user not in IT_MEMBERS:
+        return notAuthorized(request)
+    else:
+        is_IT = True
+        form = restoredBackup(request.POST or None)
+        if request.POST:
+            if form.is_valid():
+                if machine.objects.filter(machine_holistech=form['machine_holistech']):
+                    print('something is no yes')
+                else:
+                    instance = form.save()
+                    instance.save()
+                    return HttpResponse(template.render({'form': restoredBackup}, request))
+            else:
+                if machine.objects.filter(machine_holistech=form['machine_holistech'].value()):
+                    return bad_request(message='HolistechExists')
+                print(request.POST)
+                return bad_request(message='This is a bad request')
+    return HttpResponse(template.render({'form': restoredBackup,'is_IT': is_IT, 'current_user': current_user, 'current_user_id': request.user.id, 'msg': msg}, request))
 
 
 @ login_required(login_url='/login')

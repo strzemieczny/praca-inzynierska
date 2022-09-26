@@ -16,6 +16,7 @@ urlpatterns = [
         path('', views.itview, name='itview'),
         path('dashboard', views.itDashboard, name='dashboard'),
         path('machines', views.itMachines, name='itMachines'),
+        path('addRestored', views.addRestored, name='addRestored'),
     ])),
     path('machine/', include([
         path('add/', views.addMachines, name='addMachines'),
