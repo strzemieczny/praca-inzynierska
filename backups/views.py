@@ -271,18 +271,13 @@ def addRestored(request):
         form = restoredBackup(request.POST or None)
         if request.POST:
             if form.is_valid():
-                if machine.objects.filter(machine_holistech=form['machine_holistech']):
-                    print('something is no yes')
-                else:
-                    instance = form.save()
-                    instance.save()
-                    return HttpResponse(template.render({'form': restoredBackup}, request))
+                instance = form.save()
+                instance.save()
+                return HttpResponse(template.render({'form': restoredBackup}, request))
             else:
-                if machine.objects.filter(machine_holistech=form['machine_holistech'].value()):
-                    return bad_request(message='HolistechExists')
                 print(request.POST)
                 return bad_request(message='This is a bad request')
-    return HttpResponse(template.render({'form': restoredBackup,'is_IT': is_IT, 'current_user': current_user, 'current_user_id': request.user.id, 'msg': msg}, request))
+    return HttpResponse(template.render({'form': restoredBackup, 'is_IT': is_IT, 'current_user': current_user, 'current_user_id': request.user.id, 'msg': msg}, request))
 
 
 @ login_required(login_url='/login')
