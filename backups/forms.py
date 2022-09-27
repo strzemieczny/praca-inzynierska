@@ -53,11 +53,11 @@ class requestBackupForm(forms.Form):
         attrs={'placeholder': _('placeholder_requestBackup_description')}), label=False)
 
 
-class restoredBackup(ModelForm):
+class restoredBackupForm(ModelForm):
     class Meta:
         model = restoredBackup
         fields = ['restoredBackup_jiraId', 'restoredBackup_holistech', 'restoredBackup_hostname',
-                  'restoredBackup_backup', 'restoredBackup_reason', 'restoredBackup_creator']
+                  'restoredBackup_backup', 'restoredBackup_ifAnyTroubles', 'restoredBackup_reason', 'restoredBackup_creator']
         widgets = {
             'restoredBackup_jiraId': forms.TextInput(attrs={'placeholder': _('placeholder_restoredBackup_jiraId')}),
             'restoredBackup_holistech': forms.TextInput(attrs={'placeholder': _('placeholder_restoredBackup_holistech')}),
@@ -71,6 +71,7 @@ class restoredBackup(ModelForm):
             'restoredBackup_holistech': _('label_restoredBackup_holistech'),
             'restoredBackup_hostname': _('label_restoredBackup_hostname'),
             'restoredBackup_backup': _('label_restoredBackup_backup'),
+            'restoredBackup_ifAnyTroubles': _('label_restoredBackup_ifAnyTroubles'),
             'restoredBackup_reason': _('label_restoredBackup_reason'),
             'restoredBackup_creator': '',
         }

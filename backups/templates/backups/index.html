@@ -203,6 +203,30 @@
                 </div>
                 <div class="grid-div-home">
                     <h1>{% trans 'h1_recentlyrestored' %}</h1>
+                    <table id="table-reports-it4">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>{% trans 'th_jiraId' %}</th>
+                                <th>Holistech</th>
+                                <th>{% trans 'th_hostname' %}</th>
+                                <th></th>
+                                <th></th>
+                                <th>{% trans 'th_date' %}</th>
+                                <th>{% trans 'th_backupIssue' %}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in recentlyRestored %}
+                            <tr>
+                                {% for obj2 in obj.values %}
+                                <td>{{ obj2 }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </section>
             {%endif%} {% endblock %}

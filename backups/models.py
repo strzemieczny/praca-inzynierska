@@ -1,5 +1,5 @@
 from djongo import models
-from datetime import datetime
+from django.utils.translation import gettext_lazy as _
 # CHOICES
 AREA = (
     ('SMT', 'SMT'),
@@ -13,7 +13,6 @@ REQ_STATUS = (
     ('PENDING', 'Pending'),
     ('DONE', 'Done'),
 )
-
 # Create your models here.
 
 
@@ -53,4 +52,5 @@ class restoredBackup(models.Model):
     restoredBackup_reason = models.CharField(max_length=250)
     restoredBackup_restoreDate = models.DateTimeField(
         auto_now_add=True, blank=True)
+    restoredBackup_ifAnyTroubles = models.BooleanField()
     restoredBackup_creator = models.CharField(max_length=100)

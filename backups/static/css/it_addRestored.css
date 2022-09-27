@@ -64,10 +64,14 @@ p {
 }
 .index-section h1 {
     font-size: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 .machine-form label {
     align-self: flex-start;
+}
+#id_restoredBackup_ifAnyTroubles {
+    margin-top: 20px;
+    cursor: pointer;
 }
 
 .badInput {

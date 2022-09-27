@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-26 13:46+0200\n"
-"PO-Revision-Date: 2022-09-26 13:47+0200\n"
+"POT-Creation-Date: 2022-09-27 10:04+0200\n"
+"PO-Revision-Date: 2022-09-27 10:05+0200\n"
 "Last-Translator: Bartosz Strzemieczny <strzemieczny@borgwarner.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -92,7 +92,6 @@ msgid "placeholder_restoredBackup_hostname"
 msgstr "Nazwa komputera"
 
 #: backups/forms.py:65
-#| msgid "placeholder_restoredBackup_jiraId"
 msgid "placeholder_restoredBackup_reason"
 msgstr "Powód"
 
@@ -117,7 +116,10 @@ msgid "label_restoredBackup_backup"
 msgstr "Kopia zapasowa:"
 
 #: backups/forms.py:74
-#| msgid "label_restoredBackup_jiraId"
+msgid "label_restoredBackup_ifAnyTroubles"
+msgstr "Czy wystąpiły problemy?"
+
+#: backups/forms.py:75
 msgid "label_restoredBackup_reason"
 msgstr "Powód:"
 
@@ -154,6 +156,7 @@ msgstr "Twoja maszyna została dodana prawidłowo!"
 #: backups/templates/backups/eng_backups.html:14
 #: backups/templates/backups/eng_machines.html:15
 #: backups/templates/backups/index.html:141
+#: backups/templates/backups/index.html:216
 #: backups/templates/backups/it_dashboard.html:22
 #: backups/templates/backups/it_machines.html:14
 #: backups/templates/backups/machineDetails.html:15
@@ -179,6 +182,7 @@ msgstr "Rozmiar"
 #: backups/templates/backups/index.html:91
 #: backups/templates/backups/index.html:114
 #: backups/templates/backups/index.html:192
+#: backups/templates/backups/index.html:219
 #: backups/templates/backups/it_dashboard.html:45
 #: backups/templates/backups/it_dashboard.html:69
 #: backups/templates/backups/machineDetails.html:39
@@ -342,6 +346,15 @@ msgstr "Zgłaszający"
 #: backups/templates/backups/index.html:184 old/it_index.html:73
 msgid "h1_expiredbackups"
 msgstr "Przeterminowane kopie zapasowe"
+
+#: backups/templates/backups/index.html:214
+msgid "th_jiraId"
+msgstr "Jira ID"
+
+#: backups/templates/backups/index.html:220
+#| msgid "th_backupType"
+msgid "th_backupIssue"
+msgstr "Czy wystąpiły problemy?"
 
 #: backups/templates/backups/it_addRestored.html:7
 msgid "h1_addRestored"

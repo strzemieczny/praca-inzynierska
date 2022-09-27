@@ -144,11 +144,16 @@ def itview(request):
         itview_expiredBackupsSorted = list(
             reversed(itview_expiredBackupsSorted))
         #! get expired backups
+
+        #! get recently restored
+        itview_recentlyRestored = restoredBackup.objects.all().order_by(
+            '-restoredBackup_restoreDate').values()[:9]
+        #! get recently restored
         is_IT = True
         template = loader.get_template('backups/index.html')
     else:
         return notAuthorized(request)
-    return HttpResponse(template.render({'is_IT': is_IT, 'context': context, 'context2': context2, 'expiredBackups': itview_expiredBackupsSorted}, request))
+    return HttpResponse(template.render({'is_IT': is_IT, 'context': context, 'context2': context2, 'expiredBackups': itview_expiredBackupsSorted, 'recentlyRestored': itview_recentlyRestored}, request))
 
 
 @ login_required(login_url='/login')
@@ -260,24 +265,21 @@ def engineerview(request):
 
 @ login_required(login_url='/login')
 def addRestored(request):
-    current_user = request.user.first_name + " " + request.user.last_name
-    msg = ''
-    is_IT = {}
     template = loader.get_template('backups/it_addRestored.html')
     if request.user not in IT_MEMBERS:
         return notAuthorized(request)
     else:
         is_IT = True
-        form = restoredBackup(request.POST or None)
+        form = restoredBackupForm(request.POST or None)
         if request.POST:
             if form.is_valid():
                 instance = form.save()
                 instance.save()
-                return HttpResponse(template.render({'form': restoredBackup}, request))
+                return HttpResponse(template.render({'form': restoredBackupForm}, request))
             else:
                 print(request.POST)
                 return bad_request(message='This is a bad request')
-    return HttpResponse(template.render({'form': restoredBackup, 'is_IT': is_IT, 'current_user': current_user, 'current_user_id': request.user.id, 'msg': msg}, request))
+    return HttpResponse(template.render({'form': restoredBackupForm, 'is_IT': is_IT, 'current_user_id': request.user.id}, request))
 
 
 @ login_required(login_url='/login')

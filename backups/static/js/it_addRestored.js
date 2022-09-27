@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const tmp_reason = document.getElementById("id_restoredBackup_reason");
 
     const jira_regex = new RegExp("[I][T][-][0-9]{1,}");
+    const holistech_regex = new RegExp("[A-Z]{3}[0-9]{3}");
     const def_regex = new RegExp("");
 
     // real time form verification
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         verifyInput(tmp_jiraId, jira_regex);
     });
     tmp_holistech.addEventListener("change", () => {
-        verifyInput(tmp_holistech, def_regex);
+        verifyInput(tmp_holistech, holistech_regex);
     });
     tmp_hostname.addEventListener("change", () => {
         verifyInput(tmp_hostname, def_regex);
@@ -43,10 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
             const holistech = document.getElementById("id_restoredBackup_holistech").value;
             const hostname = document.getElementById("id_restoredBackup_hostname").value;
             const backup = document.getElementById("id_restoredBackup_backup").value;
+            let issues = document.getElementById("id_restoredBackup_ifAnyTroubles").value;
+            if (issues == "on") {
+                issues = true;
+            } else {
+                issues = false;
+            }
             const reason = document.getElementById("id_restoredBackup_reason").value;
             const creator = document.getElementById("user-id").value;
-
-            let h1Box = document.getElementById("h1-box");
 
             const fd = new FormData();
             fd.append("csrfmiddlewaretoken", csrf[0].value);
@@ -54,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
             fd.append("restoredBackup_holistech", holistech);
             fd.append("restoredBackup_hostname", hostname);
             fd.append("restoredBackup_backup", backup);
+            fd.append("restoredBackup_ifAnyTroubles", issues);
             fd.append("restoredBackup_reason", reason);
             fd.append("restoredBackup_creator", creator);
             $.ajax({
