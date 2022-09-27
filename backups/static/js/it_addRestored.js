@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const tmp_jiraId = document.getElementById("id_restoredBackup_jiraId");
     const tmp_holistech = document.getElementById("id_restoredBackup_holistech");
     const tmp_hostname = document.getElementById("id_restoredBackup_hostname");
-    const tmp_backup = document.getElementById("id_restoredBackup_backup");
     const tmp_reason = document.getElementById("id_restoredBackup_reason");
 
     const jira_regex = new RegExp("[I][T][-][0-9]{1,}");
@@ -20,9 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
     tmp_hostname.addEventListener("change", () => {
         verifyInput(tmp_hostname, def_regex);
     });
-    tmp_backup.addEventListener("change", () => {
-        verifyInput(tmp_backup, def_regex);
-    });
     tmp_reason.addEventListener("change", () => {
         verifyInput(tmp_reason, def_regex);
     });
@@ -33,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
             tmp_jiraId.classList.contains("goodInput") &&
             tmp_holistech.classList.contains("goodInput") &&
             tmp_hostname.classList.contains("goodInput") &&
-            tmp_backup.classList.contains("goodInput") &&
             tmp_reason.classList.contains("goodInput")
         ) {
             const csrf = document.getElementsByName("csrfmiddlewaretoken");
@@ -43,22 +38,15 @@ document.addEventListener("DOMContentLoaded", function () {
             const jiraId = document.getElementById("id_restoredBackup_jiraId").value;
             const holistech = document.getElementById("id_restoredBackup_holistech").value;
             const hostname = document.getElementById("id_restoredBackup_hostname").value;
-            const backup = document.getElementById("id_restoredBackup_backup").value;
-            let issues = document.getElementById("id_restoredBackup_ifAnyTroubles").value;
-            if (issues == "on") {
-                issues = true;
-            } else {
-                issues = false;
-            }
+            let issues = document.getElementById("id_restoredBackup_ifAnyTroubles").checked;
             const reason = document.getElementById("id_restoredBackup_reason").value;
             const creator = document.getElementById("user-id").value;
-
+            let h1Box = document.getElementById("h1-box");
             const fd = new FormData();
             fd.append("csrfmiddlewaretoken", csrf[0].value);
             fd.append("restoredBackup_jiraId", jiraId);
             fd.append("restoredBackup_holistech", holistech);
             fd.append("restoredBackup_hostname", hostname);
-            fd.append("restoredBackup_backup", backup);
             fd.append("restoredBackup_ifAnyTroubles", issues);
             fd.append("restoredBackup_reason", reason);
             fd.append("restoredBackup_creator", creator);
