@@ -229,14 +229,14 @@ def engineerview(request):
             myMachinesList_holistechList_status = myMachines_backupIssues.raw[
                 'fields']['status']['name']
             if myMachinesList_holistechList_status == "Rozwiązane":
-                myMachinesList_holistechListPendingDetails.append({
+                myMachinesList_holistechListRestoredDetails.append({
                     'holistech': myMachinesList_holistechList_holistech,
                     'description': myMachinesList_holistechList_description,
                     'date': myMachinesList_holistechList_created,
                     'status': myMachinesList_holistechList_status
                 })
             else:
-                myMachinesList_holistechListRestoredDetails.append({
+                myMachinesList_holistechListPendingDetails.append({
                     'holistech': myMachinesList_holistechList_holistech,
                     'description': myMachinesList_holistechList_description,
                     'date': myMachinesList_holistechList_created,
@@ -260,7 +260,7 @@ def engineerview(request):
                 pass
         else:
             break
-    return HttpResponse(template.render({'is_Engineer': True, 'pendingBackups': myMachinesList_holistechListRestoredDetails, 'recentlyRestored': myMachinesList_holistechListPendingDetails, 'current_user_id': request.user.id}, request))
+    return HttpResponse(template.render({'is_Engineer': True, 'pendingBackups': myMachinesList_holistechListPendingDetails, 'recentlyRestored': myMachinesList_holistechListRestoredDetails, 'current_user_id': request.user.id}, request))
 
 
 @ login_required(login_url='/login')
