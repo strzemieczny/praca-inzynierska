@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-27 10:04+0200\n"
-"PO-Revision-Date: 2022-09-27 10:05+0200\n"
+"PO-Revision-Date: 2022-09-27 11:52+0200\n"
 "Last-Translator: Bartosz Strzemieczny <strzemieczny@borgwarner.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -324,7 +324,7 @@ msgstr "Oczekujące kopie zapasowe"
 
 #: backups/templates/backups/index.html:136
 msgid "h1_requestedbackupsRestore"
-msgstr "Wnioski o wykonanie kopii zapasowej"
+msgstr "Wnioski o przywrócenie kopii zapasowej"
 
 #: backups/templates/backups/index.html:146
 #: backups/templates/backups/index.html:169

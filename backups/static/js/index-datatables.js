@@ -107,11 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 visible: false,
             },
             {
-                target: 5,
-                visible: false,
-            },
-            {
-                target: 8,
+                target: 7,
                 visible: false,
             },
         ],
