@@ -158,11 +158,10 @@ def itview(request):
 
 @ login_required(login_url='/login')
 def itDashboard(request):
-    template = loader.get_template('backups/it_dashboard.html')
-    is_IT = {}
     if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
         return home(request)
     if request.user in IT_MEMBERS:
+        template = loader.get_template('backups/it_dashboard.html')
         is_IT = True
         itDashboard_allBackupsCount = log.objects.values('hostname').annotate(
             Count("hostname"))
@@ -175,11 +174,10 @@ def itDashboard(request):
 
 @ login_required(login_url='/login')
 def itMachines(request):
-    template = loader.get_template('backups/it_machines.html')
-    is_IT = {}
     if request.user in ENGINEERING_MEMBERS and request.user not in IT_MEMBERS:
         return home(request)
     if request.user in IT_MEMBERS:
+        template = loader.get_template('backups/it_machines.html')
         is_IT = True
         itMachines_all = machine.objects.all().values()
     return HttpResponse(template.render({'is_IT': is_IT, 'allMachines': itMachines_all}, request))
@@ -265,10 +263,10 @@ def engineerview(request):
 
 @ login_required(login_url='/login')
 def addRestored(request):
-    template = loader.get_template('backups/it_addRestored.html')
     if request.user not in IT_MEMBERS:
         return notAuthorized(request)
     else:
+        template = loader.get_template('backups/it_addRestored.html')
         is_IT = True
         form = restoredBackupForm(request.POST or None)
         if request.POST:
@@ -306,7 +304,6 @@ def addMachines(request):
             else:
                 if machine.objects.filter(machine_holistech=form['machine_holistech'].value()):
                     return bad_request(message='HolistechExists')
-                print(request.POST)
                 return bad_request(message='This is a bad request')
     else:
         return home(request)
@@ -319,9 +316,10 @@ def myMachines(request):
         return notAuthorized(request)
     else:
         is_Engineer = True
-        myMachinesList = machine.objects.filter(owner=request.user.id).values()
+        myMachines_myMachinesList = machine.objects.filter(
+            owner=request.user.id).values()
         template = loader.get_template('backups/eng_machines.html')
-        return HttpResponse(template.render({'is_Engineer': is_Engineer, 'myMachines': myMachinesList}, request))
+        return HttpResponse(template.render({'is_Engineer': is_Engineer, 'myMachines': myMachines_myMachinesList}, request))
 
 
 @ login_required(login_url='/login')
@@ -330,11 +328,12 @@ def myBackups(request):
         return notAuthorized(request)
     else:
         is_Engineer = True
-        myMachinesList = machine.objects.filter(owner=request.user.id).values()
-        myBackupList = []
-        for machineHostTmp in myMachinesList:
-            machineHostTmpVal = machineHostTmp['machine_hostname']
-            myBackupList.append(log.objects.filter(
-                hostname=machineHostTmpVal).order_by('hostname').values())
+        myBackups_myMachinesList = machine.objects.filter(
+            owner=request.user.id).values()
+        myBackups_myBackupList = []
+        for myBackups_machineHostTmp in myBackups_myMachinesList:
+            myBackups_machineHostTmpVal = myBackups_machineHostTmp['machine_hostname']
+            myBackups_myBackupList.append(log.objects.filter(
+                hostname=myBackups_machineHostTmpVal).order_by('hostname').values())
         template = loader.get_template('backups/eng_backups.html')
-        return HttpResponse(template.render({'is_Engineer': is_Engineer, 'myBackupList': myBackupList}, request))
+        return HttpResponse(template.render({'is_Engineer': is_Engineer, 'myBackupList': myBackups_myBackupList}, request))
