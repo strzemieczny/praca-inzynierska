@@ -161,8 +161,8 @@ document.addEventListener("DOMContentLoaded", function () {
             for (var i = 0; i < json_keys.length; i++) {
                 var tmp = [];
                 tmp.push(json_keys[i]);
-                tmp.push(withIssuesJson[json_keys[i]]["True"]);
                 tmp.push(withIssuesJson[json_keys[i]]["False"]);
+                tmp.push(withIssuesJson[json_keys[i]]["True"]);
                 tmp.push("");
                 data.push(tmp);
             }
@@ -187,21 +187,3 @@ document.addEventListener("DOMContentLoaded", function () {
         section4.classList.add("hidden");
     });
 });
-
-// function drawSomething(hostname, dataTrue, dataFalse, id) {
-//     console.log("GENERUJE AUUUUUUUUUUUUUUUUUUUU");
-//     google.charts.load("current", { packages: ["corechart"] });
-//     google.charts.setOnLoadCallback(drawChart);
-//     function drawChart() {
-//         var data = new google.visualization.DataTable();
-//         data.addColumn("string", "Good");
-//         data.addColumn("number", "Bad");
-//         data.addRows([
-//             ["Good", dataTrue],
-//             ["Bad", dataFalse],
-//         ]);
-//         var options = { title: hostname, backgroundColor: "transparent", colors: ["#46e356", "#ff3b3b"] };
-//         var chart = new google.visualization.PieChart(id);
-//         chart.draw(data, options);
-//     }
-// }

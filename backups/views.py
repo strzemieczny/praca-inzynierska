@@ -165,12 +165,20 @@ def itDashboard(request):
     if request.user in IT_MEMBERS:
         template = loader.get_template('backups/it_dashboard.html')
         is_IT = True
+        #! get all backups
         itDashboard_allBackupsCount = log.objects.values('hostname').annotate(
             Count("hostname"))
+        #! get all backups
+
+        #! get 500 newest backups
         itDashboard_allBackupsNewest = log.objects.all().order_by(
             'date').values().order_by('-date')[:500]
+        #! get 500 newest backups
+
+        #! get 500 oldest backups
         itDashboard_allBackupsOldest = log.objects.all().order_by(
             'date').values().order_by('date')[:500]
+        #! get 500 oldest backups
 
         #!KPI
         # * restored with issues?
@@ -186,7 +194,6 @@ def itDashboard(request):
                     ]["False"] = x["restoredBackup_hostname__count"]
         tmp.default_factory = None
         tmp = json.dumps(tmp)
-        print(tmp)
         # * restored with issues?
 
         #!KPI
@@ -296,7 +303,6 @@ def addRestored(request):
                 instance.save()
                 return HttpResponse(template.render({'form': restoredBackupForm}, request))
             else:
-                print(request.POST)
                 return bad_request(message='This is a bad request')
     return HttpResponse(template.render({'form': restoredBackupForm, 'is_IT': is_IT, 'current_user_id': request.user.id}, request))
 
