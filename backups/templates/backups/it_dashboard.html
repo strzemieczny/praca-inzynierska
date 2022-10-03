@@ -10,11 +10,11 @@
     <p class="it-dash-btns" id="it_dash_btn1">{% trans 'it_dash_nav_count' %}</p>
     <p class="it-dash-btns" id="it_dash_btn2">{% trans 'it_dash_nav_newest' %}</p>
     <p class="it-dash-btns" id="it_dash_btn3">{% trans 'it_dash_nav_oldest' %}</p>
-    <p class="it-dash-btns" id="it_dash_btn4">{% trans 'it_dash_nav' %}</p>
+    <p class="it-dash-btns" id="it_dash_btn4">{% trans 'it_dash_nav_kpi' %}</p>
     <p class="it-dash-btns" id="it_dash_btn5">{% trans 'it_dash_nav' %}</p>
 </div>
 <section class="index-section">
-    <div class="content">
+    <div class="content" id="content">
         <p id="it-dash-mainp">{% trans 'it_dash_choosefilter' %}</p>
         <div class="hidden" id="it-dash-backup-count">
             <table class="dash-table" id="table-reports" width="100%">
@@ -85,12 +85,8 @@
         </div>
         <div class="hidden" id="it-dash-kpi-1">
             <input type="hidden" id="withIssues" name="withIssues" value="{{ withIssues }}" />
+            <h1>{% trans 'h1_kpi_goodvsbad' %}</h1>
             <div id="div0"></div>
-            <div id="div1"></div>
-            <div id="div2"></div>
-            <div id="div3"></div>
-            <div id="div4"></div>
-            <div id="div5"></div>
         </div>
     </div>
     {% comment %} {% for backup in allBackupsCount %}

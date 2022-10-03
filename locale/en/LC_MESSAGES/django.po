@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-27 10:04+0200\n"
-"PO-Revision-Date: 2022-09-27 10:04+0200\n"
+"POT-Creation-Date: 2022-10-03 19:18+0200\n"
+"PO-Revision-Date: 2022-10-03 19:19+0200\n"
 "Last-Translator: Bartosz Strzemieczny <strzemieczny@borgwarner.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -95,31 +95,23 @@ msgstr "Hostname"
 msgid "placeholder_restoredBackup_reason"
 msgstr "Reason"
 
-#: backups/forms.py:66
-msgid "placeholder_restoredBackup_backup"
-msgstr "Choose backup"
-
-#: backups/forms.py:70
+#: backups/forms.py:69
 msgid "label_restoredBackup_jiraId"
 msgstr "Jira request ID:"
 
-#: backups/forms.py:71
+#: backups/forms.py:70
 msgid "label_restoredBackup_holistech"
 msgstr "Holistech:"
 
-#: backups/forms.py:72
+#: backups/forms.py:71
 msgid "label_restoredBackup_hostname"
 msgstr "Hostname:"
 
-#: backups/forms.py:73
-msgid "label_restoredBackup_backup"
-msgstr "Backup:"
-
-#: backups/forms.py:74
+#: backups/forms.py:72
 msgid "label_restoredBackup_ifAnyTroubles"
 msgstr "Any issues?"
 
-#: backups/forms.py:75
+#: backups/forms.py:73
 msgid "label_restoredBackup_reason"
 msgstr "Reason"
 
@@ -157,23 +149,23 @@ msgstr "Your machien has been added successfully!"
 #: backups/templates/backups/eng_machines.html:15
 #: backups/templates/backups/index.html:141
 #: backups/templates/backups/index.html:216
-#: backups/templates/backups/it_dashboard.html:22
+#: backups/templates/backups/it_dashboard.html:23
 #: backups/templates/backups/it_machines.html:14
 #: backups/templates/backups/machineDetails.html:15
 msgid "th_hostname"
 msgstr "Hostname"
 
 #: backups/templates/backups/eng_backups.html:15
-#: backups/templates/backups/it_dashboard.html:43
-#: backups/templates/backups/it_dashboard.html:67
+#: backups/templates/backups/it_dashboard.html:44
+#: backups/templates/backups/it_dashboard.html:68
 #: backups/templates/backups/machineDetails.html:37
 msgid "th_backupType"
 msgstr "Type"
 
 #: backups/templates/backups/eng_backups.html:16
 #: backups/templates/backups/index.html:191
-#: backups/templates/backups/it_dashboard.html:44
-#: backups/templates/backups/it_dashboard.html:68
+#: backups/templates/backups/it_dashboard.html:45
+#: backups/templates/backups/it_dashboard.html:69
 #: backups/templates/backups/machineDetails.html:38
 msgid "th_size"
 msgstr "Size"
@@ -182,16 +174,16 @@ msgstr "Size"
 #: backups/templates/backups/index.html:91
 #: backups/templates/backups/index.html:114
 #: backups/templates/backups/index.html:192
-#: backups/templates/backups/index.html:219
-#: backups/templates/backups/it_dashboard.html:45
-#: backups/templates/backups/it_dashboard.html:69
+#: backups/templates/backups/index.html:218
+#: backups/templates/backups/it_dashboard.html:46
+#: backups/templates/backups/it_dashboard.html:70
 #: backups/templates/backups/machineDetails.html:39
 msgid "th_date"
 msgstr "Date"
 
 #: backups/templates/backups/eng_backups.html:19
-#: backups/templates/backups/it_dashboard.html:47
-#: backups/templates/backups/it_dashboard.html:71
+#: backups/templates/backups/it_dashboard.html:48
+#: backups/templates/backups/it_dashboard.html:72
 #: backups/templates/backups/machineDetails.html:41
 msgid "th_path"
 msgstr "Path"
@@ -351,8 +343,7 @@ msgstr "Expired backups"
 msgid "th_jiraId"
 msgstr "Jira ID"
 
-#: backups/templates/backups/index.html:220
-#| msgid "th_backupType"
+#: backups/templates/backups/index.html:219
 msgid "th_backupIssue"
 msgstr "Any issues?"
 
@@ -364,34 +355,42 @@ msgstr "Add restored backup"
 msgid "it_dash_title"
 msgstr "Dashboard"
 
-#: backups/templates/backups/it_dashboard.html:9
+#: backups/templates/backups/it_dashboard.html:10
 msgid "it_dash_nav_count"
 msgstr "Number of backups"
 
-#: backups/templates/backups/it_dashboard.html:10
+#: backups/templates/backups/it_dashboard.html:11
 msgid "it_dash_nav_newest"
 msgstr "Newest"
 
-#: backups/templates/backups/it_dashboard.html:11
+#: backups/templates/backups/it_dashboard.html:12
 msgid "it_dash_nav_oldest"
 msgstr "Oldest"
 
-#: backups/templates/backups/it_dashboard.html:12
 #: backups/templates/backups/it_dashboard.html:13
+#| msgid "it_dash_nav"
+msgid "it_dash_nav_kpi"
+msgstr "KPI"
+
+#: backups/templates/backups/it_dashboard.html:14
 msgid "it_dash_nav"
 msgstr "Something"
 
-#: backups/templates/backups/it_dashboard.html:17
+#: backups/templates/backups/it_dashboard.html:18
 msgid "it_dash_choosefilter"
 msgstr "Choose filter"
 
-#: backups/templates/backups/it_dashboard.html:23
+#: backups/templates/backups/it_dashboard.html:24
 msgid "th_backupcount"
 msgstr "Backups count"
 
-#: backups/templates/backups/it_dashboard.html:66
+#: backups/templates/backups/it_dashboard.html:67
 msgid "th_Hostname"
 msgstr "Hostname"
+
+#: backups/templates/backups/it_dashboard.html:88
+msgid "h1_kpi_goodvsbad"
+msgstr "Good vs Bad"
 
 #: backups/templates/backups/it_machines.html:1
 msgid "All Machines"
@@ -423,7 +422,7 @@ msgstr "Log in"
 msgid "forgot_passwd"
 msgstr "Forgot password?"
 
-#: backups/views.py:37
+#: backups/views.py:39
 msgid "error_holistechexists"
 msgstr "Machine with this Holistech ID already exists!"
 
@@ -438,6 +437,12 @@ msgstr "FAZIT"
 #: fazit/templates/fazit/index-fazit.html:38
 msgid "h1_fazits"
 msgstr "Enter FAZIT serial numbers!"
+
+#~ msgid "placeholder_restoredBackup_backup"
+#~ msgstr "Choose backup"
+
+#~ msgid "label_restoredBackup_backup"
+#~ msgstr "Backup:"
 
 #~ msgid "nav_requests"
 #~ msgstr "Requests"

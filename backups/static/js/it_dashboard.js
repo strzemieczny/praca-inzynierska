@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const btn1 = document.getElementById("it_dash_btn1");
     const btn2 = document.getElementById("it_dash_btn2");
+    const sectionMain = document.getElementById("content");
     const section1 = document.getElementById("it-dash-backup-count");
     const section2 = document.getElementById("it-dash-newest-div");
     const section3 = document.getElementById("it-dash-oldest-div");
@@ -16,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
         btn3.classList.remove("dash-btn-clicked");
         btn4.classList.remove("dash-btn-clicked");
         btn5.classList.remove("dash-btn-clicked");
+        sectionMain.classList.remove("grid");
+        sectionMain.classList.add("section");
         mainText.classList.add("hidden");
         section2.classList.add("hidden");
         section3.classList.add("hidden");
@@ -45,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
         btn3.classList.remove("dash-btn-clicked");
         btn4.classList.remove("dash-btn-clicked");
         btn5.classList.remove("dash-btn-clicked");
+        sectionMain.classList.remove("grid");
+        sectionMain.classList.add("section");
         mainText.classList.add("hidden");
         section3.classList.add("hidden");
         section1.classList.add("hidden");
@@ -90,6 +95,8 @@ document.addEventListener("DOMContentLoaded", function () {
         btn2.classList.remove("dash-btn-clicked");
         btn4.classList.remove("dash-btn-clicked");
         btn5.classList.remove("dash-btn-clicked");
+        sectionMain.classList.remove("grid");
+        sectionMain.classList.add("section");
         mainText.classList.add("hidden");
         section1.classList.add("hidden");
         section2.classList.add("hidden");
@@ -135,6 +142,8 @@ document.addEventListener("DOMContentLoaded", function () {
         btn2.classList.remove("dash-btn-clicked");
         btn3.classList.remove("dash-btn-clicked");
         btn5.classList.remove("dash-btn-clicked");
+        sectionMain.classList.add("grid");
+        sectionMain.classList.remove("section");
         mainText.classList.add("hidden");
         section1.classList.add("hidden");
         section2.classList.add("hidden");
@@ -143,12 +152,24 @@ document.addEventListener("DOMContentLoaded", function () {
         const withIssues = document.getElementById("withIssues").value;
         const withIssuesJson = JSON.parse(withIssues);
         let json_keys = Object.keys(withIssuesJson);
-        console.log(json_keys);
-        for (var i = 0; i < json_keys.length; i++) {
-            var idTmp = "div" + i;
-            var id = document.getElementById(idTmp);
-            console.log(id);
-            drawSomething(json_keys[i], withIssuesJson[json_keys[i]]["True"], withIssuesJson[json_keys[i]]["False"], id);
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = [];
+            var header = ["Hostname", "Good", "Bad", { role: "annotation" }];
+            data.push(header);
+            for (var i = 0; i < json_keys.length; i++) {
+                var tmp = [];
+                tmp.push(json_keys[i]);
+                tmp.push(withIssuesJson[json_keys[i]]["True"]);
+                tmp.push(withIssuesJson[json_keys[i]]["False"]);
+                tmp.push("");
+                data.push(tmp);
+            }
+            var googleData = new google.visualization.arrayToDataTable(data);
+            var options = { legend: { position: "top" }, isStacked: true, backgroundColor: "transparent", hAxis: { format: "#" }, colors: ["#46e356", "#ff3b3b"] };
+            var chart = new google.visualization.BarChart(document.getElementById("div0"));
+            chart.draw(googleData, options);
         }
     });
     btn5.addEventListener("click", () => {
@@ -157,6 +178,8 @@ document.addEventListener("DOMContentLoaded", function () {
         btn2.classList.remove("dash-btn-clicked");
         btn3.classList.remove("dash-btn-clicked");
         btn4.classList.remove("dash-btn-clicked");
+        sectionMain.classList.remove("grid");
+        sectionMain.classList.add("section");
         mainText.classList.add("hidden");
         section1.classList.add("hidden");
         section2.classList.add("hidden");
@@ -165,20 +188,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function drawSomething(hostname, dataTrue, dataFalse, id) {
-    console.log("GENERUJE AUUUUUUUUUUUUUUUUUUUU");
-    google.charts.load("current", { packages: ["corechart"] });
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = new google.visualization.DataTable();
-        data.addColumn("string", "Good");
-        data.addColumn("number", "Bad");
-        data.addRows([
-            ["Good", dataTrue],
-            ["Bad", dataFalse],
-        ]);
-        var options = { title: hostname, backgroundColor: "transparent", colors: ["#46e356", "#ff3b3b"] };
-        var chart = new google.visualization.PieChart(id);
-        chart.draw(data, options);
-    }
-}
+// function drawSomething(hostname, dataTrue, dataFalse, id) {
+//     console.log("GENERUJE AUUUUUUUUUUUUUUUUUUUU");
+//     google.charts.load("current", { packages: ["corechart"] });
+//     google.charts.setOnLoadCallback(drawChart);
+//     function drawChart() {
+//         var data = new google.visualization.DataTable();
+//         data.addColumn("string", "Good");
+//         data.addColumn("number", "Bad");
+//         data.addRows([
+//             ["Good", dataTrue],
+//             ["Bad", dataFalse],
+//         ]);
+//         var options = { title: hostname, backgroundColor: "transparent", colors: ["#46e356", "#ff3b3b"] };
+//         var chart = new google.visualization.PieChart(id);
+//         chart.draw(data, options);
+//     }
+// }
