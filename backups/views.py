@@ -9,6 +9,8 @@ from django.contrib.auth.models import Group
 from .forms import *
 from django.db.models import Count
 from django.conf import settings
+from collections import defaultdict
+import json
 #! Jira API
 from jira import JIRA
 #! Jira Config
@@ -169,7 +171,26 @@ def itDashboard(request):
             'date').values().order_by('-date')[:500]
         itDashboard_allBackupsOldest = log.objects.all().order_by(
             'date').values().order_by('date')[:500]
-    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': itDashboard_allBackupsCount, 'allBackupsNewest': itDashboard_allBackupsNewest, 'allBackupsOldest': itDashboard_allBackupsOldest}, request))
+
+        #!KPI
+        # * restored with issues?
+        tmp = defaultdict(dict)
+        itDashboard_restored_totalPerMachine = restoredBackup.objects.values('restoredBackup_hostname', 'restoredBackup_ifAnyTroubles').order_by("restoredBackup_ifAnyTroubles").annotate(
+            Count("restoredBackup_hostname"))
+        for x in itDashboard_restored_totalPerMachine:
+            if x["restoredBackup_ifAnyTroubles"]:
+                tmp[x["restoredBackup_hostname"]
+                    ]["True"] = x["restoredBackup_hostname__count"]
+            else:
+                tmp[x["restoredBackup_hostname"]
+                    ]["False"] = x["restoredBackup_hostname__count"]
+        tmp.default_factory = None
+        tmp = json.dumps(tmp)
+        print(tmp)
+        # * restored with issues?
+
+        #!KPI
+    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': itDashboard_allBackupsCount, 'allBackupsNewest': itDashboard_allBackupsNewest, 'allBackupsOldest': itDashboard_allBackupsOldest, 'withIssues': tmp}, request))
 
 
 @ login_required(login_url='/login')

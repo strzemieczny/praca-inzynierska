@@ -3,6 +3,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/it_dashboard.css' %}" />
 <script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'GoogleCharts/loader.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/it_dashboard.js' %}"></script>
 {% endblock %} {% block content %}
 <div class="dashboard-bar">
@@ -74,13 +75,22 @@
                 <tbody>
                     {% for backup in allBackupsOldest %}
                     <tr>
-                        {% for back in backup.values%}
+                        {% for back in backup.values %}
                         <td>{{back}}</td>
                         {% endfor %}
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+        </div>
+        <div class="hidden" id="it-dash-kpi-1">
+            <input type="hidden" id="withIssues" name="withIssues" value="{{ withIssues }}" />
+            <div id="div0"></div>
+            <div id="div1"></div>
+            <div id="div2"></div>
+            <div id="div3"></div>
+            <div id="div4"></div>
+            <div id="div5"></div>
         </div>
     </div>
     {% comment %} {% for backup in allBackupsCount %}

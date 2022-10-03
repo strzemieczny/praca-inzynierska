@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const section1 = document.getElementById("it-dash-backup-count");
     const section2 = document.getElementById("it-dash-newest-div");
     const section3 = document.getElementById("it-dash-oldest-div");
+    const section4 = document.getElementById("it-dash-kpi-1");
     const btn3 = document.getElementById("it_dash_btn3");
     const btn4 = document.getElementById("it_dash_btn4");
     const btn5 = document.getElementById("it_dash_btn5");
@@ -16,9 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
         btn4.classList.remove("dash-btn-clicked");
         btn5.classList.remove("dash-btn-clicked");
         mainText.classList.add("hidden");
-        section1.classList.remove("hidden");
         section2.classList.add("hidden");
         section3.classList.add("hidden");
+        section4.classList.add("hidden");
+        section1.classList.remove("hidden");
         $("#table-reports").DataTable({
             destroy: true,
             order: [[1, "desc"]],
@@ -46,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainText.classList.add("hidden");
         section3.classList.add("hidden");
         section1.classList.add("hidden");
+        section4.classList.add("hidden");
         section2.classList.remove("hidden");
         $("#table-reports2").DataTable({
             destroy: true,
@@ -90,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainText.classList.add("hidden");
         section1.classList.add("hidden");
         section2.classList.add("hidden");
+        section4.classList.add("hidden");
         section3.classList.remove("hidden");
         $("#table-reports3").DataTable({
             destroy: true,
@@ -135,6 +139,17 @@ document.addEventListener("DOMContentLoaded", function () {
         section1.classList.add("hidden");
         section2.classList.add("hidden");
         section3.classList.add("hidden");
+        section4.classList.remove("hidden");
+        const withIssues = document.getElementById("withIssues").value;
+        const withIssuesJson = JSON.parse(withIssues);
+        let json_keys = Object.keys(withIssuesJson);
+        console.log(json_keys);
+        for (var i = 0; i < json_keys.length; i++) {
+            var idTmp = "div" + i;
+            var id = document.getElementById(idTmp);
+            console.log(id);
+            drawSomething(json_keys[i], withIssuesJson[json_keys[i]]["True"], withIssuesJson[json_keys[i]]["False"], id);
+        }
     });
     btn5.addEventListener("click", () => {
         btn5.classList.add("dash-btn-clicked");
@@ -146,5 +161,24 @@ document.addEventListener("DOMContentLoaded", function () {
         section1.classList.add("hidden");
         section2.classList.add("hidden");
         section3.classList.add("hidden");
+        section4.classList.add("hidden");
     });
 });
+
+function drawSomething(hostname, dataTrue, dataFalse, id) {
+    console.log("GENERUJE AUUUUUUUUUUUUUUUUUUUU");
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn("string", "Good");
+        data.addColumn("number", "Bad");
+        data.addRows([
+            ["Good", dataTrue],
+            ["Bad", dataFalse],
+        ]);
+        var options = { title: hostname, backgroundColor: "transparent", colors: ["#46e356", "#ff3b3b"] };
+        var chart = new google.visualization.PieChart(id);
+        chart.draw(data, options);
+    }
+}
