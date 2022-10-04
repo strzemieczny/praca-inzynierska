@@ -1,3 +1,4 @@
+from xmlrpc.client import DateTime
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
@@ -8,6 +9,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import Group
 from .forms import *
 from django.db.models import Count
+from django.db.models.functions import TruncMonth
 from django.conf import settings
 from collections import defaultdict
 import json
@@ -196,6 +198,10 @@ def itDashboard(request):
         tmp = json.dumps(tmp)
         # * restored with issues?
 
+        # * restored by month
+
+        # * restored by month
+
         #!KPI
     return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': itDashboard_allBackupsCount, 'allBackupsNewest': itDashboard_allBackupsNewest, 'allBackupsOldest': itDashboard_allBackupsOldest, 'withIssues': tmp}, request))
 
@@ -364,3 +370,13 @@ def myBackups(request):
                 hostname=myBackups_machineHostTmpVal).order_by('hostname').values())
         template = loader.get_template('backups/eng_backups.html')
         return HttpResponse(template.render({'is_Engineer': is_Engineer, 'myBackupList': myBackups_myBackupList}, request))
+
+
+@ login_required(login_url='/login')
+def dashboard(request):
+    if request.user not in ENGINEERING_MEMBERS:
+        return notAuthorized(request)
+    else:
+        is_Engineer = True
+        template = loader.get_template('backups/eng_dashboard.html')
+    return HttpResponse(template.render({'is_Engineer': is_Engineer}, request))

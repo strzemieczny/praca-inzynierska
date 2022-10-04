@@ -25,6 +25,7 @@ urlpatterns = [
     path('engineering/', include([
         path('machines/', views.myMachines, name='myMachines'),
         path('backups/', views.myBackups, name='myBackups'),
+        path('dashboard/', views.dashboard, name='dashboard'),
     ])),
     path('', include("django.contrib.auth.urls")),
 ]

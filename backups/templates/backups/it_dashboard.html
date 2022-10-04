@@ -83,11 +83,16 @@
                 </tbody>
             </table>
         </div>
-        <div class="hidden" id="it-dash-kpi-1">
+        <div class="hidden kpi-grid" id="it-dash-kpi-1">
             <input type="hidden" id="withIssues" name="withIssues" value="{{ withIssues }}" />
             <h1>{% trans 'h1_kpi_goodvsbad' %}</h1>
             <div id="div0"></div>
         </div>
+        <div class="hidden kpi-grid" id="it-dash-kpi-1-grid2">
+            <h1>{% trans 'h1_kpi_total' %}</h1>
+            <div id="div1"></div>
+        </div>
+        <div class="hidden" id="it-dash-sth"></div>
     </div>
     {% comment %} {% for backup in allBackupsCount %}
     <p>{{backup.hostname}};{{backup.hostname__count}}</p>

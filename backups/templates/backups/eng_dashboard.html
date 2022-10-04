@@ -1,0 +1,23 @@
+{% extends 'backups/index.html' %} {% load i18n %} {% load static %} {% block title %} {% trans "it_dash_title" %}{% endblock %} {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'DataTables/datatables.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/eng_dashboard.css' %}" />
+<script type="text/javascript" src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'DataTables/datatables.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'GoogleCharts/loader.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/eng_dashboard.js' %}"></script>
+{% endblock %} {% block content %}
+<div class="dashboard-bar">
+    <p class="eng-dash-btns" id="eng-dash-btn1">{% trans 'it_dash_nav' %}</p>
+    <p class="eng-dash-btns" id="eng-dash-btn2">{% trans 'it_dash_nav' %}</p>
+    <p class="eng-dash-btns" id="eng-dash-btn3">{% trans 'it_dash_nav' %}</p>
+</div>
+<section class="index-section">
+    <div class="content" id="content">
+        <p id="eng-dash-mainp">{% trans 'it_dash_choosefilter' %}</p>
+        <div class="hidden eng-dash-section" id="eng-dash-sth1"></div>
+        <div class="hidden eng-dash-section" id="eng-dash-sth2"></div>
+        <div class="hidden eng-dash-section" id="eng-dash-sth3"></div>
+    </div>
+</section>
+
+{% endblock %}
