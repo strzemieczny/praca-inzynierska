@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const section4grid = document.getElementById("it-dash-kpi-1-grid2");
     const btn3 = document.getElementById("it_dash_btn3");
     const btn4 = document.getElementById("it_dash_btn4");
-    const btn5 = document.getElementById("it_dash_btn5");
     const mainText = document.getElementById("it-dash-mainp");
 
     btn1.addEventListener("click", () => {
@@ -17,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
         btn2.classList.remove("dash-btn-clicked");
         btn3.classList.remove("dash-btn-clicked");
         btn4.classList.remove("dash-btn-clicked");
-        btn5.classList.remove("dash-btn-clicked");
         sectionMain.classList.remove("grid");
         sectionMain.classList.add("section");
         mainText.classList.add("hidden");
@@ -49,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
         btn1.classList.remove("dash-btn-clicked");
         btn3.classList.remove("dash-btn-clicked");
         btn4.classList.remove("dash-btn-clicked");
-        btn5.classList.remove("dash-btn-clicked");
         sectionMain.classList.remove("grid");
         sectionMain.classList.add("section");
         mainText.classList.add("hidden");
@@ -97,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
         btn1.classList.remove("dash-btn-clicked");
         btn2.classList.remove("dash-btn-clicked");
         btn4.classList.remove("dash-btn-clicked");
-        btn5.classList.remove("dash-btn-clicked");
         sectionMain.classList.remove("grid");
         sectionMain.classList.add("section");
         mainText.classList.add("hidden");
@@ -145,7 +141,6 @@ document.addEventListener("DOMContentLoaded", function () {
         btn1.classList.remove("dash-btn-clicked");
         btn2.classList.remove("dash-btn-clicked");
         btn3.classList.remove("dash-btn-clicked");
-        btn5.classList.remove("dash-btn-clicked");
         sectionMain.classList.add("grid");
         sectionMain.classList.remove("section");
         mainText.classList.add("hidden");
@@ -157,6 +152,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const withIssues = document.getElementById("withIssues").value;
         const withIssuesJson = JSON.parse(withIssues);
         let json_keys = Object.keys(withIssuesJson);
+        const restoredByMonth = document.getElementById("restoredByMonth").value;
+        const restoredByMonthJson = JSON.parse(restoredByMonth);
+        let json_keys2 = Object.keys(restoredByMonthJson);
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
@@ -176,39 +174,24 @@ document.addEventListener("DOMContentLoaded", function () {
             var chart = new google.visualization.BarChart(document.getElementById("div0"));
             chart.draw(googleData, options);
         }
+        console.log(restoredByMonthJson);
         google.charts.setOnLoadCallback(drawChart2);
         function drawChart2() {
             var data = [];
-            var header = ["Hostname", "Total", { role: "annotation" }];
+            var header = ["Month", "Total", { role: "annotation" }];
             data.push(header);
-            for (var i = 0; i < json_keys.length; i++) {
+            for (var i = 0; i < json_keys2.length; i++) {
                 var tmp = [];
-                withIssuesJson[json_keys[i]]["False"] = withIssuesJson[json_keys[i]]["False"] === undefined ? 0 : withIssuesJson[json_keys[i]]["False"];
-                withIssuesJson[json_keys[i]]["True"] = withIssuesJson[json_keys[i]]["True"] === undefined ? 0 : withIssuesJson[json_keys[i]]["True"];
-                tmp.push(json_keys[i]);
-                tmp.push(parseInt(withIssuesJson[json_keys[i]]["False"]) + parseInt(withIssuesJson[json_keys[i]]["True"]));
+                tmp.push(json_keys2[i]);
+                tmp.push(restoredByMonthJson[json_keys2[i]]);
                 tmp.push("");
                 data.push(tmp);
             }
+
             var googleData = new google.visualization.arrayToDataTable(data);
             var options = { legend: { position: "top" }, isStacked: true, backgroundColor: "transparent", hAxis: { format: "#" }, colors: ["#4943bf"] };
             var chart = new google.visualization.BarChart(document.getElementById("div1"));
             chart.draw(googleData, options);
         }
-    });
-    btn5.addEventListener("click", () => {
-        btn5.classList.add("dash-btn-clicked");
-        btn1.classList.remove("dash-btn-clicked");
-        btn2.classList.remove("dash-btn-clicked");
-        btn3.classList.remove("dash-btn-clicked");
-        btn4.classList.remove("dash-btn-clicked");
-        sectionMain.classList.remove("grid");
-        sectionMain.classList.add("section");
-        mainText.classList.add("hidden");
-        section1.classList.add("hidden");
-        section2.classList.add("hidden");
-        section3.classList.add("hidden");
-        section4.classList.add("hidden");
-        section4grid.classList.add("hidden");
     });
 });

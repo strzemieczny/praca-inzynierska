@@ -14,7 +14,7 @@
     width: calc(100vw - var(--nav-width));
     margin-left: var(--nav-width);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     z-index: 10;
 }
 .it-dash-btns {
@@ -25,7 +25,7 @@
     border-top-right-radius: 1em;
     color: #fff;
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
     line-height: 50px;
 }
 .it-dash-btns:hover {

@@ -12,7 +12,10 @@ from django.db.models import Count
 from django.db.models.functions import TruncMonth
 from django.conf import settings
 from collections import defaultdict
+import calendar
 import json
+from collections import Counter
+
 #! Jira API
 from jira import JIRA
 #! Jira Config
@@ -183,27 +186,33 @@ def itDashboard(request):
         #! get 500 oldest backups
 
         #!KPI
-        # * restored with issues?
-        tmp = defaultdict(dict)
-        itDashboard_restored_totalPerMachine = restoredBackup.objects.values('restoredBackup_hostname', 'restoredBackup_ifAnyTroubles').order_by("restoredBackup_ifAnyTroubles").annotate(
+
+        itDashboard_withIssues = defaultdict(dict)
+        itDashboard_restoredByMonth = []
+        itDashboard_restored_totalPerMachine = restoredBackup.objects.values(
+            'restoredBackup_hostname', 'restoredBackup_ifAnyTroubles', 'restoredBackup_restoreDate').order_by("restoredBackup_ifAnyTroubles")
+        # * restored with issues
+        itDashboard_withIssuesAnnotateHostname = itDashboard_restored_totalPerMachine.annotate(
             Count("restoredBackup_hostname"))
-        for x in itDashboard_restored_totalPerMachine:
+        for x in itDashboard_withIssuesAnnotateHostname:
             if x["restoredBackup_ifAnyTroubles"]:
-                tmp[x["restoredBackup_hostname"]
-                    ]["True"] = x["restoredBackup_hostname__count"]
+                itDashboard_withIssues[x["restoredBackup_hostname"]
+                                       ]["True"] = x["restoredBackup_hostname__count"]
             else:
-                tmp[x["restoredBackup_hostname"]
-                    ]["False"] = x["restoredBackup_hostname__count"]
-        tmp.default_factory = None
-        tmp = json.dumps(tmp)
-        # * restored with issues?
-
-        # * restored by month
-
-        # * restored by month
+                itDashboard_withIssues[x["restoredBackup_hostname"]
+                                       ]["False"] = x["restoredBackup_hostname__count"]
+            itDashboard_restoredByMonth.append(
+                calendar.month_name[x['restoredBackup_restoreDate'].month])
+        itDashboard_restoredByMonthCount = dict(
+            Counter(itDashboard_restoredByMonth))
+        itDashboard_withIssues.default_factory = None
+        itDashboard_withIssues = json.dumps(itDashboard_withIssues)
+        itDashboard_restoredByMonthCount = json.dumps(
+            itDashboard_restoredByMonthCount)
+        # * restored with issues & restored by month
 
         #!KPI
-    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': itDashboard_allBackupsCount, 'allBackupsNewest': itDashboard_allBackupsNewest, 'allBackupsOldest': itDashboard_allBackupsOldest, 'withIssues': tmp}, request))
+    return HttpResponse(template.render({'form': addMachine, 'is_IT': is_IT, 'allBackupsCount': itDashboard_allBackupsCount, 'allBackupsNewest': itDashboard_allBackupsNewest, 'allBackupsOldest': itDashboard_allBackupsOldest, 'withIssues': itDashboard_withIssues, 'restoredByMonth': itDashboard_restoredByMonthCount}, request))
 
 
 @ login_required(login_url='/login')

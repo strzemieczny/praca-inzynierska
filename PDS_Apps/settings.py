@@ -165,8 +165,8 @@ DATABASES = {
     },
 }
 
-MONGO = MongoClient(
-    'mongodb://admin:blonie4321delphi@10.142.11.55:27017/?authMechanism=DEFAULT')
+# MONGO = MongoClient(
+#     'mongodb://admin:blonie4321delphi@10.142.11.55:27017/?authMechanism=DEFAULT')
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
