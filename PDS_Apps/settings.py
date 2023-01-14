@@ -10,8 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from django_auth_ldap.config import LDAPSearch
-import ldap
+
 from pathlib import Path
 import os
 import logging
@@ -21,17 +20,18 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+import environ
 
+env = environ.Env()
+environ.Env.read_env()
 # LDAP
+from django_auth_ldap.config import LDAPSearch
+import ldap
 ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
 AUTH_LDAP_START_TLS = True
-#AUTH_LDAP_SERVER_URI = "ldap://plblop-dc04.delphidrive.com"
-#AUTH_LDAP_BIND_DN = "SID_PLBLOSECURITY@delphidrive.com"
-#AUTH_LDAP_BIND_PASSWORD = "S?9piwUVE!"
-#AUTH_LDAP_SEARCH_BASE = "OU=DELPHIDRIVE,DC=DelphiDrive,DC=com"
 AUTH_LDAP_SERVER_URI = "ldap://10.142.11.35"
 AUTH_LDAP_BIND_DN = "SID_PLBLOSECURITY@borgwarner.com"
-AUTH_LDAP_BIND_PASSWORD = "S?9piwUVE!"
+AUTH_LDAP_BIND_PASSWORD = env('LDAP_PASSWD')
 AUTH_LDAP_SEARCH_BASE = "DC=global,DC=borgwarner,DC=net"
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
     AUTH_LDAP_SEARCH_BASE, ldap.SCOPE_SUBTREE, "(samaccountname=%(user)s)")
@@ -43,11 +43,6 @@ AUTH_LDAP_USER_ATTR_MAP = {
     "email": "mail",
 }
 
-'''
-Dodawanie manualne użytkownika z LDAP: 
-from django_auth_ldap.backend import LDAPBackend
-user = LDAPBackend().populate_user('user_name')
-'''
 
 AUTHENTICATION_BACKENDS = [
     'django_auth_ldap.backend.LDAPBackend',
@@ -159,8 +154,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'pds-apps',
         'CLIENT': {
-            'host': 'mongodb://admin:blonie4321delphi@10.142.11.55:27017/?authMechanism=DEFAULT',
-            # 'host': 'mongodb://python:delphi1234@10.142.11.55:27017/?authMechanism=DEFAULT&authSource=pds-apps',
+            'host': 'mongodb://127.0.0.1:27017/',
         }
     },
 }

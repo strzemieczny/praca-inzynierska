@@ -1,11 +1,11 @@
 version: '3.4'
 
 services:
-  dev:
+  PDS_Apps:
     image: dev
     container_name: PDS_Apps
     build:
       context: .
       dockerfile: ./Dockerfile
-    ports:
-      - 809:809
+    networks:
+      - pds_apps-net:

@@ -15,13 +15,18 @@ from collections import defaultdict
 import calendar
 import json
 from collections import Counter
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
 
 #! Jira API
 from jira import JIRA
 #! Jira Config
-jira_api_token = 'ZBoKhbt8TpC5xF9tdG4yDF15'
-jira_user = 'strzemieczny@borgwarner.com'
-jira_server = 'https://plblo-it.atlassian.net'
+jira_api_token = env('JIRA_API_KEY')
+jira_user = env('JIRA_API_USER')
+jira_server = env('JIRA_API_SERVER')
 jira_options = {
     'server': jira_server
 }
